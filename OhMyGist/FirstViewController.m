@@ -8,6 +8,7 @@
 
 #import "FirstViewController.h"
 #import "FGNetworkClient.h"
+#import "OctoKit.h"
 
 static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 static NSString * const OCTClientOAuthScopesHeaderField = @"X-OAuth-Scopes";
@@ -37,11 +38,11 @@ static NSString * const OCTClientOAuthScopesHeaderField = @"X-OAuth-Scopes";
 
 - (void)getlist
 {
-    [[FGNetworkClient sharedClient] GET:@"/gists/public" parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"%@",JSON);
-    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        NSLog(@"%@",error);
-    }];
+//    [[FGNetworkClient sharedClient] GET:@"/gists/public" parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+//        NSLog(@"%@",JSON);
+//    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+//        NSLog(@"%@",error);
+//    }];
 }
 
 - (void)loginButtonAction:(id)sender
@@ -51,22 +52,22 @@ static NSString * const OCTClientOAuthScopesHeaderField = @"X-OAuth-Scopes";
 
 - (void)createAuthorizations
 {
-    NSDictionary *parameters = @{@"note":@"admin script",@"scopes":@[@"public_repo"]};
-    [[FGNetworkClient sharedClient] POST:@"/authorizations" parameters:parameters success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"%@",JSON);
-    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        NSLog(@"%@",error);
-    }];
+//    NSDictionary *parameters = @{@"note":@"admin script",@"scopes":@[@"public_repo"]};
+//    [[FGNetworkClient sharedClient] POST:@"/authorizations" parameters:parameters success:^(NSURLSessionDataTask * __unused task, id JSON) {
+//        NSLog(@"%@",JSON);
+//    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+//        NSLog(@"%@",error);
+//    }];
 }
 
 - (void)user:(NSString *)userName password:(NSString *)password
 {
-    [[FGNetworkClient sharedClient] POST:@"/user" parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"%@",JSON);
-        [self createAuthorizations];
-    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        NSLog(@"%@",error);
-    }];
+//    [[FGNetworkClient sharedClient] POST:@"/user" parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+//        NSLog(@"%@",JSON);
+//        [self createAuthorizations];
+//    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+//        NSLog(@"%@",error);
+//    }];
 }
 
 - (void)signIn:(NSString *)userName password:(NSString *)password

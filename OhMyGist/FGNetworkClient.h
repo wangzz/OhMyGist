@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AFHTTPSessionManager.h"
+//#import "AFHTTPSessionManager.h"
 
 
 
-@interface FGNetworkClient : AFHTTPSessionManager
-
-+ (instancetype)sharedClient;
-
-@end
+//@interface FGNetworkClient : AFHTTPSessionManager
+//
+//+ (instancetype)sharedClient;
+//
+//@end

@@ -36,38 +36,23 @@ static NSString * const OCTClientOAuthScopesHeaderField = @"X-OAuth-Scopes";
     // Dispose of any resources that can be recreated.
 }
 
-- (void)getlist
-{
-//    [[FGNetworkClient sharedClient] GET:@"/gists/public" parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-//        NSLog(@"%@",JSON);
-//    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-//        NSLog(@"%@",error);
-//    }];
-}
-
 - (void)loginButtonAction:(id)sender
 {
     [self user:@"wangzz" password:@"victory2011"];
 }
 
-- (void)createAuthorizations
-{
-//    NSDictionary *parameters = @{@"note":@"admin script",@"scopes":@[@"public_repo"]};
-//    [[FGNetworkClient sharedClient] POST:@"/authorizations" parameters:parameters success:^(NSURLSessionDataTask * __unused task, id JSON) {
-//        NSLog(@"%@",JSON);
-//    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-//        NSLog(@"%@",error);
-//    }];
-}
-
 - (void)user:(NSString *)userName password:(NSString *)password
 {
-//    [[FGNetworkClient sharedClient] POST:@"/user" parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-//        NSLog(@"%@",JSON);
-//        [self createAuthorizations];
-//    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-//        NSLog(@"%@",error);
-//    }];
+    OCTUser *user = [OCTUser userWithRawLogin:userName server:OCTServer.dotComServer];
+    [[OCTClient
+      signInAsUser:user password:password oneTimePassword:nil scopes:OCTClientAuthorizationScopesUser]
+     subscribeNext:^(OCTClient *authenticatedClient) {
+         // Authentication was successful. Do something with the created client.
+         NSLog(@"%@",authenticatedClient);
+     } error:^(NSError *error) {
+         // Authentication failed.
+         NSLog(@"%@",error);
+     }];
 }
 
 - (void)signIn:(NSString *)userName password:(NSString *)password

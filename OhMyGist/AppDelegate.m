@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "OctoKit.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [OCTClient setClientID:@"7dad4336cf76fac2e8b3" clientSecret:@"3ea591db02ea0ee3cc6b1008af60385146ca31be"];
+    
     return YES;
 }
 

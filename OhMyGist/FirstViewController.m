@@ -49,10 +49,28 @@ static NSString * const OCTClientOAuthScopesHeaderField = @"X-OAuth-Scopes";
      subscribeNext:^(OCTClient *authenticatedClient) {
          // Authentication was successful. Do something with the created client.
          NSLog(@"%@",authenticatedClient);
+         if (authenticatedClient.token.length > 0) {
+             [self fetchGists:authenticatedClient];
+         }
+         
      } error:^(NSError *error) {
          // Authentication failed.
          NSLog(@"%@",error);
      }];
+}
+
+- (void)fetchGists:(OCTClient *)client
+{
+    [[client fetchGists] subscribeNext:^(id x) {
+        if ([x isKindOfClass:[OCTGist class]]) {
+            OCTGist *gist = x;
+            NSLog(@"name:%@",gist);
+        }
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    } completed:^{
+        NSLog(@"completed");
+    }];
 }
 
 - (void)signIn:(NSString *)userName password:(NSString *)password

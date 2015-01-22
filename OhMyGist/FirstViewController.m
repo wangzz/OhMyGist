@@ -7,8 +7,8 @@
 //
 
 #import "FirstViewController.h"
-#import "FGNetworkClient.h"
 #import "OctoKit.h"
+#import "FGDataManager.h"
 
 static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 static NSString * const OCTClientOAuthScopesHeaderField = @"X-OAuth-Scopes";
@@ -38,64 +38,18 @@ static NSString * const OCTClientOAuthScopesHeaderField = @"X-OAuth-Scopes";
 
 - (void)loginButtonAction:(id)sender
 {
-    [self user:@"wangzz" password:@"victory2011"];
-}
-
-- (void)user:(NSString *)userName password:(NSString *)password
-{
-    OCTUser *user = [OCTUser userWithRawLogin:userName server:OCTServer.dotComServer];
-    [[OCTClient
-      signInAsUser:user password:password oneTimePassword:nil scopes:OCTClientAuthorizationScopesUser]
-     subscribeNext:^(OCTClient *authenticatedClient) {
-         // Authentication was successful. Do something with the created client.
-         NSLog(@"%@",authenticatedClient);
-         if (authenticatedClient.token.length > 0) {
-             [self fetchGists:authenticatedClient];
-         }
-         
-     } error:^(NSError *error) {
-         // Authentication failed.
-         NSLog(@"%@",error);
-     }];
-}
-
-- (void)fetchGists:(OCTClient *)client
-{
-    [[client fetchGists] subscribeNext:^(id x) {
-        if ([x isKindOfClass:[OCTGist class]]) {
-            OCTGist *gist = x;
-            NSLog(@"name:%@",gist);
+    [FGDataManager loginWithUserName:@"wangzz" password:@"victory2011" completionBlock:^(id object, FGError *error) {
+        if (error == nil) {
+            [self fetchGistsWith:object];
         }
-    } error:^(NSError *error) {
-        NSLog(@"%@",error);
-    } completed:^{
-        NSLog(@"completed");
     }];
 }
 
-- (void)signIn:(NSString *)userName password:(NSString *)password
+- (void)fetchGistsWith:(OCTClient *)client
 {
-    NSString *requestString = @"https://api.github.com/user";
-    NSURL *url = [NSURL URLWithString:requestString];
-    NSURLRequest *req = [NSURLRequest requestWithURL:url];
-    
-    NSData *userPasswordData = [[NSString stringWithFormat:@"%@:%@", userName, password] dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *base64EncodedCredential = [userPasswordData base64EncodedStringWithOptions:0];
-    NSString *authString = [NSString stringWithFormat:@"Basic %@", base64EncodedCredential];
-    
-    NSURLSessionConfiguration *sessionConfig=[NSURLSessionConfiguration defaultSessionConfiguration];
-    sessionConfig.HTTPAdditionalHeaders=@{@"Authorization":authString};
-    
-    self.session=[NSURLSession sessionWithConfiguration:sessionConfig];
-    
-    NSURLSessionDataTask *dataTask = [self.session dataTaskWithRequest:req completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        NSLog(@"%@", jsonObject);
-        
-        
+    [FGDataManager fetchGists:client completionBlock:^(id object, FGError *error) {
+        NSLog(@"%@",object);
     }];
-    
-    [dataTask resume];
 }
 
 

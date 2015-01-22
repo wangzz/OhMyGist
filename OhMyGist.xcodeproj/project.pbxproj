@@ -187,6 +187,8 @@
 		823832DC1A6FBDAE002A16EF /* NSURL+OCTQueryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8238329E1A6FBDAD002A16EF /* NSURL+OCTQueryAdditions.m */; };
 		823832DD1A6FBDAE002A16EF /* NSValueTransformer+OCTPredefinedTransformerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 823832A01A6FBDAD002A16EF /* NSValueTransformer+OCTPredefinedTransformerAdditions.m */; };
 		823832DE1A6FBDAE002A16EF /* RACSignal+OCTClientAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 823832A21A6FBDAD002A16EF /* RACSignal+OCTClientAdditions.m */; };
+		823832E21A709A79002A16EF /* FGDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 823832E11A709A79002A16EF /* FGDataManager.m */; };
+		823832E51A709C6D002A16EF /* FGError.m in Sources */ = {isa = PBXBuildFile; fileRef = 823832E41A709C6D002A16EF /* FGError.m */; };
 		8239249D1A66B29C00AEC910 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8239249C1A66B29C00AEC910 /* main.m */; };
 		823924A01A66B29C00AEC910 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8239249F1A66B29C00AEC910 /* AppDelegate.m */; };
 		823924A31A66B29C00AEC910 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 823924A21A66B29C00AEC910 /* FirstViewController.m */; };
@@ -195,7 +197,6 @@
 		823924AB1A66B29C00AEC910 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 823924AA1A66B29C00AEC910 /* Images.xcassets */; };
 		823924BA1A66B29C00AEC910 /* OhMyGistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 823924B91A66B29C00AEC910 /* OhMyGistTests.m */; };
 		823924C41A66B48300AEC910 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 823924C31A66B48300AEC910 /* Default-568h@2x.png */; };
-		823925DE1A66BE2600AEC910 /* FGNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 823925DD1A66BE2600AEC910 /* FGNetworkClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -583,6 +584,10 @@
 		823832A21A6FBDAD002A16EF /* RACSignal+OCTClientAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RACSignal+OCTClientAdditions.m"; sourceTree = "<group>"; };
 		823832A31A6FBDAD002A16EF /* OctoKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OctoKit-Prefix.pch"; sourceTree = "<group>"; };
 		823832A41A6FBDAD002A16EF /* OctoKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OctoKit.h; sourceTree = "<group>"; };
+		823832E01A709A79002A16EF /* FGDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGDataManager.h; sourceTree = "<group>"; };
+		823832E11A709A79002A16EF /* FGDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGDataManager.m; sourceTree = "<group>"; };
+		823832E31A709C6D002A16EF /* FGError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGError.h; sourceTree = "<group>"; };
+		823832E41A709C6D002A16EF /* FGError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGError.m; sourceTree = "<group>"; };
 		823924971A66B29C00AEC910 /* OhMyGist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OhMyGist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8239249B1A66B29C00AEC910 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8239249C1A66B29C00AEC910 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -598,8 +603,6 @@
 		823924B81A66B29C00AEC910 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		823924B91A66B29C00AEC910 /* OhMyGistTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OhMyGistTests.m; sourceTree = "<group>"; };
 		823924C31A66B48300AEC910 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
-		823925DC1A66BE2600AEC910 /* FGNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGNetworkClient.h; sourceTree = "<group>"; };
-		823925DD1A66BE2600AEC910 /* FGNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGNetworkClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1230,6 +1233,17 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		823832DF1A709A00002A16EF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				823832E01A709A79002A16EF /* FGDataManager.h */,
+				823832E11A709A79002A16EF /* FGDataManager.m */,
+				823832E31A709C6D002A16EF /* FGError.h */,
+				823832E41A709C6D002A16EF /* FGError.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		8239248E1A66B29C00AEC910 = {
 			isa = PBXGroup;
 			children = (
@@ -1252,6 +1266,7 @@
 		823924991A66B29C00AEC910 /* OhMyGist */ = {
 			isa = PBXGroup;
 			children = (
+				823832DF1A709A00002A16EF /* Models */,
 				8239249E1A66B29C00AEC910 /* AppDelegate.h */,
 				8239249F1A66B29C00AEC910 /* AppDelegate.m */,
 				823924A11A66B29C00AEC910 /* FirstViewController.h */,
@@ -1259,8 +1274,6 @@
 				823924A41A66B29C00AEC910 /* SecondViewController.h */,
 				823924A51A66B29C00AEC910 /* SecondViewController.m */,
 				823924A71A66B29C00AEC910 /* Main.storyboard */,
-				823925DC1A66BE2600AEC910 /* FGNetworkClient.h */,
-				823925DD1A66BE2600AEC910 /* FGNetworkClient.m */,
 				8234C1EB1A6E291C0098F0E1 /* Resource */,
 				8234C1EC1A6E35840098F0E1 /* Framework */,
 				823924C51A66BCE700AEC910 /* Vendor */,
@@ -1415,7 +1428,6 @@
 				8234C3F31A6E39E40098F0E1 /* RACSignal.m in Sources */,
 				823831FF1A6FB613002A16EF /* MTLJSONAdapter.m in Sources */,
 				8234C3FF1A6E39E40098F0E1 /* RACTupleSequence.m in Sources */,
-				823925DE1A66BE2600AEC910 /* FGNetworkClient.m in Sources */,
 				823924A61A66B29C00AEC910 /* SecondViewController.m in Sources */,
 				823832D31A6FBDAE002A16EF /* OCTSubmoduleContent.m in Sources */,
 				8234C4131A6E39E40098F0E1 /* UITableViewHeaderFooterView+RACSignalSupport.m in Sources */,
@@ -1514,9 +1526,11 @@
 				823832A71A6FBDAD002A16EF /* OCTAuthorization.m in Sources */,
 				8234C3C41A6E39E40098F0E1 /* NSObject+RACDeallocating.m in Sources */,
 				8234C2E81A6E392A0098F0E1 /* AFImageRequestOperation.m in Sources */,
+				823832E51A709C6D002A16EF /* FGError.m in Sources */,
 				823832DD1A6FBDAE002A16EF /* NSValueTransformer+OCTPredefinedTransformerAdditions.m in Sources */,
 				823832C61A6FBDAD002A16EF /* OCTTreeEntry.m in Sources */,
 				8234C3F01A6E39E40098F0E1 /* RACSequence.m in Sources */,
+				823832E21A709A79002A16EF /* FGDataManager.m in Sources */,
 				823832B01A6FBDAD002A16EF /* OCTTeam.m in Sources */,
 				8234C3E81A6E39E40098F0E1 /* RACMulticastConnection.m in Sources */,
 				823832AA1A6FBDAD002A16EF /* OCTCommitComment.m in Sources */,

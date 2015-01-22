@@ -40,8 +40,18 @@ static NSString * const OCTClientOAuthScopesHeaderField = @"X-OAuth-Scopes";
 {
     [FGDataManager loginWithUserName:@"wangzz" password:@"victory2011" completionBlock:^(id object, FGError *error) {
         if (error == nil) {
-            [self fetchGistsWith:object];
+//            [self fetchGistsWith:object];
+//            [self fetchUserInfoWith:object];
+//            [self fetchUserRepositoriesWith:object];
+            [self fetchPublicGistsWith:object];
         }
+    }];
+}
+
+- (void)fetchPublicGistsWith:(OCTClient *)client
+{
+    [FGDataManager fetchPublicGists:client completionBlock:^(id object, FGError *error) {
+        NSLog(@"%@",object);
     }];
 }
 
@@ -52,5 +62,18 @@ static NSString * const OCTClientOAuthScopesHeaderField = @"X-OAuth-Scopes";
     }];
 }
 
+- (void)fetchUserInfoWith:(OCTClient *)client
+{
+    [FGDataManager fetchUserInfo:client completionBlock:^(id object, FGError *error) {
+        NSLog(@"%@",object);
+    }];
+}
+
+- (void)fetchUserRepositoriesWith:(OCTClient *)client
+{
+    [FGDataManager fetchUserRepositories:client completionBlock:^(id object, FGError *error) {
+        NSLog(@"%@",object);
+    }];
+}
 
 @end

@@ -45,5 +45,40 @@
     }];
 }
 
++ (void)fetchUserInfo:(OCTClient *)client completionBlock:(completionBlock)completionBlock
+{
+    [[client fetchUserInfo] subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+        if (completionBlock) {
+            completionBlock(nil,[FGError errorWith:error]);
+        }
+    }];
+}
+
++ (void)fetchUserRepositories:(OCTClient *)client completionBlock:(completionBlock)completionBlock
+{
+    [[[client fetchUserRepositories] collect] subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+        if (completionBlock) {
+            completionBlock(nil,[FGError errorWith:error]);
+        }
+    }];
+}
+
+
++ (void)fetchPublicGists:(OCTClient *)client completionBlock:(completionBlock)completionBlock
+{
+    [[[client fetchPublicGistsWithPage:0] collect] subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+    
+    [[[client fetchPublicGistsWithPage:3] collect] subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+}
 
 @end

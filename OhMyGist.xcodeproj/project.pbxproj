@@ -978,6 +978,9 @@
 		823832E81A70FBE4002A16EF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8238334E1A70FBE4002A16EF /* OCTClient.h */,
+				8238334F1A70FBE4002A16EF /* OCTClient.m */,
+				8238334D1A70FBE4002A16EF /* OCTClient+Private.h */,
 				823832E91A70FBE4002A16EF /* Activity */,
 				823832EC1A70FBE4002A16EF /* Authentication */,
 				823832F11A70FBE4002A16EF /* Base Models */,
@@ -988,9 +991,6 @@
 				823833311A70FBE4002A16EF /* Git Data */,
 				823833431A70FBE4002A16EF /* Issues */,
 				823833481A70FBE4002A16EF /* Notifications */,
-				8238334D1A70FBE4002A16EF /* OCTClient+Private.h */,
-				8238334E1A70FBE4002A16EF /* OCTClient.h */,
-				8238334F1A70FBE4002A16EF /* OCTClient.m */,
 				823833501A70FBE4002A16EF /* Public Keys */,
 				823833551A70FBE4002A16EF /* Pull Requests */,
 				8238335A1A70FBE4002A16EF /* Repositories */,
@@ -1292,8 +1292,6 @@
 				823924A41A66B29C00AEC910 /* SecondViewController.h */,
 				823924A51A66B29C00AEC910 /* SecondViewController.m */,
 				823924A71A66B29C00AEC910 /* Main.storyboard */,
-				8234C1EB1A6E291C0098F0E1 /* Resource */,
-				8234C1EC1A6E35840098F0E1 /* Framework */,
 				823924C51A66BCE700AEC910 /* Vendor */,
 			);
 			path = OhMyGist;
@@ -1302,6 +1300,8 @@
 		8239249A1A66B29C00AEC910 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8234C1EB1A6E291C0098F0E1 /* Resource */,
+				8234C1EC1A6E35840098F0E1 /* Framework */,
 				8239249B1A66B29C00AEC910 /* Info.plist */,
 				8239249C1A66B29C00AEC910 /* main.m */,
 			);

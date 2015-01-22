@@ -26,12 +26,38 @@ typedef void (^completionBlock)(id object, FGError *error);
 
 
 /**
+ *  异步获取用户信息
+ *
+ *  @param client          当前登陆用户
+ *  @param completionBlock 获取结果回调
+ */
++ (void)fetchUserInfo:(OCTClient *)client completionBlock:(completionBlock)completionBlock;
+
+
+/**
  *  异步获取当前登录用户所有gists列表
  *
  *  @param client          当前登陆用户
  *  @param completionBlock 获取结果回调
  */
 + (void)fetchGists:(OCTClient *)client completionBlock:(completionBlock)completionBlock;
+
+/**
+ *  异步获取当前登录用户Repositories
+ *
+ *  @param client          当前登陆用户
+ *  @param completionBlock 获取结果回调
+ */
++ (void)fetchUserRepositories:(OCTClient *)client completionBlock:(completionBlock)completionBlock;
+
+
+/**
+ *  异步获取Public Gists
+ *
+ *  @param client          当前登陆用户
+ *  @param completionBlock 获取结果回调
+ */
++ (void)fetchPublicGists:(OCTClient *)client completionBlock:(completionBlock)completionBlock;
 
 
 @end

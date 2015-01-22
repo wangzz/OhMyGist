@@ -7,7 +7,7 @@
 //
 
 #import "MTLModel+NSCoding.h"
-#import "EXTRuntimeExtensions.h"
+#import "EXTRuntimeExtensions-MTL.h"
 #import "EXTScope.h"
 #import "MTLReflection.h"
 #import <objc/runtime.h>

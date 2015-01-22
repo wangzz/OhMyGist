@@ -16,13 +16,10 @@
 + (void)loginWithUserName:(NSString *)userName password:(NSString *)password completionBlock:(completionBlock)completionBlock
 {
     OCTUser *user = [OCTUser userWithRawLogin:userName server:OCTServer.dotComServer];
-    [[OCTClient
-      signInAsUser:user password:password oneTimePassword:nil scopes:OCTClientAuthorizationScopesUser]
-     subscribeNext:^(OCTClient *authenticatedClient) {
-         // Authentication was successful. Do something with the created client.
+    [[OCTClient signInAsUser:user password:password oneTimePassword:nil scopes:OCTClientAuthorizationScopesUser note:nil noteURL:nil fingerprint:nil] subscribeNext:^(OCTClient *authenticatedClient) {
+         //Authentication was successful. Do something with the created client.
          NSLog(@"%@",authenticatedClient);
          completionBlock(authenticatedClient,nil);
-         
      } error:^(NSError *error) {
          // Authentication failed.
          NSLog(@"%@",error);
@@ -32,24 +29,18 @@
 
 + (void)fetchGists:(OCTClient *)client completionBlock:(completionBlock)completionBlock
 {
-    NSMutableArray *gistsArray = [NSMutableArray array];
-    [[client fetchGists] subscribeNext:^(id x) {
-        if ([x isKindOfClass:[OCTGist class]]) {
-            OCTGist *gist = x;
-            id value = gist.files.allValues.firstObject;
-            if ([value isKindOfClass:[OCTGistFile class]]) {
-                [gistsArray addObject:value];
-            }
+    [[[client fetchGists] collect] subscribeNext:^(NSArray *repositories) {
+        // Thanks to -collect, this block is invoked after the request completes,
+        // with _all_ the results that were received.
+        if (completionBlock && [repositories.firstObject isKindOfClass:[OCTGist class]]) {
+            completionBlock(repositories,nil);
         }
     } error:^(NSError *error) {
+        // Invoked when an error occurs. You won't receive any results if this
+        // happens.
         NSLog(@"%@",error);
         if (completionBlock) {
             completionBlock(nil,[FGError errorWith:error]);
-        }
-    } completed:^{
-        NSLog(@"completed");
-        if (completionBlock) {
-            completionBlock(gistsArray,nil);
         }
     }];
 }

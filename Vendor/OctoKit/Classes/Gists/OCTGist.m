@@ -9,6 +9,7 @@
 #import "OCTGist.h"
 #import "OCTGistFile.h"
 #import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
+#import "ReactiveCocoa.h"
 
 @implementation OCTGist
 
@@ -16,7 +17,6 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
-		@"rawURL": @"raw_url",
 		@"creationDate": @"created_at",
 		@"HTMLURL": @"html_url",
 	}];
@@ -96,15 +96,17 @@
 	return edits;
 }
 
++ (NSSet *)propertyKeys {
+	return [NSSet setWithObjects:@keypath(OCTGistEdit.new, fileChanges), @keypath(OCTGistEdit.new, gistDescription), @keypath(OCTGistEdit.new, publicGist), nil];
+}
+
 #pragma mark MTLJSONSerializing
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-		@"filesToModify": NSNull.null,
-		@"filesToAdd": NSNull.null,
-		@"filenamesToDelete": NSNull.null,
 		@"fileChanges": @"files",
 		@"publicGist": @"public",
+		@"gistDescription": @"description",
 	};
 }
 

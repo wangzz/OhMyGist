@@ -1,5 +1,5 @@
 //
-//  EXTRuntimeExtensions.m
+//  EXTRuntimeExtensions-MTL.m
 //  extobjc
 //
 //  Created by Justin Spahr-Summers on 2011-03-05.
@@ -7,7 +7,7 @@
 //  Released under the MIT license.
 //
 
-#import "EXTRuntimeExtensions.h"
+#import "EXTRuntimeExtensions-MTL.h"
 
 mtl_propertyAttributes *mtl_copyPropertyAttributes (objc_property_t property) {
     const char * const attrString = property_getAttributes(property);

@@ -7,6 +7,7 @@
 //
 
 #import "AFNetworking.h"
+#import <Foundation/Foundation.h>
 
 @class OCTServer;
 @class OCTUser;

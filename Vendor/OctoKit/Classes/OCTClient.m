@@ -33,14 +33,18 @@ const NSInteger OCTClientErrorOpeningBrowserFailed = 673;
 const NSInteger OCTClientErrorRequestForbidden = 674;
 const NSInteger OCTClientErrorTokenAuthenticationUnsupported = 675;
 const NSInteger OCTClientErrorUnsupportedServerScheme = 676;
+const NSInteger OCTClientErrorSecureConnectionFailed = 677;
 
 NSString * const OCTClientErrorRequestURLKey = @"OCTClientErrorRequestURLKey";
 NSString * const OCTClientErrorHTTPStatusCodeKey = @"OCTClientErrorHTTPStatusCodeKey";
 NSString * const OCTClientErrorOneTimePasswordMediumKey = @"OCTClientErrorOneTimePasswordMediumKey";
 NSString * const OCTClientErrorOAuthScopesStringKey = @"OCTClientErrorOAuthScopesStringKey";
 NSString * const OCTClientErrorRequestStateRedirected = @"OCTClientErrorRequestRedirected";
+NSString * const OCTClientErrorDescriptionKey = @"OCTClientErrorDescriptionKey";
+NSString * const OCTClientErrorMessagesKey = @"OCTClientErrorMessagesKey";
 
 NSString * const OCTClientAPIVersion = @"v3";
+NSString * const OCTClientPreviewAPIVersion = @"mirage-preview";
 
 static const NSInteger OCTClientNotModifiedStatusCode = 304;
 static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
@@ -237,9 +241,11 @@ static NSString *OCTClientOAuthClientSecret = nil;
 
 	[AFHTTPRequestOperation addAcceptableStatusCodes:[NSIndexSet indexSetWithIndex:OCTClientNotModifiedStatusCode]];
 
-	NSString *contentType = [NSString stringWithFormat:@"application/vnd.github.%@+json", OCTClientAPIVersion];
-	[self setDefaultHeader:@"Accept" value:contentType];
-	[AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:contentType]];
+	NSString *stableContentType = [NSString stringWithFormat:@"application/vnd.github.%@+json", OCTClientAPIVersion];
+	NSString *previewContentType = [NSString stringWithFormat:@"application/vnd.github.%@+json", OCTClientPreviewAPIVersion];
+
+	[self setDefaultHeader:@"Accept" value:stableContentType];
+	[AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObjects:stableContentType, previewContentType, nil]];
 
 	self.parameterEncoding = AFJSONParameterEncoding;
 	[self registerHTTPOperationClass:AFJSONRequestOperation.class];
@@ -298,7 +304,7 @@ static NSString *OCTClientOAuthClientSecret = nil;
 		array];
 }
 
-+ (RACSignal *)signInAsUser:(OCTUser *)user password:(NSString *)password oneTimePassword:(NSString *)oneTimePassword scopes:(OCTClientAuthorizationScopes)scopes {
++ (RACSignal *)signInAsUser:(OCTUser *)user password:(NSString *)password oneTimePassword:(NSString *)oneTimePassword scopes:(OCTClientAuthorizationScopes)scopes note:(NSString *)note noteURL:(NSURL *)noteURL fingerprint:(NSString *)fingerprint {
 	NSParameterAssert(user != nil);
 	NSParameterAssert(password != nil);
 
@@ -306,25 +312,29 @@ static NSString *OCTClientOAuthClientSecret = nil;
 	NSString *clientSecret = self.class.clientSecret;
 	NSAssert(clientID != nil && clientSecret != nil, @"+setClientID:clientSecret: must be invoked before calling %@", NSStringFromSelector(_cmd));
 
-	RACSignal *(^authorizationSignalWithUser)(OCTUser *user) = ^(OCTUser *user) {
+	RACSignal * (^authorizationSignalWithUser)(OCTUser *user) = ^(OCTUser *user) {
 		return [RACSignal defer:^{
 			OCTClient *client = [self unauthenticatedClientWithUser:user];
 			[client setAuthorizationHeaderWithUsername:user.rawLogin password:password];
 
 			NSString *path = [NSString stringWithFormat:@"authorizations/clients/%@", clientID];
-			NSDictionary *params = @{
+			NSMutableDictionary *params = [@{
 				@"scopes": [self scopesArrayFromScopes:scopes],
 				@"client_secret": clientSecret,
-			};
+			} mutableCopy];
+
+			if (note != nil) params[@"note"] = note;
+			if (noteURL != nil) params[@"note_url"] = noteURL.absoluteString;
+			if (fingerprint != nil) params[@"fingerprint"] = fingerprint;
 
 			NSMutableURLRequest *request = [client requestWithMethod:@"PUT" path:path parameters:params];
 			request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
 			if (oneTimePassword != nil) [request setValue:oneTimePassword forHTTPHeaderField:OCTClientOneTimePasswordHeaderField];
 
-			RACSignal *tokenSignal = [[client
-				enqueueRequest:request resultClass:OCTAuthorization.class]
-				oct_parsedResults];
+			NSString *previewContentType = [NSString stringWithFormat:@"application/vnd.github.%@+json", OCTClientPreviewAPIVersion];
+			[request setValue:previewContentType forHTTPHeaderField:@"Accept"];
 
+			RACSignal *tokenSignal = [client enqueueRequest:request resultClass:OCTAuthorization.class];
 			return [RACSignal combineLatest:@[
 				[RACSignal return:client],
 				tokenSignal
@@ -332,7 +342,35 @@ static NSString *OCTClientOAuthClientSecret = nil;
 		}];
 	};
 
-	return [[[[authorizationSignalWithUser(user)
+	return [[[[[authorizationSignalWithUser(user)
+		flattenMap:^(RACTuple *clientAndResponse) {
+			RACTupleUnpack(OCTClient *client, OCTResponse *response) = clientAndResponse;
+			OCTAuthorization *authorization = response.parsedResult;
+
+			// To increase security, tokens are no longer returned when the authorization
+			// already exists. If that happens, we need to delete the existing
+			// authorization for this app and create a new one, so we end up with a token
+			// of our own.
+			//
+			// The `fingerprint` field provided will be used to ensure uniqueness and
+			// avoid deleting unrelated tokens.
+			if (authorization.token.length == 0 && response.statusCode == 200) {
+				NSString *path = [NSString stringWithFormat:@"authorizations/%@", authorization.objectID];
+
+				NSMutableURLRequest *request = [client requestWithMethod:@"DELETE" path:path parameters:nil];
+				request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+				if (oneTimePassword != nil) [request setValue:oneTimePassword forHTTPHeaderField:OCTClientOneTimePasswordHeaderField];
+
+				return [[client
+					enqueueRequest:request resultClass:nil]
+					then:^{
+						// Try logging in again.
+						return authorizationSignalWithUser(user);
+					}];
+			} else {
+				return [RACSignal return:clientAndResponse];
+			}
+		}]
 		catch:^(NSError *error) {
 			if (error.code == OCTClientErrorUnsupportedServerScheme) {
 				OCTServer *secureServer = [self HTTPSEnterpriseServerWithServer:user.server];
@@ -351,7 +389,9 @@ static NSString *OCTClientOAuthClientSecret = nil;
 
 			return [RACSignal error:error];
 		}]
-		reduceEach:^(OCTClient *client, OCTAuthorization *authorization) {
+		reduceEach:^(OCTClient *client, OCTResponse *response) {
+			OCTAuthorization *authorization = response.parsedResult;
+
 			client.token = authorization.token;
 			return client;
 		}]
@@ -365,8 +405,6 @@ static NSString *OCTClientOAuthClientSecret = nil;
 	NSString *clientID = self.class.clientID;
 	NSString *clientSecret = self.class.clientSecret;
 	NSAssert(clientID != nil && clientSecret != nil, @"+setClientID:clientSecret: must be invoked before calling %@", NSStringFromSelector(_cmd));
-
-	OCTClient *client = [[self alloc] initWithServer:server];
 
 	return [[[[[[[[[self
 		authorizeWithServerUsingWebBrowser:server scopes:scopes]
@@ -388,27 +426,40 @@ static NSString *OCTClientOAuthClientSecret = nil;
 				@"code": temporaryCode
 			};
 
-			// We're using -requestWithMethod: for its parameter encoding and
-			// User-Agent behavior, but we'll replace the key properties so we
-			// can POST to another host.
-			NSMutableURLRequest *request = [client requestWithMethod:@"POST" path:@"" parameters:params];
-			request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
-			request.URL = [NSURL URLWithString:@"login/oauth/access_token" relativeToURL:server.baseWebURL];
+			RACSignal *(^clientAndTokenSignalWithServer)(OCTServer *) = ^(OCTServer *server) {
+				OCTClient *client = [[self alloc] initWithServer:server];
 
-			// The `Accept` string we normally use (where we specify the beta
-			// version of the API) doesn't work for this endpoint. Just plain
-			// JSON.
-			[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+				// We're using -requestWithMethod: for its parameter encoding and
+				// User-Agent behavior, but we'll replace the key properties so we
+				// can POST to another host.
+				NSMutableURLRequest *request = [client requestWithMethod:@"POST" path:@"" parameters:params];
+				request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+				request.URL = [NSURL URLWithString:@"login/oauth/access_token" relativeToURL:server.baseWebURL];
 
+				// The `Accept` string we normally use (where we specify the beta
+				// version of the API) doesn't work for this endpoint. Just plain
+				// JSON.
+				[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 
-			RACSignal *tokenSignal = [[client
-				enqueueRequest:request resultClass:OCTAccessToken.class]
-				oct_parsedResults];
+				RACSignal *tokenSignal = [[client
+					enqueueRequest:request resultClass:OCTAccessToken.class]
+					oct_parsedResults];
 
-			return [RACSignal combineLatest:@[
-				[RACSignal return:client],
-				tokenSignal
-			]];
+				return [RACSignal combineLatest:@[
+					[RACSignal return:client],
+					tokenSignal
+				]];
+			};
+
+			return [clientAndTokenSignalWithServer(server)
+				catch:^(NSError *error) {
+					if (error.code == OCTClientErrorUnsupportedServerScheme) {
+						OCTServer *secureServer = [self HTTPSEnterpriseServerWithServer:server];
+						return clientAndTokenSignalWithServer(secureServer);
+					}
+
+					return [RACSignal error:error];
+				}];
 		}]
 		flatten]
 		reduceEach:^(OCTClient *client, OCTAccessToken *accessToken) {
@@ -535,7 +586,7 @@ static NSString *OCTClientOAuthClientSecret = nil;
 
 - (NSMutableURLRequest *)requestWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters notMatchingEtag:(NSString *)etag {
 	NSParameterAssert(method != nil);
-	
+
 	if ([method isEqualToString:@"GET"]) {
 		parameters = [parameters ?: [NSDictionary dictionary] mtl_dictionaryByAddingEntriesFromDictionary:@{
 			@"per_page": @100
@@ -557,6 +608,7 @@ static NSString *OCTClientOAuthClientSecret = nil;
 #pragma mark Request Enqueuing
 
 - (RACSignal *)enqueueRequest:(NSURLRequest *)request fetchAllPages:(BOOL)fetchAllPages {
+	NSURLRequest *originalRequest = [request copy];
 	RACSignal *signal = [RACSignal createSignal:^(id<RACSubscriber> subscriber) {
 		AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
 			if (NSProcessInfo.processInfo.environment[OCTClientResponseLoggingEnvironmentKey] != nil) {
@@ -568,7 +620,7 @@ static NSString *OCTClientOAuthClientSecret = nil;
 				[subscriber sendCompleted];
 				return;
 			}
-			
+
 			RACSignal *nextPageSignal = [RACSignal empty];
 			NSURL *nextPageURL = (fetchAllPages ? [self nextPageURLFromOperation:operation] : nil);
 			if (nextPageURL != nil) {
@@ -602,9 +654,9 @@ static NSString *OCTClientOAuthClientSecret = nil;
 			// Append OCTClientErrorRequestStateRedirected to the current
 			// operation's userInfo when redirecting to a different URL scheme
 			NSString *currentHost = currentRequest.URL.host;
-			NSString *originalHost = connection.originalRequest.URL.host;
+			NSString *originalHost = originalRequest.URL.host;
 			NSString *currentScheme = currentRequest.URL.scheme;
-			NSString *originalScheme = connection.originalRequest.URL.scheme;
+			NSString *originalScheme = originalRequest.URL.scheme;
 
 			BOOL hasOriginalHost = [currentHost isEqual:originalHost];
 			BOOL hasOriginalScheme = [currentScheme isEqual:originalScheme];
@@ -624,7 +676,7 @@ static NSString *OCTClientOAuthClientSecret = nil;
 			[operation cancel];
 		}];
 	}];
-	
+
 	return [[signal
 		replayLazily]
 		setNameWithFormat:@"-enqueueRequest: %@ fetchAllPages: %i", request, (int)fetchAllPages];
@@ -671,10 +723,10 @@ static NSString *OCTClientOAuthClientSecret = nil;
 	} else {
 		return [RACSignal error:self.class.userRequiredError];
 	}
-		
+
 	NSMutableURLRequest *request = [self requestWithMethod:method path:path parameters:parameters notMatchingEtag:nil];
 	if (self.authenticated) request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
-	
+
 	return [self enqueueRequest:request resultClass:resultClass];
 }
 
@@ -691,7 +743,7 @@ static NSString *OCTClientOAuthClientSecret = nil;
 
 	NSMutableCharacterSet *whitespaceAndBracketCharacterSet = [NSCharacterSet.whitespaceCharacterSet mutableCopy];
 	[whitespaceAndBracketCharacterSet addCharactersInString:@"<>"];
-	
+
 	NSArray *links = [linksString componentsSeparatedByString:@","];
 	for (NSString *link in links) {
 		NSRange semicolonRange = [link rangeOfString:@";"];
@@ -708,7 +760,7 @@ static NSString *OCTClientOAuthClientSecret = nil;
 
 		return [NSURL URLWithString:URLString];
 	}
-	
+
 	return nil;
 }
 
@@ -770,7 +822,10 @@ static NSString *OCTClientOAuthClientSecret = nil;
 		} else if ([responseObject isKindOfClass:NSDictionary.class]) {
 			parseJSONDictionary(responseObject);
 			[subscriber sendCompleted];
-		} else if (responseObject != nil) {
+		} else if (responseObject == nil) {
+			[subscriber sendNext:nil];
+			[subscriber sendCompleted];
+		} else {
 			NSString *failureReason = [NSString stringWithFormat:NSLocalizedString(@"Response wasn't an array or dictionary (%@): %@", @""), [responseObject class], responseObject];
 			[subscriber sendError:[self parsingErrorWithFailureReason:failureReason]];
 		}
@@ -793,7 +848,7 @@ static NSString *OCTClientOAuthClientSecret = nil;
 		NSString * (^localizedErrorMessage)(NSString *) = ^(NSString *message) {
 			return [NSString stringWithFormat:message, resource, field];
 		};
-		
+
 		NSString *codeString = localizedErrorMessage(@"%@ %@ is missing");
 		if ([codeType isEqual:@"missing"]) {
 			codeString = localizedErrorMessage(NSLocalizedString(@"%@ %@ does not exist", @""));
@@ -809,7 +864,7 @@ static NSString *OCTClientOAuthClientSecret = nil;
 	}
 }
 
-+ (NSString *)defaultErrorMessageFromRequestOperation:(AFHTTPRequestOperation *)operation {
++ (NSDictionary *)errorUserInfoFromRequestOperation:(AFHTTPRequestOperation *)operation {
 	NSParameterAssert(operation != nil);
 
 	NSDictionary *responseDictionary = nil;
@@ -822,7 +877,8 @@ static NSString *OCTClientOAuthClientSecret = nil;
 		}
 	}
 
-	NSString *errorDescription = responseDictionary[@"message"] ?: operation.error.localizedDescription;
+	NSString *message = responseDictionary[@"message"];
+	NSString *errorDescription = message ?: operation.error.localizedDescription;
 	if (errorDescription == nil) {
 		if ([operation.error.domain isEqual:NSURLErrorDomain]) {
 			errorDescription = NSLocalizedString(@"There was a problem connecting to the server.", @"");
@@ -830,7 +886,8 @@ static NSString *OCTClientOAuthClientSecret = nil;
 			errorDescription = NSLocalizedString(@"The universe has collapsed.", @"");
 		}
 	}
-	
+
+	NSArray *errorMessages;
 	NSArray *errorDictionaries = responseDictionary[@"errors"];
 	if ([errorDictionaries isKindOfClass:NSArray.class]) {
 		NSString *errors = [[[errorDictionaries.rac_sequence
@@ -846,9 +903,20 @@ static NSString *OCTClientOAuthClientSecret = nil;
 			componentsJoinedByString:@"\n"];
 
 		errorDescription = [NSString stringWithFormat:NSLocalizedString(@"%@:\n\n%@", @""), errorDescription, errors];
+
+		errorMessages = [[errorDictionaries.rac_sequence
+			map:^(NSDictionary *info) {
+				return info[@"message"];
+			}]
+			array];
 	}
-	
-	return errorDescription;
+
+	NSMutableDictionary *info = [NSMutableDictionary dictionary];
+	if (errorDescription != nil) info[NSLocalizedDescriptionKey] = errorDescription;
+	if (message != nil) info[OCTClientErrorDescriptionKey] = message;
+	if (errorMessages != nil) info[OCTClientErrorMessagesKey] = errorMessages;
+
+	return info;
 }
 
 + (NSNumber *)oneTimePasswordMediumFromHeader:(NSString *)OTPHeader {
@@ -870,13 +938,14 @@ static NSString *OCTClientOAuthClientSecret = nil;
 
 + (NSError *)errorFromRequestOperation:(AFHTTPRequestOperation *)operation {
 	NSParameterAssert(operation != nil);
-	
+
 	NSInteger HTTPCode = operation.response.statusCode;
 	NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
 	NSInteger errorCode = OCTClientErrorConnectionFailed;
 
-	userInfo[NSLocalizedDescriptionKey] = [self defaultErrorMessageFromRequestOperation:operation];
-	
+	NSDictionary *errorInfo = [self errorUserInfoFromRequestOperation:operation];
+	[userInfo addEntriesFromDictionary:errorInfo];
+
 	switch (HTTPCode) {
 		case 401: {
 			NSError *errorTemplate = self.class.authenticationRequiredError;
@@ -898,17 +967,31 @@ static NSString *OCTClientOAuthClientSecret = nil;
 			break;
 
 		case 403:
-			if (operation.userInfo[OCTClientErrorRequestStateRedirected]) {
-				errorCode = OCTClientErrorUnsupportedServerScheme;
-			} else {
-				errorCode = OCTClientErrorRequestForbidden;
-			}
-
+			errorCode = OCTClientErrorRequestForbidden;
 			break;
 
 		case 422:
 			errorCode = OCTClientErrorServiceRequestFailed;
 			break;
+
+		default:
+			if ([operation.error.domain isEqual:NSURLErrorDomain]) {
+				switch (operation.error.code) {
+					case NSURLErrorSecureConnectionFailed:
+					case NSURLErrorServerCertificateHasBadDate:
+					case NSURLErrorServerCertificateHasUnknownRoot:
+					case NSURLErrorServerCertificateUntrusted:
+					case NSURLErrorServerCertificateNotYetValid:
+					case NSURLErrorClientCertificateRejected:
+					case NSURLErrorClientCertificateRequired:
+						errorCode = OCTClientErrorSecureConnectionFailed;
+						break;
+				}
+			}
+	}
+
+	if (operation.userInfo[OCTClientErrorRequestStateRedirected] != nil) {
+		errorCode = OCTClientErrorUnsupportedServerScheme;
 	}
 
 	userInfo[OCTClientErrorHTTPStatusCodeKey] = @(HTTPCode);
@@ -917,7 +1000,7 @@ static NSString *OCTClientOAuthClientSecret = nil;
 
 	NSString *scopes = operation.response.allHeaderFields[OCTClientOAuthScopesHeaderField];
 	if (scopes != nil) userInfo[OCTClientErrorOAuthScopesStringKey] = scopes;
-	
+
 	return [NSError errorWithDomain:OCTClientErrorDomain code:errorCode userInfo:userInfo];
 }
 

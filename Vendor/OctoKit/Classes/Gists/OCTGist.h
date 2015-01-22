@@ -23,13 +23,10 @@
 @end
 
 // Changes to a gist, or a new gist.
-//
-// This model only supports being transformed _to_ JSON. It cannot be
-// deserialized from JSON.
 @interface OCTGistEdit : MTLModel <MTLJSONSerializing>
 
 // If not nil, the new description to set for the gist.
-//@property (atomic, copy) NSString *description;
+@property (atomic, copy) NSString *gistDescription;
 
 // Files to modify, represented as OCTGistFileEdits keyed by filename.
 @property (atomic, copy) NSDictionary *filesToModify;

@@ -44,4 +44,8 @@
 - (RACSignal *)fetchPublicGistsWithPage:(NSUInteger)pages;
 
 
+
+- (RACSignal *)fetchCommentsWithGist:(OCTGist *)gist;
+
+
 @end

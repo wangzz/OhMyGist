@@ -81,4 +81,17 @@
     }];
 }
 
++ (void)fetchGistComments:(OCTClient *)client completionBlock:(completionBlock)completionBlock
+{
+    [[[client fetchCommentsWithGist:nil] collect] subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    } completed:^{
+        NSLog(@"completed");
+    }];
+}
+
+
+
 @end

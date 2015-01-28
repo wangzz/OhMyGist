@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		82257D021A78F7010003949B /* FGAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82257D001A78F7010003949B /* FGAccountViewController.m */; };
+		82257D031A78F7010003949B /* FGAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82257D011A78F7010003949B /* FGAccountViewController.xib */; };
 		8234C1EE1A6E35D30098F0E1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8234C1ED1A6E35D30098F0E1 /* MobileCoreServices.framework */; };
 		8234C1F01A6E35E30098F0E1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8234C1EF1A6E35E30098F0E1 /* SystemConfiguration.framework */; };
 		8234C1F21A6E35F40098F0E1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8234C1F11A6E35F40098F0E1 /* Security.framework */; };
@@ -214,6 +216,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		82257CFF1A78F7010003949B /* FGAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGAccountViewController.h; sourceTree = "<group>"; };
+		82257D001A78F7010003949B /* FGAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGAccountViewController.m; sourceTree = "<group>"; };
+		82257D011A78F7010003949B /* FGAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FGAccountViewController.xib; sourceTree = "<group>"; };
 		8234C1ED1A6E35D30098F0E1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		8234C1EF1A6E35E30098F0E1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8234C1F11A6E35F40098F0E1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -638,6 +643,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		82257CF81A78F6770003949B /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				82257CFF1A78F7010003949B /* FGAccountViewController.h */,
+				82257D001A78F7010003949B /* FGAccountViewController.m */,
+				82257D011A78F7010003949B /* FGAccountViewController.xib */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		82257CF91A78F6770003949B /* All */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = All;
+			sourceTree = "<group>";
+		};
+		82257CFA1A78F6770003949B /* Forked */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Forked;
+			sourceTree = "<group>";
+		};
+		82257CFB1A78F6770003949B /* Personal */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Personal;
+			sourceTree = "<group>";
+		};
+		82257CFC1A78F6770003949B /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		82257CFD1A78F6770003949B /* Starred */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Starred;
+			sourceTree = "<group>";
+		};
+		82257CFE1A78F6D70003949B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		8234C1EB1A6E291C0098F0E1 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -1284,9 +1341,16 @@
 		823924991A66B29C00AEC910 /* OhMyGist */ = {
 			isa = PBXGroup;
 			children = (
-				823832DF1A709A00002A16EF /* Models */,
 				8239249E1A66B29C00AEC910 /* AppDelegate.h */,
 				8239249F1A66B29C00AEC910 /* AppDelegate.m */,
+				82257CFE1A78F6D70003949B /* Common */,
+				82257CF81A78F6770003949B /* Account */,
+				82257CF91A78F6770003949B /* All */,
+				82257CFB1A78F6770003949B /* Personal */,
+				82257CFD1A78F6770003949B /* Starred */,
+				82257CFA1A78F6770003949B /* Forked */,
+				82257CFC1A78F6770003949B /* Setting */,
+				823832DF1A709A00002A16EF /* Models */,
 				823924A11A66B29C00AEC910 /* FirstViewController.h */,
 				823924A21A66B29C00AEC910 /* FirstViewController.m */,
 				823924A41A66B29C00AEC910 /* SecondViewController.h */,
@@ -1421,6 +1485,7 @@
 				823924A91A66B29C00AEC910 /* Main.storyboard in Resources */,
 				8234C4031A6E39E40098F0E1 /* ReactiveCocoa-Info.plist in Resources */,
 				823924AB1A66B29C00AEC910 /* Images.xcassets in Resources */,
+				82257D031A78F7010003949B /* FGAccountViewController.xib in Resources */,
 				823924C41A66B48300AEC910 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1512,6 +1577,7 @@
 				823833AF1A70FBE4002A16EF /* OCTDirectoryContent.m in Sources */,
 				823833941A70FBE4002A16EF /* OCTPublicEvent.m in Sources */,
 				823833BC1A70FBE4002A16EF /* RACSignal+OCTClientAdditions.m in Sources */,
+				82257D021A78F7010003949B /* FGAccountViewController.m in Sources */,
 				823833991A70FBE4002A16EF /* OCTWatchEvent.m in Sources */,
 				8234C3F11A6E39E40098F0E1 /* RACSerialDisposable.m in Sources */,
 				8234C3E11A6E39E40098F0E1 /* RACErrorSignal.m in Sources */,

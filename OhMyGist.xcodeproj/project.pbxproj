@@ -212,6 +212,12 @@
 		82E566E21A7A251E00E7FF00 /* FGForkedGistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E566E11A7A251E00E7FF00 /* FGForkedGistsViewController.m */; };
 		82E566E51A7A254200E7FF00 /* FGSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E566E41A7A254200E7FF00 /* FGSettingViewController.m */; };
 		82E566EB1A7A263700E7FF00 /* FGLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E566EA1A7A263700E7FF00 /* FGLeftMenuViewController.m */; };
+		82E566F01A7A3BC200E7FF00 /* FGAllGistsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E566EF1A7A3BC200E7FF00 /* FGAllGistsManager.m */; };
+		82E566F41A7A428E00E7FF00 /* FGLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E566F21A7A428E00E7FF00 /* FGLoginViewController.m */; };
+		82E566F51A7A428E00E7FF00 /* FGLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82E566F31A7A428E00E7FF00 /* FGLoginViewController.xib */; };
+		82E566F81A7A49D900E7FF00 /* FGAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E566F71A7A49D900E7FF00 /* FGAccountManager.m */; };
+		82E566FF1A7A645400E7FF00 /* CocoaSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E566FB1A7A645400E7FF00 /* CocoaSecurity.m */; };
+		82E567001A7A645400E7FF00 /* NSUserDefaults+SecureAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E566FE1A7A645400E7FF00 /* NSUserDefaults+SecureAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -648,6 +654,18 @@
 		82E566E41A7A254200E7FF00 /* FGSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGSettingViewController.m; sourceTree = "<group>"; };
 		82E566E91A7A263700E7FF00 /* FGLeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGLeftMenuViewController.h; sourceTree = "<group>"; };
 		82E566EA1A7A263700E7FF00 /* FGLeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGLeftMenuViewController.m; sourceTree = "<group>"; };
+		82E566EE1A7A3BC200E7FF00 /* FGAllGistsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGAllGistsManager.h; sourceTree = "<group>"; };
+		82E566EF1A7A3BC200E7FF00 /* FGAllGistsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGAllGistsManager.m; sourceTree = "<group>"; };
+		82E566F11A7A428E00E7FF00 /* FGLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGLoginViewController.h; sourceTree = "<group>"; };
+		82E566F21A7A428E00E7FF00 /* FGLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGLoginViewController.m; sourceTree = "<group>"; };
+		82E566F31A7A428E00E7FF00 /* FGLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FGLoginViewController.xib; sourceTree = "<group>"; };
+		82E566F61A7A49D900E7FF00 /* FGAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGAccountManager.h; sourceTree = "<group>"; };
+		82E566F71A7A49D900E7FF00 /* FGAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGAccountManager.m; sourceTree = "<group>"; };
+		82E566FA1A7A645400E7FF00 /* CocoaSecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaSecurity.h; sourceTree = "<group>"; };
+		82E566FB1A7A645400E7FF00 /* CocoaSecurity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocoaSecurity.m; sourceTree = "<group>"; };
+		82E566FD1A7A645400E7FF00 /* NSUserDefaults+SecureAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+SecureAdditions.h"; sourceTree = "<group>"; };
+		82E566FE1A7A645400E7FF00 /* NSUserDefaults+SecureAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+SecureAdditions.m"; sourceTree = "<group>"; };
+		82E567011A7A64EE00E7FF00 /* FGCommonDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FGCommonDefine.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -678,6 +696,11 @@
 				82E566D81A7A24BE00E7FF00 /* FGAccountViewController.h */,
 				82E566D91A7A24BE00E7FF00 /* FGAccountViewController.m */,
 				82E566DA1A7A24BE00E7FF00 /* FGAccountViewController.xib */,
+				82E566F11A7A428E00E7FF00 /* FGLoginViewController.h */,
+				82E566F21A7A428E00E7FF00 /* FGLoginViewController.m */,
+				82E566F31A7A428E00E7FF00 /* FGLoginViewController.xib */,
+				82E566F61A7A49D900E7FF00 /* FGAccountManager.h */,
+				82E566F71A7A49D900E7FF00 /* FGAccountManager.m */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -687,6 +710,8 @@
 			children = (
 				82E566D21A7A244C00E7FF00 /* FGAllGistsViewController.h */,
 				82E566D31A7A244C00E7FF00 /* FGAllGistsViewController.m */,
+				82E566EE1A7A3BC200E7FF00 /* FGAllGistsManager.h */,
+				82E566EF1A7A3BC200E7FF00 /* FGAllGistsManager.m */,
 			);
 			path = All;
 			sourceTree = "<group>";
@@ -730,6 +755,7 @@
 		82257CFE1A78F6D70003949B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				82E567011A7A64EE00E7FF00 /* FGCommonDefine.h */,
 				82E566C71A7A239C00E7FF00 /* FGViewController.h */,
 				82E566C81A7A239C00E7FF00 /* FGViewController.m */,
 				82E566CF1A7A241E00E7FF00 /* FGGistsViewController.h */,
@@ -1435,6 +1461,8 @@
 		823924C51A66BCE700AEC910 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				82E566F91A7A645400E7FF00 /* CocoaSecurity */,
+				82E566FC1A7A645400E7FF00 /* SecureNSUserDefaults */,
 				82E566BD1A7A1EC200E7FF00 /* RESideMenu */,
 				823832E71A70FBE4002A16EF /* OctoKit */,
 				823831DC1A6FB613002A16EF /* Mantle */,
@@ -1467,6 +1495,26 @@
 			);
 			path = Menu;
 			sourceTree = "<group>";
+		};
+		82E566F91A7A645400E7FF00 /* CocoaSecurity */ = {
+			isa = PBXGroup;
+			children = (
+				82E566FA1A7A645400E7FF00 /* CocoaSecurity.h */,
+				82E566FB1A7A645400E7FF00 /* CocoaSecurity.m */,
+			);
+			name = CocoaSecurity;
+			path = Vendor/CocoaSecurity;
+			sourceTree = SOURCE_ROOT;
+		};
+		82E566FC1A7A645400E7FF00 /* SecureNSUserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				82E566FD1A7A645400E7FF00 /* NSUserDefaults+SecureAdditions.h */,
+				82E566FE1A7A645400E7FF00 /* NSUserDefaults+SecureAdditions.m */,
+			);
+			name = SecureNSUserDefaults;
+			path = Vendor/SecureNSUserDefaults;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -1551,6 +1599,7 @@
 				8234C4031A6E39E40098F0E1 /* ReactiveCocoa-Info.plist in Resources */,
 				82E566DC1A7A24BE00E7FF00 /* FGAccountViewController.xib in Resources */,
 				823924AB1A66B29C00AEC910 /* Images.xcassets in Resources */,
+				82E566F51A7A428E00E7FF00 /* FGLoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1574,10 +1623,12 @@
 				823833861A70FBE4002A16EF /* OCTEntity.m in Sources */,
 				8234C3F31A6E39E40098F0E1 /* RACSignal.m in Sources */,
 				8238337F1A70FBE4002A16EF /* OCTClient+Activity.m in Sources */,
+				82E566FF1A7A645400E7FF00 /* CocoaSecurity.m in Sources */,
 				823831FF1A6FB613002A16EF /* MTLJSONAdapter.m in Sources */,
 				8234C3FF1A6E39E40098F0E1 /* RACTupleSequence.m in Sources */,
 				823833A11A70FBE4002A16EF /* OCTBlobTreeEntry.m in Sources */,
 				823924A61A66B29C00AEC910 /* SecondViewController.m in Sources */,
+				82E566F81A7A49D900E7FF00 /* FGAccountManager.m in Sources */,
 				8234C4131A6E39E40098F0E1 /* UITableViewHeaderFooterView+RACSignalSupport.m in Sources */,
 				823833881A70FBE4002A16EF /* OCTClient+Organizations.m in Sources */,
 				823833931A70FBE4002A16EF /* OCTMemberEvent.m in Sources */,
@@ -1598,6 +1649,7 @@
 				823833B31A70FBE4002A16EF /* OCTBranch.m in Sources */,
 				82E566D71A7A247200E7FF00 /* FGPersonalGistsViewController.m in Sources */,
 				8234C3D21A6E39E40098F0E1 /* RACArraySequence.m in Sources */,
+				82E567001A7A645400E7FF00 /* NSUserDefaults+SecureAdditions.m in Sources */,
 				823831FE1A6FB613002A16EF /* EXTScope.m in Sources */,
 				82E566D11A7A241E00E7FF00 /* FGGistsViewController.m in Sources */,
 				8234C3C71A6E39E40098F0E1 /* NSObject+RACLifting.m in Sources */,
@@ -1629,6 +1681,7 @@
 				823833A01A70FBE4002A16EF /* OCTTree.m in Sources */,
 				823832061A6FB613002A16EF /* NSDictionary+MTLManipulationAdditions.m in Sources */,
 				823833A31A70FBE4002A16EF /* OCTContentTreeEntry.m in Sources */,
+				82E566F41A7A428E00E7FF00 /* FGLoginViewController.m in Sources */,
 				8234C2F21A6E39D40098F0E1 /* ISO8601DateFormatter.m in Sources */,
 				82E566C91A7A239C00E7FF00 /* FGViewController.m in Sources */,
 				8234C2E61A6E392A0098F0E1 /* AFHTTPClient.m in Sources */,
@@ -1667,6 +1720,7 @@
 				823924A31A66B29C00AEC910 /* FirstViewController.m in Sources */,
 				82E566DB1A7A24BE00E7FF00 /* FGAccountViewController.m in Sources */,
 				8234C3E61A6E39E40098F0E1 /* RACKVOChannel.m in Sources */,
+				82E566F01A7A3BC200E7FF00 /* FGAllGistsManager.m in Sources */,
 				8238338E1A70FBE4002A16EF /* OCTCommitCommentEvent.m in Sources */,
 				8239249D1A66B29C00AEC910 /* main.m in Sources */,
 				8234C4071A6E39E40098F0E1 /* UIButton+RACCommandSupport.m in Sources */,

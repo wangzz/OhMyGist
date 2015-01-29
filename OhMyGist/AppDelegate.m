@@ -11,6 +11,7 @@
 #import "RESideMenu.h"
 #import "FGLeftMenuViewController.h"
 #import "FGAllGistsViewController.h"
+#import "NSUserDefaults+SecureAdditions.h"
 
 @interface AppDelegate () <RESideMenuDelegate>
 
@@ -21,7 +22,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+    [[NSUserDefaults standardUserDefaults] setSecret:@"your_secret_goes_here"];
     [OCTClient setClientID:@"7dad4336cf76fac2e8b3" clientSecret:@"3ea591db02ea0ee3cc6b1008af60385146ca31be"];
     
     

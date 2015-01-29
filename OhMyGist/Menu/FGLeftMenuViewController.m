@@ -10,6 +10,9 @@
 #import "FGAccountViewController.h"
 #import "FGAllGistsViewController.h"
 #import "RESideMenu.h"
+#import "OCTClient.h"
+#import "FGLoginViewController.h"
+#import "FGAccountManager.h"
 
 @interface FGLeftMenuViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -36,6 +39,8 @@
         tableView;
     });
     [self.view addSubview:self.tableView];
+    
+    self.view.backgroundColor = [UIColor redColor];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,6 +54,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    OCTClient *client = [[FGAccountManager defaultManager] client];
+    if (!client.authenticated) {
+        
+        FGLoginViewController *loginController = [[FGLoginViewController alloc] init];
+        [self presentViewController:loginController animated:YES completion:^{
+            
+        }];
+        
+        return;
+    }
+    
     switch (indexPath.row) {
         case 0:
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[FGAccountViewController alloc] init]]

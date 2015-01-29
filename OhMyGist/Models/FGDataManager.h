@@ -16,7 +16,7 @@ typedef void (^completionBlock)(id object, FGError *error);
 @interface FGDataManager : NSObject
 
 /**
- *  异步登录接口
+ *  登录接口
  *
  *  @param userName        用户名
  *  @param password        密码

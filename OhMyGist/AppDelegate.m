@@ -8,8 +8,11 @@
 
 #import "AppDelegate.h"
 #import "OctoKit.h"
+#import "RESideMenu.h"
+#import "FGLeftMenuViewController.h"
+#import "FGAllGistsViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <RESideMenuDelegate>
 
 @end
 
@@ -20,6 +23,28 @@
     // Override point for customization after application launch.
     
     [OCTClient setClientID:@"7dad4336cf76fac2e8b3" clientSecret:@"3ea591db02ea0ee3cc6b1008af60385146ca31be"];
+    
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[FGAllGistsViewController alloc] init]];
+    FGLeftMenuViewController *leftMenuViewController = [[FGLeftMenuViewController alloc] init];
+
+    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController
+                                                                    leftMenuViewController:leftMenuViewController
+                                                                   rightMenuViewController:nil];
+    sideMenuViewController.backgroundImage = [UIImage imageNamed:@"StarsSky"];
+//    sideMenuViewController.menuPreferredStatusBarStyle = 1; // UIStatusBarStyleLightContent
+    sideMenuViewController.delegate = self;
+    sideMenuViewController.contentViewShadowColor = [UIColor blackColor];
+    sideMenuViewController.contentViewShadowOffset = CGSizeMake(0, 0);
+    sideMenuViewController.contentViewShadowOpacity = 0.6;
+    sideMenuViewController.contentViewShadowRadius = 12;
+    sideMenuViewController.contentViewShadowEnabled = YES;
+    self.window.rootViewController = sideMenuViewController;
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
     
     return YES;
 }

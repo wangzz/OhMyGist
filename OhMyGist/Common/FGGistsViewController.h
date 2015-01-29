@@ -1,5 +1,5 @@
 //
-//  FGAccountViewController.h
+//  FGGistsViewController.h
 //  OhMyGist
 //
 //  Created by wangzz on 15-1-29.
@@ -8,6 +8,6 @@
 
 #import "FGViewController.h"
 
-@interface FGAccountViewController : FGViewController
+@interface FGGistsViewController : FGViewController
 
 @end

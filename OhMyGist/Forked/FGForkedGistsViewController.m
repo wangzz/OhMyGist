@@ -1,22 +1,22 @@
 //
-//  FGAccountViewController.m
+//  FGForkedGistsViewController.m
 //  OhMyGist
 //
 //  Created by wangzz on 15-1-29.
 //  Copyright (c) 2015年 wangzz. All rights reserved.
 //
 
-#import "FGAccountViewController.h"
+#import "FGForkedGistsViewController.h"
 
-@interface FGAccountViewController ()
+@interface FGForkedGistsViewController ()
 
 @end
 
-@implementation FGAccountViewController
+@implementation FGForkedGistsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

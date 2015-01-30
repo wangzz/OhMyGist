@@ -41,9 +41,12 @@
  *
  *  @return nil
  */
-- (RACSignal *)fetchPublicGistsWithPage:(NSUInteger)pages;
+- (RACSignal *)fetchAllGistsWithPage:(NSUInteger)pages;
 
 
+- (RACSignal *)fetchAllGistsFirstPage;
+
+- (RACSignal *)fetchAllGistsNextPage;
 
 - (RACSignal *)fetchCommentsWithGist:(OCTGist *)gist;
 

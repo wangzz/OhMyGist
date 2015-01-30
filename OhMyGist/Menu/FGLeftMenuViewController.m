@@ -48,6 +48,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)checkShowLogin
+{
+    OCTClient *client = [[FGAccountManager defaultManager] client];
+    if (!client.authenticated) {
+        FGLoginViewController *loginController = [[FGLoginViewController alloc] init];
+        [self presentViewController:loginController animated:YES completion:^{
+            
+        }];
+        
+        return YES;
+    }
+    
+    return NO;
+}
+
 #pragma mark -
 #pragma mark UITableView Delegate
 
@@ -55,19 +70,12 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    OCTClient *client = [[FGAccountManager defaultManager] client];
-    if (!client.authenticated) {
-        
-        FGLoginViewController *loginController = [[FGLoginViewController alloc] init];
-        [self presentViewController:loginController animated:YES completion:^{
-            
-        }];
-        
-        return;
-    }
-    
     switch (indexPath.row) {
         case 0:
+            if ([self checkShowLogin]) {
+                return;
+            }
+            
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[FGAccountViewController alloc] init]]
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];

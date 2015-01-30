@@ -10,4 +10,8 @@
 
 @interface FGGistsViewController : FGViewController
 
+@property (nonatomic, readonly, strong) UITableView   *tableView;
+
+@property (nonatomic, strong) NSArray *gistsArray;
+
 @end

@@ -7,7 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FGAccountManager.h"
 
 @interface FGAllGistsManager : NSObject
+
+/**
+ *  获取All Gists
+ *
+ *  @param completionBlock 获取结果回调
+ */
+- (void)fetchAllGistsFirstPageWithCompletionBlock:(completionBlock)completionBlock;
+
+
+- (void)fetchAllGistsNextPageWithCompletionBlock:(completionBlock)completionBlock;
 
 @end

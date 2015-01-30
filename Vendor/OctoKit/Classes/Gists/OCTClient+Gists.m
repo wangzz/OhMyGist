@@ -42,8 +42,18 @@
 	return [[self enqueueRequest:request resultClass:OCTGist.class] oct_parsedResults];
 }
 
-- (RACSignal *)fetchPublicGistsWithPage:(NSUInteger)page {
+- (RACSignal *)fetchAllGistsWithPage:(NSUInteger)page {
     NSURLRequest *request = [self requestWithMethod:@"GET" path:@"gists/public" parameters:@{@"page":@(page)} notMatchingEtag:nil];
+    return [[self enqueueRequest:request resultClass:OCTGist.class fetchAllPages:NO] oct_parsedResults];
+}
+
+- (RACSignal *)fetchAllGistsFirstPage{
+    NSURLRequest *request = [self requestWithMethod:@"GET" path:@"gists/public" parameters:nil notMatchingEtag:nil];
+    return [[self enqueueRequest:request resultClass:OCTGist.class fetchAllPages:NO] oct_parsedResults];
+}
+
+- (RACSignal *)fetchAllGistsNextPage{
+    NSURLRequest *request = [self requestWithMethod:@"GET" path:@"gists/public" parameters:@{@"rel":@"next"} notMatchingEtag:nil];
     return [[self enqueueRequest:request resultClass:OCTGist.class fetchAllPages:NO] oct_parsedResults];
 }
 

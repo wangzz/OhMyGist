@@ -70,16 +70,16 @@
 }
 
 
-+ (void)fetchPublicGists:(OCTClient *)client completionBlock:(completionBlock)completionBlock
-{
-    [[[client fetchPublicGistsWithPage:0] collect] subscribeNext:^(id x) {
-        NSLog(@"%@",x);
-    }];
-    
-    [[[client fetchPublicGistsWithPage:3] collect] subscribeNext:^(id x) {
-        NSLog(@"%@",x);
-    }];
-}
+//+ (void)fetchPublicGists:(OCTClient *)client completionBlock:(completionBlock)completionBlock
+//{
+//    [[[client fetchPublicGistsWithPage:0] collect] subscribeNext:^(id x) {
+//        NSLog(@"%@",x);
+//    }];
+//    
+//    [[[client fetchPublicGistsWithPage:3] collect] subscribeNext:^(id x) {
+//        NSLog(@"%@",x);
+//    }];
+//}
 
 + (void)fetchGistComments:(OCTClient *)client completionBlock:(completionBlock)completionBlock
 {

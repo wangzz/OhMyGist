@@ -17,7 +17,7 @@
 
 @interface FGAccountManager ()
 
-@property (nonatomic, strong) OCTClient *client;
+@property (nonatomic, strong) OCTClient *currentClient;
 
 @end
 
@@ -39,9 +39,9 @@
     OCTUser *user = [OCTUser userWithRawLogin:userName server:OCTServer.dotComServer];
     [[OCTClient signInAsUser:user password:password oneTimePassword:nil scopes:OCTClientAuthorizationScopesUser note:nil noteURL:nil fingerprint:nil] subscribeNext:^(OCTClient *authenticatedClient) {
         //Authentication was successful. Do something with the created client.
-        self.client = authenticatedClient;
-        [[NSUserDefaults standardUserDefaults] setSecretObject:self.client.user.name forKey:KEY_USERNAME];
-        [[NSUserDefaults standardUserDefaults] setSecretObject:self.client.token forKey:KEY_TOKEN];
+        self.currentClient = authenticatedClient;
+        [[NSUserDefaults standardUserDefaults] setSecretObject:self.currentClient.user.name forKey:KEY_USERNAME];
+        [[NSUserDefaults standardUserDefaults] setSecretObject:self.currentClient.token forKey:KEY_TOKEN];
 
         completionBlock(authenticatedClient,nil);
     } error:^(NSError *error) {
@@ -66,16 +66,22 @@
 
 - (OCTClient *)client
 {
-    if (self.client) {
-        return self.client;
+    if (self.currentClient) {
+        return self.currentClient;
     }
     
     OCTClient *client = nil;
     NSString *userName = [[NSUserDefaults standardUserDefaults] secretStringForKey:KEY_USERNAME];
     NSString *token = [[NSUserDefaults standardUserDefaults] secretStringForKey:KEY_TOKEN];
-    if (userName && token) {
+    if (userName) {
         OCTUser *user = [OCTUser userWithRawLogin:userName server:OCTServer.dotComServer];
-        client = [OCTClient authenticatedClientWithUser:user token:token];
+        if (token) {
+            client = [OCTClient authenticatedClientWithUser:user token:token];
+        } else {
+            client = [OCTClient unauthenticatedClientWithUser:user];
+        }
+    } else {
+        client = [[OCTClient alloc] initWithServer:OCTServer.dotComServer];
     }
     
     return client;

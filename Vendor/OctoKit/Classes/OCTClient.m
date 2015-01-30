@@ -764,6 +764,34 @@ static NSString *OCTClientOAuthClientSecret = nil;
 	return nil;
 }
 
+- (BOOL)haveMorePageWithPath:(NSString *)path
+{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wgnu"
+    NSString *pathToBeMatched = [[[self requestWithMethod:@"GET" path:path parameters:nil] URL] path];
+#pragma clang diagnostic pop
+    
+    AFHTTPRequestOperation *requestOperation = nil;
+    for (NSOperation *operation in [self.operationQueue operations]) {
+        if (![operation isKindOfClass:[AFHTTPRequestOperation class]]) {
+            continue;
+        }
+    
+        BOOL hasMatchingPath = [[[[(AFHTTPRequestOperation *)operation request] URL] path] isEqual:pathToBeMatched];
+        if (hasMatchingPath) {
+            requestOperation = (AFHTTPRequestOperation *)operation;
+        }
+    }
+    
+    if (requestOperation) {
+        if ([self nextPageURLFromOperation:requestOperation]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
 #pragma mark Parsing
 
 - (NSError *)parsingErrorWithFailureReason:(NSString *)localizedFailureReason {

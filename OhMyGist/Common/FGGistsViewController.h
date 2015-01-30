@@ -7,11 +7,17 @@
 //
 
 #import "FGViewController.h"
+#import "UIScrollView+SVInfiniteScrolling.h"
 
-@interface FGGistsViewController : FGViewController
+@interface FGGistsViewController : UITableViewController
 
-@property (nonatomic, readonly, strong) UITableView   *tableView;
+@property (nonatomic, strong) NSMutableArray *gistsArray;
 
-@property (nonatomic, strong) NSArray *gistsArray;
+
+- (void)pullToRefresh;
+
+- (void)infiniteScrollingLoadMore;
+
+- (void)setEnableInfiniteScrolling:(BOOL)isEnable;
 
 @end

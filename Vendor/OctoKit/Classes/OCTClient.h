@@ -401,4 +401,6 @@ typedef NS_ENUM(NSInteger, OCTClientOneTimePasswordMedium) {
 // signal will send it immediately, then terminate.
 - (RACSignal *)enqueueRequest:(NSURLRequest *)request resultClass:(Class)resultClass;
 
+- (BOOL)haveMorePageWithPath:(NSString *)path;
+
 @end

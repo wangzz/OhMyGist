@@ -29,13 +29,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = NSLocalizedString(@"All",);;
     
-    [_manager fetchAllGistsFirstPageWithCompletionBlock:^(id object, FGError *error) {
-        if (error == nil && [object isKindOfClass:[NSArray class]]) {
-            self.gistsArray = object;
-            [self.tableView reloadData];
-        }
-    }];
+    [self setEnableInfiniteScrolling:NO];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,6 +39,47 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Refresh/InfiniteScrolling
+
+- (void)pullToRefresh
+{
+    [_manager fetchAllGistsFirstPageWithCompletionBlock:^(id object, FGError *error) {
+        if (error == nil && [object isKindOfClass:[NSArray class]]) {
+            NSArray *objectArray = object;
+            if (objectArray.count > 0) {
+                self.gistsArray = objectArray;
+                [self.tableView reloadData];
+            }
+        } else if (error) {
+            NSLog(@"%@",error);
+        }
+        
+        // Finish refresh
+        [self.refreshControl endRefreshing];
+        if (self.gistsArray.count > 20) {
+            [self setEnableInfiniteScrolling:YES];
+        } else {
+            [self setEnableInfiniteScrolling:NO];
+        }
+    }];
+}
+
+- (void)infiniteScrollingLoadMore
+{
+    [_manager fetchAllGistsNextPageWithCompletionBlock:^(id object, FGError *error) {
+        if (error == nil && [object isKindOfClass:[NSArray class]]) {
+            NSArray *objectArray = object;
+            if (objectArray.count > 0) {
+                [self.gistsArray addObjectsFromArray:objectArray];
+                [self.tableView reloadData];
+            }
+        } else if (error) {
+            NSLog(@"%@",error);
+        }
+        
+        [self.tableView.infiniteScrollingView stopAnimating];
+    }];
+}
 
 
 @end

@@ -57,6 +57,11 @@
     return [[self enqueueRequest:request resultClass:OCTGist.class fetchAllPages:NO] oct_parsedResults];
 }
 
+- (BOOL)haveMorePageAllGists
+{
+    return [self haveMorePageWithPath:@"gists/public"];
+}
+
 - (RACSignal *)fetchCommentsWithGist:(OCTGist *)gist
 {
     NSParameterAssert(gist != nil);

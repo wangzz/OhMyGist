@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class OCTGist;
 @interface FGGistTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) OCTGist *gist;
 
 @end

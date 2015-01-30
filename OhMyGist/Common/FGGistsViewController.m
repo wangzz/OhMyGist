@@ -9,9 +9,8 @@
 #import "FGGistsViewController.h"
 #import "FGGistTableViewCell.h"
 
-@interface FGGistsViewController () <UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic, readwrite, strong) UITableView *tableView;
+@interface FGGistsViewController ()
 
 @end
 
@@ -21,23 +20,50 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.tableView = ({
-        UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.frame];
-        tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        tableView.opaque = NO;
-        tableView.backgroundColor = [UIColor clearColor];
-        tableView.backgroundView = nil;
-//        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        tableView;
-    });
-    [self.view addSubview:self.tableView];
+    // Init tableView
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
+    
+    typeof(self) __weak weakSelf = self;
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf infiniteScrollingLoadMore];
+    }];
+    
+    // Init refreshControl
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self
+                            action:@selector(controlEventValueChanged:)
+                  forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Refresh/InfiniteScrolling
+
+- (void)controlEventValueChanged:(id)sender {
+    if (self.refreshControl.refreshing) {
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(pullToRefresh) object:nil];
+        
+        [self performSelector:@selector(pullToRefresh) withObject:nil afterDelay:0];
+    }
+}
+
+- (void)pullToRefresh
+{
+    
+}
+
+- (void)infiniteScrollingLoadMore
+{
+    
+}
+
+- (void)setEnableInfiniteScrolling:(BOOL)isEnable
+{
+    self.tableView.infiniteScrollingView.enabled = isEnable;
+    self.tableView.showsInfiniteScrolling = isEnable;
 }
 
 #pragma mark -
@@ -71,11 +97,13 @@
 {
     static NSString *cellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    FGGistTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (cell == nil) {
-        cell = [[FGGistTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[NSBundle mainBundle] loadNibNamed:@"FGGistTableViewCell" owner:self options:nil].firstObject;
     }
+    
+    cell.gist = self.gistsArray[indexPath.row];
     
     return cell;
 }

@@ -12,8 +12,6 @@
 
 @interface FGAllGistsManager ()
 
-@property (nonatomic, strong) NSMutableArray *gistsArray;
-
 @end
 
 @implementation FGAllGistsManager
@@ -22,8 +20,11 @@
 - (void)fetchAllGistsFirstPageWithCompletionBlock:(completionBlock)completionBlock
 {
     [[[[[FGAccountManager defaultManager] client] fetchAllGistsFirstPage] collect] subscribeNext:^(id x) {
+        
+        BOOL haveMorePage = [[[FGAccountManager defaultManager] client] haveMorePageAllGists];
+        NSLog(@"%d",haveMorePage);
+        
         completionBlock(x,nil);
-        NSLog(@"%@",x);
     } error:^(NSError *error) {
         completionBlock(nil,[FGError errorWith:error]);
     }];
@@ -32,11 +33,11 @@
 - (void)fetchAllGistsNextPageWithCompletionBlock:(completionBlock)completionBlock
 {
     [[[[[FGAccountManager defaultManager] client] fetchAllGistsNextPage] collect] subscribeNext:^(id x) {
-        NSLog(@"%@",x);
         completionBlock(x,nil);
     } error:^(NSError *error) {
         completionBlock(nil,[FGError errorWith:error]);
     }];
+    
 }
 
 @end

@@ -201,6 +201,8 @@
 		823924BA1A66B29C00AEC910 /* OhMyGistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 823924B91A66B29C00AEC910 /* OhMyGistTests.m */; };
 		82ADFFC91A7B23ED003D77E9 /* FGGistTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFC71A7B23ED003D77E9 /* FGGistTableViewCell.m */; };
 		82ADFFCA1A7B23ED003D77E9 /* FGGistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82ADFFC81A7B23ED003D77E9 /* FGGistTableViewCell.xib */; };
+		82ADFFD11A7B8050003D77E9 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFCE1A7B8050003D77E9 /* UIScrollView+SVInfiniteScrolling.m */; };
+		82ADFFD21A7B8050003D77E9 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFD01A7B8050003D77E9 /* UIScrollView+SVPullToRefresh.m */; };
 		82E566C41A7A1EC200E7FF00 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E566BF1A7A1EC200E7FF00 /* RECommonFunctions.m */; };
 		82E566C51A7A1EC200E7FF00 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E566C11A7A1EC200E7FF00 /* RESideMenu.m */; };
 		82E566C61A7A1EC200E7FF00 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E566C31A7A1EC200E7FF00 /* UIViewController+RESideMenu.m */; };
@@ -634,6 +636,11 @@
 		82ADFFC61A7B23ED003D77E9 /* FGGistTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGGistTableViewCell.h; sourceTree = "<group>"; };
 		82ADFFC71A7B23ED003D77E9 /* FGGistTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGGistTableViewCell.m; sourceTree = "<group>"; };
 		82ADFFC81A7B23ED003D77E9 /* FGGistTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FGGistTableViewCell.xib; sourceTree = "<group>"; };
+		82ADFFCC1A7B8050003D77E9 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
+		82ADFFCD1A7B8050003D77E9 /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
+		82ADFFCE1A7B8050003D77E9 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
+		82ADFFCF1A7B8050003D77E9 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
+		82ADFFD01A7B8050003D77E9 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		82E566BE1A7A1EC200E7FF00 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		82E566BF1A7A1EC200E7FF00 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		82E566C01A7A1EC200E7FF00 /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
@@ -1469,6 +1476,7 @@
 		823924C51A66BCE700AEC910 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				82ADFFCB1A7B8050003D77E9 /* SVPullToRefresh */,
 				82E566F91A7A645400E7FF00 /* CocoaSecurity */,
 				82E566FC1A7A645400E7FF00 /* SecureNSUserDefaults */,
 				82E566BD1A7A1EC200E7FF00 /* RESideMenu */,
@@ -1480,6 +1488,19 @@
 			);
 			path = Vendor;
 			sourceTree = "<group>";
+		};
+		82ADFFCB1A7B8050003D77E9 /* SVPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				82ADFFCC1A7B8050003D77E9 /* SVPullToRefresh.h */,
+				82ADFFCD1A7B8050003D77E9 /* UIScrollView+SVInfiniteScrolling.h */,
+				82ADFFCE1A7B8050003D77E9 /* UIScrollView+SVInfiniteScrolling.m */,
+				82ADFFCF1A7B8050003D77E9 /* UIScrollView+SVPullToRefresh.h */,
+				82ADFFD01A7B8050003D77E9 /* UIScrollView+SVPullToRefresh.m */,
+			);
+			name = SVPullToRefresh;
+			path = Vendor/SVPullToRefresh;
+			sourceTree = SOURCE_ROOT;
 		};
 		82E566BD1A7A1EC200E7FF00 /* RESideMenu */ = {
 			isa = PBXGroup;
@@ -1778,6 +1799,7 @@
 				823833AD1A70FBE4002A16EF /* OCTPullRequestComment.m in Sources */,
 				8234C3C51A6E39E40098F0E1 /* NSObject+RACDescription.m in Sources */,
 				823833831A70FBE4002A16EF /* OCTResponse.m in Sources */,
+				82ADFFD11A7B8050003D77E9 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				8234C3E91A6E39E40098F0E1 /* RACObjCRuntime.m in Sources */,
 				8234C3D61A6E39E40098F0E1 /* RACChannel.m in Sources */,
 				8234C4041A6E39E40098F0E1 /* UIActionSheet+RACSignalSupport.m in Sources */,
@@ -1789,6 +1811,7 @@
 				823832011A6FB613002A16EF /* MTLModel+NSCoding.m in Sources */,
 				8234C3F51A6E39E40098F0E1 /* RACSignalSequence.m in Sources */,
 				8234C3B81A6E39E40098F0E1 /* EXTRuntimeExtensions.m in Sources */,
+				82ADFFD21A7B8050003D77E9 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				8234C3D31A6E39E40098F0E1 /* RACBacktrace.m in Sources */,
 				8234C3C31A6E39E40098F0E1 /* NSObject+RACAppKitBindings.m in Sources */,
 				8234C40C1A6E39E40098F0E1 /* UIGestureRecognizer+RACSignalSupport.m in Sources */,

@@ -48,6 +48,8 @@
 
 - (RACSignal *)fetchAllGistsNextPage;
 
+- (BOOL)haveMorePageAllGists;
+
 - (RACSignal *)fetchCommentsWithGist:(OCTGist *)gist;
 
 

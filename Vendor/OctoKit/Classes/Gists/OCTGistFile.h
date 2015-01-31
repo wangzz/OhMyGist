@@ -14,6 +14,9 @@
 // The path to this file within the gist.
 @property (nonatomic, copy, readonly) NSString *filename;
 
+// The language of the gist.
+@property (nonatomic, copy, readonly) NSString *language;
+
 // A direct URL to the raw file contents.
 @property (nonatomic, copy, readonly) NSURL *rawURL;
 

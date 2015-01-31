@@ -12,13 +12,14 @@
 @interface FGAllGistsManager : NSObject
 
 /**
- *  获取All Gists
- *
- *  @param completionBlock 获取结果回调
- */
+ *  fetch first page public gists
+ * */
 - (void)fetchAllGistsFirstPageWithCompletionBlock:(completionBlock)completionBlock;
 
 
+/**
+ *  fetch next page public gists
+ * */
 - (void)fetchAllGistsNextPageWithCompletionBlock:(completionBlock)completionBlock;
 
 @end

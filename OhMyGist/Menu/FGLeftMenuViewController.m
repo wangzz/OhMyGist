@@ -13,21 +13,42 @@
 #import "OCTClient.h"
 #import "FGLoginViewController.h"
 #import "FGAccountManager.h"
+#import "FGMenuManager.h"
+#import "FGMenu.h"
+
+
+#define MENU_CELL_HEIGHT    54
+
 
 @interface FGLeftMenuViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, readwrite, nonatomic) UITableView *tableView;
 
+@property (nonatomic, strong) FGMenuManager *manager;
+
+@property (nonatomic, strong) NSArray *itemArray;
+
 @end
 
 @implementation FGLeftMenuViewController
+
+- (instancetype)init
+{
+    if (self = [super init]) {
+        _manager = [[FGMenuManager alloc] init];
+        _itemArray = [self.manager menuItems];
+    }
+    
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     self.tableView = ({
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height - 54 * 5) / 2.0f, self.view.frame.size.width, 54 * 5) style:UITableViewStylePlain];
+        NSInteger tableViewHeight = MENU_CELL_HEIGHT * self.itemArray.count;
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height - tableViewHeight) / 2.0f, self.view.frame.size.width, tableViewHeight) style:UITableViewStylePlain];
         tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
         tableView.delegate = self;
         tableView.dataSource = self;
@@ -41,6 +62,8 @@
     [self.view addSubview:self.tableView];
     
     self.view.backgroundColor = [UIColor redColor];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,23 +93,20 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    switch (indexPath.row) {
-        case 0:
-            if ([self checkShowLogin]) {
-                return;
-            }
-            
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[FGAccountViewController alloc] init]]
-                                                         animated:YES];
-            [self.sideMenuViewController hideMenuViewController];
-            break;
-        case 1:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[[FGAllGistsViewController alloc] init]]
-                                                         animated:YES];
-            [self.sideMenuViewController hideMenuViewController];
-            break;
-        default:
-            break;
+    [self.sideMenuViewController hideMenuViewController];
+    
+    FGMenu *menu = self.itemArray[indexPath.row];
+    if (menu.needAuthentication && [self checkShowLogin]) {
+        return;
+    }
+    
+    Class menuClass = NSClassFromString(menu.subClass);
+    if (menuClass) {
+        id object = [[menuClass alloc] init];
+        if ([object isKindOfClass:[UIViewController class]]) {
+            UIViewController *controller = object;
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:controller] animated:YES];
+        }
     }
 }
 
@@ -95,7 +115,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 54;
+    return MENU_CELL_HEIGHT;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -105,7 +125,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-    return 5;
+    return self.itemArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -123,10 +143,9 @@
         cell.selectedBackgroundView = [[UIView alloc] init];
     }
     
-    NSArray *titles = @[@"Home", @"Calendar", @"Profile", @"Settings", @"Log Out"];
-    NSArray *images = @[@"IconHome", @"IconCalendar", @"IconProfile", @"IconSettings", @"IconEmpty"];
-    cell.textLabel.text = titles[indexPath.row];
-    cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
+    FGMenu *menu = self.itemArray[indexPath.row];
+    cell.textLabel.text = menu.title;
+    cell.imageView.image = [UIImage imageNamed:menu.image];
     
     return cell;
 }

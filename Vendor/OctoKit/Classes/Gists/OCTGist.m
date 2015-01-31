@@ -18,7 +18,12 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
 		@"creationDate": @"created_at",
+        @"updateDate": @"updated_at",
 		@"HTMLURL": @"html_url",
+        @"isPublic": @"public",
+        @"ownerName": @"owner.login",
+        @"ownerAvatar": @"owner.avatar_url",
+        @"gistDescription": @"description",
 	}];
 }
 
@@ -55,6 +60,10 @@
 	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
 }
 
++ (NSValueTransformer *)updateDateJSONTransformer {
+    return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
+}
+
 + (NSValueTransformer *)objectIDJSONTransformer {
 	// The "id" field for gists comes through as a string, which matches the
 	// type of our objectID property.
@@ -64,6 +73,16 @@
 + (NSValueTransformer *)HTMLURLJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
+
++ (NSValueTransformer *)isPublicJSONTransformer {
+    return [NSValueTransformer valueTransformerForName:MTLBooleanValueTransformerName];
+}
+
++ (NSValueTransformer *)ownerAvatarJSONTransformer {
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
+
 
 @end
 

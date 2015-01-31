@@ -9,11 +9,16 @@
 #import "FGGistTableViewCell.h"
 #import "OCTGist.h"
 #import "OCTGistFile.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface FGGistTableViewCell ()
 
 @property (nonatomic, strong) IBOutlet UILabel *nameLabel;
 @property (nonatomic, strong) IBOutlet UILabel *dateLabel;
+@property (nonatomic, strong) IBOutlet UILabel *descriptionLabel;
+
+@property (nonatomic, strong) IBOutlet UILabel *ownerLabel;
+@property (nonatomic, strong) IBOutlet UIImageView *ownerImageView;
 
 @end
 
@@ -55,6 +60,9 @@
     OCTGistFile *gistFile = self.gist.files.allValues.firstObject;
     self.nameLabel.text = gistFile.filename;
     self.dateLabel.text = [self stringWithDate:self.gist.creationDate];
+    self.ownerLabel.text = self.gist.ownerName;
+    self.descriptionLabel.text = self.gist.gistDescription;
+    [self.ownerImageView setImageWithURL:self.gist.ownerAvatar placeholderImage:nil];
 }
 
 - (NSString*)stringWithDate:(NSDate *)date

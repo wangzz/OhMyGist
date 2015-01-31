@@ -7,8 +7,11 @@
 //
 
 #import "FGPersonalGistsViewController.h"
+#import "FGPersonalGistsManager.h"
 
 @interface FGPersonalGistsViewController ()
+
+@property (nonatomic, strong) FGPersonalGistsManager *manager;
 
 @end
 
@@ -17,6 +20,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.title = NSLocalizedString(@"Personal",);;
+    
+    [self setEnableInfiniteScrolling:NO];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +31,53 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - Refresh/InfiniteScrolling
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)pullToRefresh
+{
+    [_manager fetchPersonalGistsFirstPageWithCompletionBlock:^(id object, FGError *error) {
+        if (error == nil && [object isKindOfClass:[NSArray class]]) {
+            NSArray *objectArray = object;
+            if (objectArray.count > 0) {
+                self.gistsArray = [objectArray mutableCopy];
+                [self.tableView reloadData];
+            }
+        } else if (error) {
+            NSLog(@"%@",error);
+        }
+        
+        // Finish refresh
+        [self.refreshControl endRefreshing];
+        if (self.gistsArray.count > 20) {
+            [self setEnableInfiniteScrolling:YES];
+        } else {
+            [self setEnableInfiniteScrolling:NO];
+        }
+    }];
 }
-*/
+
+- (void)infiniteScrollingLoadMore
+{
+    [_manager fetchPersonalGistsNextPageWithCompletionBlock:^(id object, FGError *error) {
+        if (error == nil && [object isKindOfClass:[NSArray class]]) {
+            NSArray *objectArray = object;
+            if (objectArray.count > 0) {
+                [self.gistsArray addObjectsFromArray:objectArray];
+                [self.tableView reloadData];
+            }
+        } else if (error) {
+            NSLog(@"%@",error);
+        }
+        
+        [self.tableView.infiniteScrollingView stopAnimating];
+    }];
+}
+
+#pragma mark UITableView Datasource
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 112;
+}
 
 @end

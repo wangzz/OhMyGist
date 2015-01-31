@@ -8,6 +8,7 @@
 
 #import "FGGistsViewController.h"
 #import "FGGistTableViewCell.h"
+#import "UIViewController+RESideMenu.h"
 
 
 @interface FGGistsViewController ()
@@ -19,6 +20,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+    [leftButton setTitle:NSLocalizedString(@"Menu",) forState:UIControlStateNormal];
+    [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(presentLeftMenuViewController:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    
     
     // Init tableView
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;

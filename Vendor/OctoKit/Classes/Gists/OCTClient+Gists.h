@@ -44,9 +44,7 @@
 - (RACSignal *)fetchAllGistsWithPage:(NSUInteger)pages;
 
 
-- (RACSignal *)fetchAllGistsFirstPage;
-
-- (RACSignal *)fetchAllGistsNextPage;
+- (RACSignal *)fetchPersonalGistsWithPage:(NSUInteger)page;
 
 - (BOOL)haveMorePageAllGists;
 

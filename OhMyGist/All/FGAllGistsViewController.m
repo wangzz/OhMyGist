@@ -47,7 +47,7 @@
         if (error == nil && [object isKindOfClass:[NSArray class]]) {
             NSArray *objectArray = object;
             if (objectArray.count > 0) {
-                self.gistsArray = objectArray;
+                self.gistsArray = [objectArray mutableCopy];
                 [self.tableView reloadData];
             }
         } else if (error) {
@@ -81,5 +81,12 @@
     }];
 }
 
+
+#pragma mark UITableView Datasource
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 112;
+}
 
 @end

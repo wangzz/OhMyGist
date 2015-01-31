@@ -1,33 +1,28 @@
 //
-//  FGAllGistsManager.m
+//  FGPersonalGistsManager.m
 //  OhMyGist
 //
-//  Created by wangzz on 15-1-29.
+//  Created by wangzz on 15/1/31.
 //  Copyright (c) 2015年 wangzz. All rights reserved.
 //
 
-#import "FGAllGistsManager.h"
+#import "FGPersonalGistsManager.h"
 #import "OctoKit.h"
 #import "FGError.h"
 
-@interface FGAllGistsManager ()
+@interface FGPersonalGistsManager ()
 {
     NSUInteger  _page;
 }
 
 @end
 
-@implementation FGAllGistsManager
+@implementation FGPersonalGistsManager
 
-
-- (void)fetchAllGistsFirstPageWithCompletionBlock:(completionBlock)completionBlock
+- (void)fetchPersonalGistsFirstPageWithCompletionBlock:(completionBlock)completionBlock
 {
     _page = 1;
-    [[[[[FGAccountManager defaultManager] client] fetchAllGistsWithPage:_page] collect] subscribeNext:^(id x) {
-//        
-//        BOOL haveMorePage = [[[FGAccountManager defaultManager] client] haveMorePageAllGists];
-//        NSLog(@"%d",haveMorePage);
-        
+    [[[[[FGAccountManager defaultManager] client] fetchPersonalGistsWithPage:_page] collect] subscribeNext:^(id x) {
         dispatch_async(dispatch_get_main_queue(), ^{
             completionBlock(x,nil);
         });
@@ -38,10 +33,10 @@
     }];
 }
 
-- (void)fetchAllGistsNextPageWithCompletionBlock:(completionBlock)completionBlock
+- (void)fetchPersonalGistsNextPageWithCompletionBlock:(completionBlock)completionBlock
 {
     _page++;
-    [[[[[FGAccountManager defaultManager] client] fetchAllGistsWithPage:_page] collect] subscribeNext:^(id x) {
+    [[[[[FGAccountManager defaultManager] client] fetchPersonalGistsWithPage:_page] collect] subscribeNext:^(id x) {
         dispatch_async(dispatch_get_main_queue(), ^{
             completionBlock(x,nil);
         });

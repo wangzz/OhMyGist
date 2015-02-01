@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FGAccountManager.h"
 
 @interface FGGistDetailManager : NSObject
+
+
+- (void)fetchDetailWithGist:(OCTGist *)gist completionBlock:(completionBlock)completionBlock;
+
+- (void)cancelRequest;
 
 @end

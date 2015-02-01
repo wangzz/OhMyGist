@@ -57,8 +57,8 @@
     return [[self enqueueRequest:request resultClass:OCTGist.class fetchAllPages:NO] oct_parsedResults];
 }
 
-- (RACSignal *)fetchForkedGistsWithPage:(NSUInteger)page {
-    NSURLRequest *request = [self requestWithMethod:@"GET" path:@"gists/starred" parameters:@{@"page":@(page)} notMatchingEtag:nil];
+- (RACSignal *)fetchDetailWithGist:(OCTGist *)gist {
+    NSURLRequest *request = [self requestWithMethod:@"GET" path:[NSString stringWithFormat:@"gists/%@",gist.objectID] parameters:nil notMatchingEtag:nil];
     return [[self enqueueRequest:request resultClass:OCTGist.class fetchAllPages:NO] oct_parsedResults];
 }
 

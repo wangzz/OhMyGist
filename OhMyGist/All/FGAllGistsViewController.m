@@ -26,6 +26,12 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [_manager cancelRequest];
+    NSLog(@"%s",__func__);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

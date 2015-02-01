@@ -7,7 +7,9 @@
 //
 
 #import "FGPersonalGistsViewController.h"
+#import "FGGistDetailViewController.h"
 #import "FGPersonalGistsManager.h"
+
 
 @interface FGPersonalGistsViewController ()
 
@@ -28,6 +30,7 @@
 
 - (void)dealloc
 {
+    [_manager cancelRequest];
     NSLog(@"%s",__func__);
 }
 
@@ -92,11 +95,23 @@
     }];
 }
 
-#pragma mark UITableView Datasource
+#pragma mark - UITableView Datasource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 112;
+}
+
+#pragma mark -
+#pragma mark UITableView Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    OCTGist *gist = self.gistsArray[indexPath.row];
+    FGGistDetailViewController *detailController = [[FGGistDetailViewController alloc] initWithGist:gist];
+    [self.navigationController pushViewController:detailController animated:YES];
 }
 
 @end

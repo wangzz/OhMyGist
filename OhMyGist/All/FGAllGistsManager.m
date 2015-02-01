@@ -11,6 +11,8 @@
 @interface FGAllGistsManager ()
 {
     NSUInteger  _page;
+    RACDisposable   *_firstPageDisposable;
+    RACDisposable   *_nextPageDisposable;
 }
 
 @end
@@ -21,16 +23,18 @@
 - (void)fetchAllGistsFirstPageWithCompletionBlock:(completionBlock)completionBlock
 {
     _page = 1;
-    [[[[[FGAccountManager defaultManager] client] fetchAllGistsWithPage:_page] collect] subscribeNext:^(id x) {
+    _firstPageDisposable = [[[[[FGAccountManager defaultManager] client] fetchAllGistsWithPage:_page] collect] subscribeNext:^(id x) {
 //        
 //        BOOL haveMorePage = [[[FGAccountManager defaultManager] client] haveMorePageAllGists];
 //        NSLog(@"%d",haveMorePage);
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            _firstPageDisposable = nil;
             completionBlock(x,nil);
         });
     } error:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            _firstPageDisposable = nil;
             completionBlock(nil,[FGError errorWith:error]);
         });
     }];
@@ -39,15 +43,23 @@
 - (void)fetchAllGistsNextPageWithCompletionBlock:(completionBlock)completionBlock
 {
     _page++;
-    [[[[[FGAccountManager defaultManager] client] fetchAllGistsWithPage:_page] collect] subscribeNext:^(id x) {
+    _nextPageDisposable = [[[[[FGAccountManager defaultManager] client] fetchAllGistsWithPage:_page] collect] subscribeNext:^(id x) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            _nextPageDisposable = nil;
             completionBlock(x,nil);
         });
     } error:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            _nextPageDisposable = nil;
             completionBlock(nil,[FGError errorWith:error]);
         });
     }];
+}
+
+- (void)cancelRequest
+{
+    [_firstPageDisposable dispose];
+    [_nextPageDisposable dispose];
 }
 
 @end

@@ -22,4 +22,6 @@
  * */
 - (void)fetchAllGistsNextPageWithCompletionBlock:(completionBlock)completionBlock;
 
+- (void)cancelRequest;
+
 @end

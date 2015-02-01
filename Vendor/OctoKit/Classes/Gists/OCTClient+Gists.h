@@ -49,6 +49,8 @@
 
 - (RACSignal *)fetchForkedGistsWithPage:(NSUInteger)page;
 
+- (RACSignal *)fetchDetailWithGist:(OCTGist *)gist;
+
 - (BOOL)haveMorePageAllGists;
 
 - (RACSignal *)fetchCommentsWithGist:(OCTGist *)gist;

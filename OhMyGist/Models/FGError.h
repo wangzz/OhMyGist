@@ -11,7 +11,8 @@
 
 typedef NS_ENUM(NSUInteger, FGErrorCode) {
     FGErrorCodeUnknown,
-    FGErrorCodeRateLimit = 674,     //API RateLimit
+    FGErrorCodeRateLimit = 674,             // API RateLimit
+    FGErrorCodeLostConnection = 668,        // code:668 desc:The network connection was lost.
 };
 
 @interface FGError : NSObject

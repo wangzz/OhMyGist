@@ -25,14 +25,19 @@
 @implementation FGGistTableViewCell
 
 /*
- <OCTGist: 0x7fe24372c920> {
- HTMLURL = "https://gist.github.com/376539ec96d5c364fdce";
- creationDate = "2015-01-30 07:19:07 +0000";
+ <OCTGist: 0x7fb919694000> {
+ HTMLURL = "https://gist.github.com/d4c423dd1003c5550fa0";
+ creationDate = "2015-02-01 12:50:42 +0000";
  files =     {
- "gistfile1.d" = "<OCTGistFile: 0x7fe24375bf90> {\n    filename = \"gistfile1.d\";\n    objectID = \"<null>\";\n    rawURL = \"https://gist.githubusercontent.com/anonymous/376539ec96d5c364fdce/raw/f435b9e7f04d7a726590f9b1eedc70cbff68e8e9/gistfile1.d\";\n    server = \"<OCTServer: 0x7fe243515130> {\\n    baseURL = \\\"<null>\\\";\\n}\";\n    size = 1549;\n}";
+ "gistfile1.txt" = "<OCTGistFile: 0x7fb919698fb0> {\n    filename = \"gistfile1.txt\";\n    language = Text;\n    objectID = \"<null>\";\n    rawURL = \"https://gist.githubusercontent.com/richardcherron/d4c423dd1003c5550fa0/raw/77ed7f51256dcf455250ccad5ec55941fe79d17d/gistfile1.txt\";\n    server = \"<OCTServer: 0x7fb9196734b0> {\\n    baseURL = \\\"<null>\\\";\\n}\";\n    size = 204;\n}";
  };
- objectID = 376539ec96d5c364fdce;
- server = "<OCTServer: 0x7fe243515130> {\n    baseURL = \"<null>\";\n}";
+ gistDescription = "Stata: new main file";
+ isPublic = 1;
+ objectID = d4c423dd1003c5550fa0;
+ ownerAvatar = "https://avatars.githubusercontent.com/u/2307622?v=3";
+ ownerName = richardcherron;
+ server = "<OCTServer: 0x7fb9196734b0> {\n    baseURL = \"<null>\";\n}";
+ updateDate = "2015-02-01 12:50:42 +0000";
  }
  */
 
@@ -60,8 +65,12 @@
     OCTGistFile *gistFile = self.gist.files.allValues.firstObject;
     self.nameLabel.text = gistFile.filename;
     self.dateLabel.text = [self stringWithDate:self.gist.creationDate];
-    self.ownerLabel.text = self.gist.ownerName;
-    self.descriptionLabel.text = self.gist.gistDescription;
+    
+    NSString *owner = (self.gist.ownerName.length > 0)?self.gist.ownerName:NSLocalizedString(@"Unknown",);
+    self.ownerLabel.text = owner;
+    
+    NSString *description = (self.gist.gistDescription.length > 0)?self.gist.gistDescription:NSLocalizedString(@"No Description", );
+    self.descriptionLabel.text = description;
     [self.ownerImageView setImageWithURL:self.gist.ownerAvatar placeholderImage:nil];
 }
 

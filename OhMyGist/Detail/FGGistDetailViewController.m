@@ -7,16 +7,36 @@
 //
 
 #import "FGGistDetailViewController.h"
+#import "FGGistDetailManager.h"
+#import "SVProgressHUD.h"
 
 @interface FGGistDetailViewController ()
+{
+    FGGistDetailManager *_manager;
+    OCTGist *_gist;
+}
 
 @end
 
 @implementation FGGistDetailViewController
 
+- (instancetype)initWithGist:(OCTGist *)gist
+{
+    if (self = [super init]) {
+        _manager = [[FGGistDetailManager alloc] init];
+        _gist = gist;
+    }
+    
+    return self;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = @"Detail";
+    
+    [self loadGistDetail];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +44,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)loadGistDetail
+{
+    
 }
-*/
 
 @end

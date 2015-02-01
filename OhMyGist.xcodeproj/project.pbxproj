@@ -199,6 +199,9 @@
 		823924A61A66B29C00AEC910 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 823924A51A66B29C00AEC910 /* SecondViewController.m */; };
 		823924AB1A66B29C00AEC910 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 823924AA1A66B29C00AEC910 /* Images.xcassets */; };
 		823924BA1A66B29C00AEC910 /* OhMyGistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 823924B91A66B29C00AEC910 /* OhMyGistTests.m */; };
+		8269E3581A7E44ED007A6F80 /* FGGistDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8269E3561A7E44ED007A6F80 /* FGGistDetailViewController.m */; };
+		8269E3591A7E44ED007A6F80 /* FGGistDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8269E3571A7E44ED007A6F80 /* FGGistDetailViewController.xib */; };
+		8269E35C1A7E4780007A6F80 /* FGGistDetailManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8269E35B1A7E4780007A6F80 /* FGGistDetailManager.m */; };
 		829DF0101A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 829DF00B1A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.m */; };
 		829DF0111A7E1B4800DD8DC1 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 829DF00D1A7E1B4800DD8DC1 /* SVProgressHUD.bundle */; };
 		829DF0121A7E1B4800DD8DC1 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 829DF00F1A7E1B4800DD8DC1 /* SVProgressHUD.m */; };
@@ -641,6 +644,11 @@
 		823924B31A66B29C00AEC910 /* OhMyGistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OhMyGistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		823924B81A66B29C00AEC910 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		823924B91A66B29C00AEC910 /* OhMyGistTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OhMyGistTests.m; sourceTree = "<group>"; };
+		8269E3551A7E44ED007A6F80 /* FGGistDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGGistDetailViewController.h; sourceTree = "<group>"; };
+		8269E3561A7E44ED007A6F80 /* FGGistDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGGistDetailViewController.m; sourceTree = "<group>"; };
+		8269E3571A7E44ED007A6F80 /* FGGistDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FGGistDetailViewController.xib; sourceTree = "<group>"; };
+		8269E35A1A7E4780007A6F80 /* FGGistDetailManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGGistDetailManager.h; sourceTree = "<group>"; };
+		8269E35B1A7E4780007A6F80 /* FGGistDetailManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGGistDetailManager.m; sourceTree = "<group>"; };
 		829DF00A1A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
 		829DF00B1A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
 		829DF00D1A7E1B4800DD8DC1 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
@@ -1456,6 +1464,7 @@
 				8239249E1A66B29C00AEC910 /* AppDelegate.h */,
 				8239249F1A66B29C00AEC910 /* AppDelegate.m */,
 				82E566E81A7A261F00E7FF00 /* Menu */,
+				8269E3541A7E44BF007A6F80 /* Detail */,
 				82257CFE1A78F6D70003949B /* Common */,
 				82257CF81A78F6770003949B /* Account */,
 				82257CF91A78F6770003949B /* All */,
@@ -1517,6 +1526,18 @@
 				8234C2D21A6E392A0098F0E1 /* AFNetworking */,
 			);
 			path = Vendor;
+			sourceTree = "<group>";
+		};
+		8269E3541A7E44BF007A6F80 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				8269E3551A7E44ED007A6F80 /* FGGistDetailViewController.h */,
+				8269E3561A7E44ED007A6F80 /* FGGistDetailViewController.m */,
+				8269E3571A7E44ED007A6F80 /* FGGistDetailViewController.xib */,
+				8269E35A1A7E4780007A6F80 /* FGGistDetailManager.h */,
+				8269E35B1A7E4780007A6F80 /* FGGistDetailManager.m */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		829DF0091A7E1B4800DD8DC1 /* SVProgressHUD */ = {
@@ -1678,6 +1699,7 @@
 				82ADFFCA1A7B23ED003D77E9 /* FGGistTableViewCell.xib in Resources */,
 				823924AB1A66B29C00AEC910 /* Images.xcassets in Resources */,
 				82E566F51A7A428E00E7FF00 /* FGLoginViewController.xib in Resources */,
+				8269E3591A7E44ED007A6F80 /* FGGistDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1755,6 +1777,7 @@
 				8234C3F61A6E39E40098F0E1 /* RACStream.m in Sources */,
 				8238339B1A70FBE4002A16EF /* OCTGist.m in Sources */,
 				8234C4111A6E39E40098F0E1 /* UISwitch+RACSignalSupport.m in Sources */,
+				8269E35C1A7E4780007A6F80 /* FGGistDetailManager.m in Sources */,
 				8234C3FE1A6E39E40098F0E1 /* RACTuple.m in Sources */,
 				82E566EB1A7A263700E7FF00 /* FGLeftMenuViewController.m in Sources */,
 				829DF0151A7E22AD00DD8DC1 /* FGStarredGistsManager.m in Sources */,
@@ -1861,6 +1884,7 @@
 				82DC405A1A7CFAF400A75EAB /* FGPersonalGistsManager.m in Sources */,
 				8234C3FC1A6E39E40098F0E1 /* RACTargetQueueScheduler.m in Sources */,
 				82E566E51A7A254200E7FF00 /* FGSettingViewController.m in Sources */,
+				8269E3581A7E44ED007A6F80 /* FGGistDetailViewController.m in Sources */,
 				8234C3BA1A6E39E40098F0E1 /* NSControl+RACCommandSupport.m in Sources */,
 				8234C2E71A6E392A0098F0E1 /* AFHTTPRequestOperation.m in Sources */,
 				823832011A6FB613002A16EF /* MTLModel+NSCoding.m in Sources */,

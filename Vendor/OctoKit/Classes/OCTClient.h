@@ -17,6 +17,10 @@
 
 #import "AFNetworking.h"
 
+
+#define PER_PAGE_COUNTS     40
+
+
 @class OCTServer;
 @class OCTUser;
 @class RACSignal;

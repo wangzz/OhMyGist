@@ -9,6 +9,7 @@
 #import "FGLoginViewController.h"
 #import "FGAccountManager.h"
 #import "OctoKit.h"
+#import "SVProgressHUD.h"
 
 @interface FGLoginViewController ()
 
@@ -62,6 +63,7 @@
                 [self dismiss];
             } else {
                 NSLog(@"%@",error);
+                [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Try again",) maskType:SVProgressHUDMaskTypeBlack];
             }
         }];
     } else {

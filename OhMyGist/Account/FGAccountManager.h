@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class FGError;
-@class OCTClient;
+#import "OctoKit.h"
+#import "FGError.h"
 
 typedef void (^completionBlock)(id object, FGError *error);
 

@@ -17,6 +17,20 @@
 
 @implementation FGPersonalGistsViewController
 
+- (instancetype)init
+{
+    if (self = [super init]) {
+        _manager = [[FGPersonalGistsManager alloc] init];
+    }
+    
+    return self;
+}
+
+- (void)dealloc
+{
+    NSLog(@"%s",__func__);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -48,7 +62,7 @@
         
         // Finish refresh
         [self.refreshControl endRefreshing];
-        if (self.gistsArray.count > 20) {
+        if (self.gistsArray.count > 0 && (self.gistsArray.count%PER_PAGE_COUNTS == 0)) {
             [self setEnableInfiniteScrolling:YES];
         } else {
             [self setEnableInfiniteScrolling:NO];
@@ -70,6 +84,11 @@
         }
         
         [self.tableView.infiniteScrollingView stopAnimating];
+        if (self.gistsArray.count > 0 && (self.gistsArray.count%PER_PAGE_COUNTS == 0)) {
+            [self setEnableInfiniteScrolling:YES];
+        } else {
+            [self setEnableInfiniteScrolling:NO];
+        }
     }];
 }
 

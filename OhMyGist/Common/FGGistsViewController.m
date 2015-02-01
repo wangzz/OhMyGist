@@ -9,6 +9,9 @@
 #import "FGGistsViewController.h"
 #import "FGGistTableViewCell.h"
 #import "UIViewController+RESideMenu.h"
+#import "FGLoginViewController.h"
+#import "FGAccountManager.h"
+#import "OCTClient.h"
 
 
 @interface FGGistsViewController ()
@@ -22,9 +25,9 @@
     // Do any additional setup after loading the view.
     
     UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
-    [leftButton setTitle:NSLocalizedString(@"Menu",) forState:UIControlStateNormal];
+    [leftButton setTitle:NSLocalizedString(@"Mine",) forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [leftButton addTarget:self action:@selector(presentLeftMenuViewController:) forControlEvents:UIControlEventTouchUpInside];
+    [leftButton addTarget:self action:@selector(presentLeftMenu:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     
     
@@ -46,6 +49,23 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UIButton Action
+
+- (void)presentLeftMenu:(id)sender
+{
+    OCTClient *client = [[FGAccountManager defaultManager] client];
+    if (!client.authenticated) {
+        FGLoginViewController *loginController = [[FGLoginViewController alloc] init];
+        [self presentViewController:loginController animated:YES completion:^{
+            
+        }];
+        
+        return;
+    }
+    
+    [self presentLeftMenuViewController:sender];
 }
 
 #pragma mark - Refresh/InfiniteScrolling

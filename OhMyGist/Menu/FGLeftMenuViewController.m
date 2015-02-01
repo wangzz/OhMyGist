@@ -10,9 +10,6 @@
 #import "FGAccountViewController.h"
 #import "FGAllGistsViewController.h"
 #import "RESideMenu.h"
-#import "OCTClient.h"
-#import "FGLoginViewController.h"
-#import "FGAccountManager.h"
 #import "FGMenuManager.h"
 #import "FGMenu.h"
 
@@ -62,28 +59,11 @@
     [self.view addSubview:self.tableView];
     
     self.view.backgroundColor = [UIColor redColor];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (BOOL)checkShowLogin
-{
-    OCTClient *client = [[FGAccountManager defaultManager] client];
-    if (!client.authenticated) {
-        FGLoginViewController *loginController = [[FGLoginViewController alloc] init];
-        [self presentViewController:loginController animated:YES completion:^{
-            
-        }];
-        
-        return YES;
-    }
-    
-    return NO;
 }
 
 #pragma mark -
@@ -93,13 +73,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    [self.sideMenuViewController hideMenuViewController];
-    
     FGMenu *menu = self.itemArray[indexPath.row];
-    if (menu.needAuthentication && [self checkShowLogin]) {
-        return;
-    }
-    
     Class menuClass = NSClassFromString(menu.subClass);
     if (menuClass) {
         id object = [[menuClass alloc] init];
@@ -108,6 +82,8 @@
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:controller] animated:YES];
         }
     }
+    
+    [self.sideMenuViewController hideMenuViewController];
 }
 
 #pragma mark -

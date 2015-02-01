@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = NSLocalizedString(@"All",);;
+    self.title = NSLocalizedString(@"Public",);;
     
     [self setEnableInfiniteScrolling:NO];
 }
@@ -56,7 +56,7 @@
         
         // Finish refresh
         [self.refreshControl endRefreshing];
-        if (self.gistsArray.count > 20) {
+        if (self.gistsArray.count > 0 && (self.gistsArray.count%PER_PAGE_COUNTS == 0)) {
             [self setEnableInfiniteScrolling:YES];
         } else {
             [self setEnableInfiniteScrolling:NO];
@@ -78,6 +78,11 @@
         }
         
         [self.tableView.infiniteScrollingView stopAnimating];
+        if (self.gistsArray.count > 0 && (self.gistsArray.count%PER_PAGE_COUNTS == 0)) {
+            [self setEnableInfiniteScrolling:YES];
+        } else {
+            [self setEnableInfiniteScrolling:NO];
+        }
     }];
 }
 

@@ -43,8 +43,11 @@
  */
 - (RACSignal *)fetchAllGistsWithPage:(NSUInteger)pages;
 
-
 - (RACSignal *)fetchPersonalGistsWithPage:(NSUInteger)page;
+
+- (RACSignal *)fetchStarredGistsWithPage:(NSUInteger)page;
+
+- (RACSignal *)fetchForkedGistsWithPage:(NSUInteger)page;
 
 - (BOOL)haveMorePageAllGists;
 

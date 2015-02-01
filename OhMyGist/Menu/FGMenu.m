@@ -10,13 +10,11 @@
 
 @implementation FGMenu
 
-- (instancetype)initWithTitle:(NSString *)title image:(NSString *)image subClass:(NSString *)subClass needAuthentication:(BOOL)needAuthentication
-{
+- (instancetype)initWithTitle:(NSString *)title image:(NSString *)image subClass:(NSString *)subClass{
     if (self = [super init]) {
         _title = title;
         _image = image;
         _subClass = subClass;
-        _needAuthentication = needAuthentication;
     }
     
     return self;
@@ -24,7 +22,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%p title:%@, image:%@, subClass:%@, needAuthentication:%d",self,_title,_image,_subClass,_needAuthentication];
+    return [NSString stringWithFormat:@"%p title:%@, image:%@, subClass:%@",self,_title,_image,_subClass];
 }
 
 @end

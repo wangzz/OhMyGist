@@ -199,6 +199,11 @@
 		823924A61A66B29C00AEC910 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 823924A51A66B29C00AEC910 /* SecondViewController.m */; };
 		823924AB1A66B29C00AEC910 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 823924AA1A66B29C00AEC910 /* Images.xcassets */; };
 		823924BA1A66B29C00AEC910 /* OhMyGistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 823924B91A66B29C00AEC910 /* OhMyGistTests.m */; };
+		829DF0101A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 829DF00B1A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.m */; };
+		829DF0111A7E1B4800DD8DC1 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 829DF00D1A7E1B4800DD8DC1 /* SVProgressHUD.bundle */; };
+		829DF0121A7E1B4800DD8DC1 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 829DF00F1A7E1B4800DD8DC1 /* SVProgressHUD.m */; };
+		829DF0151A7E22AD00DD8DC1 /* FGStarredGistsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 829DF0141A7E22AD00DD8DC1 /* FGStarredGistsManager.m */; };
+		829DF0181A7E22C200DD8DC1 /* FGForkedGistsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 829DF0171A7E22C200DD8DC1 /* FGForkedGistsManager.m */; };
 		82ADFFC91A7B23ED003D77E9 /* FGGistTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFC71A7B23ED003D77E9 /* FGGistTableViewCell.m */; };
 		82ADFFCA1A7B23ED003D77E9 /* FGGistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82ADFFC81A7B23ED003D77E9 /* FGGistTableViewCell.xib */; };
 		82ADFFD11A7B8050003D77E9 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFCE1A7B8050003D77E9 /* UIScrollView+SVInfiniteScrolling.m */; };
@@ -636,6 +641,15 @@
 		823924B31A66B29C00AEC910 /* OhMyGistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OhMyGistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		823924B81A66B29C00AEC910 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		823924B91A66B29C00AEC910 /* OhMyGistTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OhMyGistTests.m; sourceTree = "<group>"; };
+		829DF00A1A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		829DF00B1A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		829DF00D1A7E1B4800DD8DC1 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		829DF00E1A7E1B4800DD8DC1 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		829DF00F1A7E1B4800DD8DC1 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		829DF0131A7E22AD00DD8DC1 /* FGStarredGistsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGStarredGistsManager.h; sourceTree = "<group>"; };
+		829DF0141A7E22AD00DD8DC1 /* FGStarredGistsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGStarredGistsManager.m; sourceTree = "<group>"; };
+		829DF0161A7E22C200DD8DC1 /* FGForkedGistsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGForkedGistsManager.h; sourceTree = "<group>"; };
+		829DF0171A7E22C200DD8DC1 /* FGForkedGistsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGForkedGistsManager.m; sourceTree = "<group>"; };
 		82ADFFC61A7B23ED003D77E9 /* FGGistTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGGistTableViewCell.h; sourceTree = "<group>"; };
 		82ADFFC71A7B23ED003D77E9 /* FGGistTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGGistTableViewCell.m; sourceTree = "<group>"; };
 		82ADFFC81A7B23ED003D77E9 /* FGGistTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FGGistTableViewCell.xib; sourceTree = "<group>"; };
@@ -742,6 +756,8 @@
 			children = (
 				82E566E01A7A251E00E7FF00 /* FGForkedGistsViewController.h */,
 				82E566E11A7A251E00E7FF00 /* FGForkedGistsViewController.m */,
+				829DF0161A7E22C200DD8DC1 /* FGForkedGistsManager.h */,
+				829DF0171A7E22C200DD8DC1 /* FGForkedGistsManager.m */,
 			);
 			path = Forked;
 			sourceTree = "<group>";
@@ -771,6 +787,8 @@
 			children = (
 				82E566DD1A7A24F000E7FF00 /* FGStarredGistsViewController.h */,
 				82E566DE1A7A24F000E7FF00 /* FGStarredGistsViewController.m */,
+				829DF0131A7E22AD00DD8DC1 /* FGStarredGistsManager.h */,
+				829DF0141A7E22AD00DD8DC1 /* FGStarredGistsManager.m */,
 			);
 			path = Starred;
 			sourceTree = "<group>";
@@ -1487,6 +1505,7 @@
 		823924C51A66BCE700AEC910 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				829DF0091A7E1B4800DD8DC1 /* SVProgressHUD */,
 				82ADFFCB1A7B8050003D77E9 /* SVPullToRefresh */,
 				82E566F91A7A645400E7FF00 /* CocoaSecurity */,
 				82E566FC1A7A645400E7FF00 /* SecureNSUserDefaults */,
@@ -1499,6 +1518,19 @@
 			);
 			path = Vendor;
 			sourceTree = "<group>";
+		};
+		829DF0091A7E1B4800DD8DC1 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				829DF00E1A7E1B4800DD8DC1 /* SVProgressHUD.h */,
+				829DF00F1A7E1B4800DD8DC1 /* SVProgressHUD.m */,
+				829DF00A1A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.h */,
+				829DF00B1A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.m */,
+				829DF00D1A7E1B4800DD8DC1 /* SVProgressHUD.bundle */,
+			);
+			name = SVProgressHUD;
+			path = Vendor/SVProgressHUD;
+			sourceTree = SOURCE_ROOT;
 		};
 		82ADFFCB1A7B8050003D77E9 /* SVPullToRefresh */ = {
 			isa = PBXGroup;
@@ -1641,6 +1673,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8234C4031A6E39E40098F0E1 /* ReactiveCocoa-Info.plist in Resources */,
+				829DF0111A7E1B4800DD8DC1 /* SVProgressHUD.bundle in Resources */,
 				82E566DC1A7A24BE00E7FF00 /* FGAccountViewController.xib in Resources */,
 				82ADFFCA1A7B23ED003D77E9 /* FGGistTableViewCell.xib in Resources */,
 				823924AB1A66B29C00AEC910 /* Images.xcassets in Resources */,
@@ -1679,6 +1712,7 @@
 				823833881A70FBE4002A16EF /* OCTClient+Organizations.m in Sources */,
 				823833931A70FBE4002A16EF /* OCTMemberEvent.m in Sources */,
 				823833801A70FBE4002A16EF /* OCTAccessToken.m in Sources */,
+				829DF0121A7E1B4800DD8DC1 /* SVProgressHUD.m in Sources */,
 				8234C3C21A6E39E40098F0E1 /* NSNotificationCenter+RACSupport.m in Sources */,
 				823833B71A70FBE4002A16EF /* OCTServer.m in Sources */,
 				8234C3F21A6E39E40098F0E1 /* RACSignal+Operations.m in Sources */,
@@ -1723,6 +1757,7 @@
 				8234C4111A6E39E40098F0E1 /* UISwitch+RACSignalSupport.m in Sources */,
 				8234C3FE1A6E39E40098F0E1 /* RACTuple.m in Sources */,
 				82E566EB1A7A263700E7FF00 /* FGLeftMenuViewController.m in Sources */,
+				829DF0151A7E22AD00DD8DC1 /* FGStarredGistsManager.m in Sources */,
 				8234C3EE1A6E39E40098F0E1 /* RACScheduler.m in Sources */,
 				823833A01A70FBE4002A16EF /* OCTTree.m in Sources */,
 				823832061A6FB613002A16EF /* NSDictionary+MTLManipulationAdditions.m in Sources */,
@@ -1759,6 +1794,7 @@
 				82E566DF1A7A24F000E7FF00 /* FGStarredGistsViewController.m in Sources */,
 				8234C3B91A6E39E40098F0E1 /* NSArray+RACSequenceAdditions.m in Sources */,
 				8234C3C91A6E39E40098F0E1 /* NSObject+RACSelectorSignal.m in Sources */,
+				829DF0101A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.m in Sources */,
 				8238339D1A70FBE4002A16EF /* OCTClient+Git.m in Sources */,
 				82E566C61A7A1EC200E7FF00 /* UIViewController+RESideMenu.m in Sources */,
 				8234C4091A6E39E40098F0E1 /* UIControl+RACSignalSupport.m in Sources */,
@@ -1793,6 +1829,7 @@
 				823832E21A709A79002A16EF /* FGDataManager.m in Sources */,
 				8234C3E81A6E39E40098F0E1 /* RACMulticastConnection.m in Sources */,
 				8234C3E71A6E39E40098F0E1 /* RACKVOTrampoline.m in Sources */,
+				829DF0181A7E22C200DD8DC1 /* FGForkedGistsManager.m in Sources */,
 				823832031A6FB613002A16EF /* MTLReflection.m in Sources */,
 				823831FD1A6FB613002A16EF /* EXTRuntimeExtensions-MTL.m in Sources */,
 				82DC40601A7D073900A75EAB /* FGMenu.m in Sources */,

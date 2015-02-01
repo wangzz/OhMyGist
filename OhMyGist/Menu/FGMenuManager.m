@@ -13,12 +13,12 @@
 
 - (NSArray *)menuItems
 {
-    return @[[[FGMenu alloc] initWithTitle:NSLocalizedString(@"Mine",) image:@"" subClass:@"FGAccountViewController" needAuthentication:YES],
-             [[FGMenu alloc] initWithTitle:NSLocalizedString(@"All",) image:@"" subClass:@"FGAllGistsViewController" needAuthentication:NO],
-             [[FGMenu alloc] initWithTitle:NSLocalizedString(@"Personal",) image:@"" subClass:@"FGPersonalGistsViewController" needAuthentication:YES],
-             [[FGMenu alloc] initWithTitle:NSLocalizedString(@"Starred",) image:@"" subClass:@"FGStarredGistsViewController" needAuthentication:YES],
-             [[FGMenu alloc] initWithTitle:NSLocalizedString(@"Forked",) image:@"" subClass:@"FGForkedGistsViewController" needAuthentication:YES],
-             [[FGMenu alloc] initWithTitle:NSLocalizedString(@"Setting",) image:@"" subClass:@"FGSettingViewController" needAuthentication:NO]];
+    return @[[[FGMenu alloc] initWithTitle:NSLocalizedString(@"Mine",) image:@"" subClass:@"FGAccountViewController"],
+             [[FGMenu alloc] initWithTitle:NSLocalizedString(@"All",) image:@"" subClass:@"FGAllGistsViewController"],
+             [[FGMenu alloc] initWithTitle:NSLocalizedString(@"Personal",) image:@"" subClass:@"FGPersonalGistsViewController"],
+             [[FGMenu alloc] initWithTitle:NSLocalizedString(@"Starred",) image:@"" subClass:@"FGStarredGistsViewController"],
+             [[FGMenu alloc] initWithTitle:NSLocalizedString(@"Forked",) image:@"" subClass:@"FGForkedGistsViewController"],
+             [[FGMenu alloc] initWithTitle:NSLocalizedString(@"Setting",) image:@"" subClass:@"FGSettingViewController"]];
 }
 
 @end

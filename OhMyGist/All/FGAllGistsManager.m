@@ -7,8 +7,6 @@
 //
 
 #import "FGAllGistsManager.h"
-#import "OctoKit.h"
-#import "FGError.h"
 
 @interface FGAllGistsManager ()
 {

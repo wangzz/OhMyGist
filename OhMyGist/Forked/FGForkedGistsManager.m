@@ -1,26 +1,26 @@
 //
-//  FGPersonalGistsManager.m
+//  FGForkedGistsManager.m
 //  OhMyGist
 //
-//  Created by wangzz on 15/1/31.
+//  Created by wangzz on 15/2/1.
 //  Copyright (c) 2015年 wangzz. All rights reserved.
 //
 
-#import "FGPersonalGistsManager.h"
+#import "FGForkedGistsManager.h"
 
-@interface FGPersonalGistsManager ()
+@interface FGForkedGistsManager ()
 {
     NSUInteger  _page;
 }
 
 @end
 
-@implementation FGPersonalGistsManager
+@implementation FGForkedGistsManager
 
-- (void)fetchPersonalGistsFirstPageWithCompletionBlock:(completionBlock)completionBlock
+- (void)fetchForkedGistsFirstPageWithCompletionBlock:(completionBlock)completionBlock
 {
     _page = 1;
-    [[[[[FGAccountManager defaultManager] client] fetchPersonalGistsWithPage:_page] collect] subscribeNext:^(id x) {
+    [[[[[FGAccountManager defaultManager] client] fetchForkedGistsWithPage:_page] collect] subscribeNext:^(id x) {
         dispatch_async(dispatch_get_main_queue(), ^{
             completionBlock(x,nil);
         });
@@ -31,10 +31,10 @@
     }];
 }
 
-- (void)fetchPersonalGistsNextPageWithCompletionBlock:(completionBlock)completionBlock
+- (void)fetchForkedGistsNextPageWithCompletionBlock:(completionBlock)completionBlock
 {
     _page++;
-    [[[[[FGAccountManager defaultManager] client] fetchPersonalGistsWithPage:_page] collect] subscribeNext:^(id x) {
+    [[[[[FGAccountManager defaultManager] client] fetchForkedGistsWithPage:_page] collect] subscribeNext:^(id x) {
         dispatch_async(dispatch_get_main_queue(), ^{
             completionBlock(x,nil);
         });
@@ -44,5 +44,4 @@
         });
     }];
 }
-
 @end

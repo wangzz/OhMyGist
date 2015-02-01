@@ -18,7 +18,7 @@
 
 @property (nonatomic) BOOL needAuthentication;
 
-- (instancetype)initWithTitle:(NSString *)title image:(NSString *)image subClass:(NSString *)subClass needAuthentication:(BOOL)needAuthentication;
+- (instancetype)initWithTitle:(NSString *)title image:(NSString *)image subClass:(NSString *)subClass;
 
 
 @end

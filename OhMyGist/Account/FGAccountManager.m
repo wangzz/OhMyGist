@@ -7,8 +7,6 @@
 //
 
 #import "FGAccountManager.h"
-#import "OctoKit.h"
-#import "FGError.h"
 #import "NSUserDefaults+SecureAdditions.h"
 
 
@@ -39,16 +37,20 @@
     OCTUser *user = [OCTUser userWithRawLogin:userName server:OCTServer.dotComServer];
     [[OCTClient signInAsUser:user password:password oneTimePassword:nil scopes:OCTClientAuthorizationScopesUser note:nil noteURL:nil fingerprint:nil] subscribeNext:^(OCTClient *authenticatedClient) {
         //Authentication was successful. Do something with the created client.
-        self.currentClient = authenticatedClient;
-        [[NSUserDefaults standardUserDefaults] setSecretObject:self.currentClient.user.name forKey:KEY_USERNAME];
-        [[NSUserDefaults standardUserDefaults] setSecretObject:self.currentClient.token forKey:KEY_TOKEN];
-
-        completionBlock(authenticatedClient,nil);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.currentClient = authenticatedClient;
+            [[NSUserDefaults standardUserDefaults] setSecretObject:self.currentClient.user.rawLogin forKey:KEY_USERNAME];
+            [[NSUserDefaults standardUserDefaults] setSecretObject:self.currentClient.token forKey:KEY_TOKEN];
+            completionBlock(authenticatedClient,nil);
+        });
+        
     } error:^(NSError *error) {
         // Authentication failed.
-        NSLog(@"%@",error);
-        [self clearUserInfo];
-        completionBlock(nil,[FGError errorWith:error]);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self clearUserInfo];
+            completionBlock(nil,[FGError errorWith:error]);
+        });
     }];
 }
 
@@ -73,9 +75,9 @@
     OCTClient *client = nil;
     NSString *userName = [[NSUserDefaults standardUserDefaults] secretStringForKey:KEY_USERNAME];
     NSString *token = [[NSUserDefaults standardUserDefaults] secretStringForKey:KEY_TOKEN];
-    if (userName) {
+    if (userName.length > 0) {
         OCTUser *user = [OCTUser userWithRawLogin:userName server:OCTServer.dotComServer];
-        if (token) {
+        if (token.length > 0) {
             client = [OCTClient authenticatedClientWithUser:user token:token];
         } else {
             client = [OCTClient unauthenticatedClientWithUser:user];

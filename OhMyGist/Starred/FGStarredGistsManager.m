@@ -1,26 +1,26 @@
 //
-//  FGPersonalGistsManager.m
+//  FGStarredGistsManager.m
 //  OhMyGist
 //
-//  Created by wangzz on 15/1/31.
+//  Created by wangzz on 15/2/1.
 //  Copyright (c) 2015年 wangzz. All rights reserved.
 //
 
-#import "FGPersonalGistsManager.h"
+#import "FGStarredGistsManager.h"
 
-@interface FGPersonalGistsManager ()
+@interface FGStarredGistsManager ()
 {
     NSUInteger  _page;
 }
 
 @end
 
-@implementation FGPersonalGistsManager
+@implementation FGStarredGistsManager
 
-- (void)fetchPersonalGistsFirstPageWithCompletionBlock:(completionBlock)completionBlock
+- (void)fetchStarredGistsFirstPageWithCompletionBlock:(completionBlock)completionBlock
 {
     _page = 1;
-    [[[[[FGAccountManager defaultManager] client] fetchPersonalGistsWithPage:_page] collect] subscribeNext:^(id x) {
+    [[[[[FGAccountManager defaultManager] client] fetchStarredGistsWithPage:_page] collect] subscribeNext:^(id x) {
         dispatch_async(dispatch_get_main_queue(), ^{
             completionBlock(x,nil);
         });
@@ -31,10 +31,10 @@
     }];
 }
 
-- (void)fetchPersonalGistsNextPageWithCompletionBlock:(completionBlock)completionBlock
+- (void)fetchStarredGistsNextPageWithCompletionBlock:(completionBlock)completionBlock
 {
     _page++;
-    [[[[[FGAccountManager defaultManager] client] fetchPersonalGistsWithPage:_page] collect] subscribeNext:^(id x) {
+    [[[[[FGAccountManager defaultManager] client] fetchStarredGistsWithPage:_page] collect] subscribeNext:^(id x) {
         dispatch_async(dispatch_get_main_queue(), ^{
             completionBlock(x,nil);
         });

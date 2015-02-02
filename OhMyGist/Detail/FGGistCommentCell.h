@@ -9,7 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @class OCTGistComment;
+@protocol FGGistCommentCellDelegate <NSObject>
+
+- (void)didSelectComment:(OCTGistComment *)comment;
+
+@end
+
+
 @interface FGGistCommentCell : UITableViewCell
+
+@property (nonatomic, weak) id<FGGistCommentCellDelegate> delegate;
 
 @property (nonatomic, strong) OCTGistComment *comment;
 

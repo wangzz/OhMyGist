@@ -12,18 +12,22 @@
 @implementation OCTGistComment
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{@"createdDate": @"created_at",@"updatedDate": @"updated_at"}];
+    return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{@"createdDate": @"created_at",@"updatedDate": @"updated_at",@"userName": @"user.login",@"userAvatar": @"user.avatar_url",}];
 }
 
-+ (NSValueTransformer *)creationDateJSONTransformer {
++ (NSValueTransformer *)createdDateJSONTransformer {
     return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
 }
 
-+ (NSValueTransformer *)updateDateJSONTransformer {
++ (NSValueTransformer *)updatedDateJSONTransformer {
     return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
 }
 
 + (NSValueTransformer *)urlJSONTransformer {
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)userAvatarJSONTransformer {
     return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 

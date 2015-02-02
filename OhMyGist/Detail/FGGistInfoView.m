@@ -8,9 +8,9 @@
 
 #import "FGGistInfoView.h"
 #import "UIImageView+AFNetworking.h"
+#import "NSDate+FormatString.h"
 #import "OctoKit.h"
 #import "FGAccountManager.h"
-#import "NSDate+FormatString.h"
 
 @interface FGGistInfoView ()
 

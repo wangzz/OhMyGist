@@ -12,6 +12,7 @@
 #import "FGGistInfoView.h"
 #import "FGGistCommentCell.h"
 #import "FGTitleTableViewCell.h"
+#import "FGAddCommentViewController.h"
 
 
 #define HEIGHT_TABLEVIEW_SECTION    30
@@ -103,16 +104,27 @@
     NSLog(@"%s",__func__);
 }
 
+- (void)didSelectComment:(OCTGistComment *)comment
+{
+    NSLog(@"%s",__func__);
+}
+
 - (void)onAddCommentButtonAction:(id)sender
 {
     NSLog(@"%s",__func__);
+    FGAddCommentViewController *commentViewController = [[FGAddCommentViewController alloc] init];
+    [self.navigationController pushViewController:commentViewController animated:YES];
 }
 
 #pragma mark - UITableView Datasource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return HEIGHT_TABLEVIEW_SECTION;
+    if (section == 0 || section == 2) {
+        return HEIGHT_TABLEVIEW_SECTION;
+    }
+    
+    return 0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -122,7 +134,7 @@
     
     if (section == 0) {
         sectionLabel.text = @"FILES";
-    } else if (section == 1) {
+    } else if (section == 2) {
         sectionLabel.text = @"COMMENTS";
     }
     [sectionView addSubview:sectionLabel];
@@ -130,20 +142,26 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 54;
+    if (indexPath.section == 1 || (indexPath.section == 3 && self.commentsArray.count == 0)) {
+        return 54;
+    } else if (indexPath.section == 3 && self.commentsArray.count > 0) {
+        return 100;
+    } else {
+        return 0;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
     NSInteger rowCount = 0;
-    if (sectionIndex == 0) {
+    if (sectionIndex == 1) {
         rowCount = (_gist.files.allValues.count==0)?1:_gist.files.allValues.count;
-    } else if (sectionIndex == 1) {
+    } else if (sectionIndex == 3) {
         rowCount = (self.commentsArray.count==0)?1:self.commentsArray.count;
     }
     
@@ -153,7 +171,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *commonCell = nil;
-    if (indexPath.section == 1 && self.commentsArray.count > 0) {
+    if (indexPath.section == 3 && self.commentsArray.count > 0) {
         static NSString *cellIdentifier = @"FGGistCommentCell";
         FGGistCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
@@ -170,14 +188,14 @@
         }
         
         cell.showAccess = NO;
-        if (indexPath.section == 0) {
+        if (indexPath.section == 1) {
             if (_gist.files.allValues.count == 0) {
                 cell.title = NSLocalizedString(@"No Files",);
             } else {
                 cell.showAccess = YES;
                 cell.title = _gist.files.allKeys[indexPath.row];
             }
-        } else if (indexPath.section == 1 && self.commentsArray.count == 0) {
+        } else if (indexPath.section == 3 && self.commentsArray.count == 0) {
             cell.title = NSLocalizedString(@"No Comments",);
         }
         

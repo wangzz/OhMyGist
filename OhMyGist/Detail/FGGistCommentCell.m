@@ -8,6 +8,20 @@
 
 #import "FGGistCommentCell.h"
 #import "OCTGistComment.h"
+#import "UIImageView+AFNetworking.h"
+#import "NSDate+FormatString.h"
+
+@interface FGGistCommentCell ()
+
+@property (nonatomic, strong) IBOutlet UIImageView *avatarImageView;
+
+@property (nonatomic, strong) IBOutlet UIButton *nameButton;
+
+@property (nonatomic, strong) IBOutlet UILabel *dateLabel;
+
+@property (nonatomic, strong) IBOutlet UILabel *bodyLabel;
+
+@end
 
 @implementation FGGistCommentCell
 
@@ -31,8 +45,20 @@
 {
     [super layoutSubviews];
     
-    self.textLabel.text = _comment.body;
+    [self.avatarImageView setImageWithURL:self.comment.userAvatar placeholderImage:nil];
+    
+    [self.nameButton setTitle:self.comment.userName forState:UIControlStateNormal];
+    
+    self.dateLabel.text = [self.comment.updatedDate stringFormat];
+    
+    self.bodyLabel.text = _comment.body;
 }
 
+- (IBAction)onNameButtonAction:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(didSelectComment:)]) {
+        [self.delegate didSelectComment:self.comment];
+    }
+}
 
 @end

@@ -218,6 +218,8 @@
 		82ADFFED1A7F7609003D77E9 /* FGGistCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82ADFFEB1A7F7609003D77E9 /* FGGistCommentCell.xib */; };
 		82ADFFF11A7F7CFE003D77E9 /* FGTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFEF1A7F7CFE003D77E9 /* FGTitleTableViewCell.m */; };
 		82ADFFF21A7F7CFE003D77E9 /* FGTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82ADFFF01A7F7CFE003D77E9 /* FGTitleTableViewCell.xib */; };
+		82ADFFF91A7FB2D7003D77E9 /* FGAddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFF71A7FB2D7003D77E9 /* FGAddCommentViewController.m */; };
+		82ADFFFA1A7FB2D7003D77E9 /* FGAddCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82ADFFF81A7FB2D7003D77E9 /* FGAddCommentViewController.xib */; };
 		82DC405A1A7CFAF400A75EAB /* FGPersonalGistsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DC40591A7CFAF400A75EAB /* FGPersonalGistsManager.m */; };
 		82DC405D1A7D070600A75EAB /* FGMenuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DC405C1A7D070600A75EAB /* FGMenuManager.m */; };
 		82DC40601A7D073900A75EAB /* FGMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DC405F1A7D073900A75EAB /* FGMenu.m */; };
@@ -684,6 +686,9 @@
 		82ADFFEE1A7F7CFE003D77E9 /* FGTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGTitleTableViewCell.h; sourceTree = "<group>"; };
 		82ADFFEF1A7F7CFE003D77E9 /* FGTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGTitleTableViewCell.m; sourceTree = "<group>"; };
 		82ADFFF01A7F7CFE003D77E9 /* FGTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FGTitleTableViewCell.xib; sourceTree = "<group>"; };
+		82ADFFF61A7FB2D7003D77E9 /* FGAddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGAddCommentViewController.h; sourceTree = "<group>"; };
+		82ADFFF71A7FB2D7003D77E9 /* FGAddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGAddCommentViewController.m; sourceTree = "<group>"; };
+		82ADFFF81A7FB2D7003D77E9 /* FGAddCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FGAddCommentViewController.xib; sourceTree = "<group>"; };
 		82DC40581A7CFAF400A75EAB /* FGPersonalGistsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGPersonalGistsManager.h; sourceTree = "<group>"; };
 		82DC40591A7CFAF400A75EAB /* FGPersonalGistsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGPersonalGistsManager.m; sourceTree = "<group>"; };
 		82DC405B1A7D070600A75EAB /* FGMenuManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGMenuManager.h; sourceTree = "<group>"; };
@@ -1551,20 +1556,9 @@
 		8269E3541A7E44BF007A6F80 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				8269E3551A7E44ED007A6F80 /* FGGistDetailViewController.h */,
-				8269E3561A7E44ED007A6F80 /* FGGistDetailViewController.m */,
-				8269E3571A7E44ED007A6F80 /* FGGistDetailViewController.xib */,
-				8269E35A1A7E4780007A6F80 /* FGGistDetailManager.h */,
-				8269E35B1A7E4780007A6F80 /* FGGistDetailManager.m */,
-				82ADFFD81A7F2F80003D77E9 /* FGGistInfoView.h */,
-				82ADFFD91A7F2F80003D77E9 /* FGGistInfoView.m */,
-				82ADFFDB1A7F2F95003D77E9 /* FGGistInfoView.xib */,
-				82ADFFE91A7F7609003D77E9 /* FGGistCommentCell.h */,
-				82ADFFEA1A7F7609003D77E9 /* FGGistCommentCell.m */,
-				82ADFFEB1A7F7609003D77E9 /* FGGistCommentCell.xib */,
-				82ADFFEE1A7F7CFE003D77E9 /* FGTitleTableViewCell.h */,
-				82ADFFEF1A7F7CFE003D77E9 /* FGTitleTableViewCell.m */,
-				82ADFFF01A7F7CFE003D77E9 /* FGTitleTableViewCell.xib */,
+				82ADFFF31A7FA9D7003D77E9 /* Controller */,
+				82ADFFF51A7FAA01003D77E9 /* Model */,
+				82ADFFF41A7FA9F3003D77E9 /* View */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -1594,6 +1588,44 @@
 			name = SVPullToRefresh;
 			path = Vendor/SVPullToRefresh;
 			sourceTree = SOURCE_ROOT;
+		};
+		82ADFFF31A7FA9D7003D77E9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8269E3551A7E44ED007A6F80 /* FGGistDetailViewController.h */,
+				8269E3561A7E44ED007A6F80 /* FGGistDetailViewController.m */,
+				8269E3571A7E44ED007A6F80 /* FGGistDetailViewController.xib */,
+				82ADFFF61A7FB2D7003D77E9 /* FGAddCommentViewController.h */,
+				82ADFFF71A7FB2D7003D77E9 /* FGAddCommentViewController.m */,
+				82ADFFF81A7FB2D7003D77E9 /* FGAddCommentViewController.xib */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		82ADFFF41A7FA9F3003D77E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82ADFFD81A7F2F80003D77E9 /* FGGistInfoView.h */,
+				82ADFFD91A7F2F80003D77E9 /* FGGistInfoView.m */,
+				82ADFFDB1A7F2F95003D77E9 /* FGGistInfoView.xib */,
+				82ADFFE91A7F7609003D77E9 /* FGGistCommentCell.h */,
+				82ADFFEA1A7F7609003D77E9 /* FGGistCommentCell.m */,
+				82ADFFEB1A7F7609003D77E9 /* FGGistCommentCell.xib */,
+				82ADFFEE1A7F7CFE003D77E9 /* FGTitleTableViewCell.h */,
+				82ADFFEF1A7F7CFE003D77E9 /* FGTitleTableViewCell.m */,
+				82ADFFF01A7F7CFE003D77E9 /* FGTitleTableViewCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		82ADFFF51A7FAA01003D77E9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8269E35A1A7E4780007A6F80 /* FGGistDetailManager.h */,
+				8269E35B1A7E4780007A6F80 /* FGGistDetailManager.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
 		};
 		82E566BD1A7A1EC200E7FF00 /* RESideMenu */ = {
 			isa = PBXGroup;
@@ -1727,6 +1759,7 @@
 				829DF0111A7E1B4800DD8DC1 /* SVProgressHUD.bundle in Resources */,
 				82E566DC1A7A24BE00E7FF00 /* FGAccountViewController.xib in Resources */,
 				82ADFFED1A7F7609003D77E9 /* FGGistCommentCell.xib in Resources */,
+				82ADFFFA1A7FB2D7003D77E9 /* FGAddCommentViewController.xib in Resources */,
 				82ADFFCA1A7B23ED003D77E9 /* FGGistTableViewCell.xib in Resources */,
 				82ADFFDC1A7F2F95003D77E9 /* FGGistInfoView.xib in Resources */,
 				823924AB1A66B29C00AEC910 /* Images.xcassets in Resources */,
@@ -1840,6 +1873,7 @@
 				823833BC1A70FBE4002A16EF /* RACSignal+OCTClientAdditions.m in Sources */,
 				823833991A70FBE4002A16EF /* OCTWatchEvent.m in Sources */,
 				8234C3F11A6E39E40098F0E1 /* RACSerialDisposable.m in Sources */,
+				82ADFFF91A7FB2D7003D77E9 /* FGAddCommentViewController.m in Sources */,
 				8234C3E11A6E39E40098F0E1 /* RACErrorSignal.m in Sources */,
 				8238339C1A70FBE4002A16EF /* OCTGistFile.m in Sources */,
 				8234C3EF1A6E39E40098F0E1 /* RACScopedDisposable.m in Sources */,

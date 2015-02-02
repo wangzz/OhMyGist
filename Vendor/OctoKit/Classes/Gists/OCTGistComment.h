@@ -15,7 +15,7 @@
 @property (nonatomic, copy, readonly) NSString *body;
 
 // The user of the comment.
-@property (nonatomic, copy, readonly) NSDictionary *user;
+//@property (nonatomic, copy, readonly) NSDictionary *user;
 
 // A direct URL to the comment.
 @property (nonatomic, copy, readonly) NSURL *url;
@@ -25,5 +25,11 @@
 
 // The updated date of the comment.
 @property (nonatomic, copy, readonly) NSDate *updatedDate;
+
+// The owner name for ths comment.
+@property (nonatomic, copy, readonly) NSString *userName;
+
+// The owner avatar for ths comment.
+@property (nonatomic, copy, readonly) NSURL *userAvatar;
 
 @end

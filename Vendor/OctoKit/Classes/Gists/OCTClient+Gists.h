@@ -53,7 +53,4 @@
 
 - (BOOL)haveMorePageAllGists;
 
-- (RACSignal *)fetchCommentsWithGist:(OCTGist *)gist;
-
-
 @end

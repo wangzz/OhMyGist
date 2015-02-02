@@ -10,6 +10,7 @@
 #import "OCTGist.h"
 #import "OCTGistFile.h"
 #import "UIImageView+AFNetworking.h"
+#import "NSDate+FormatString.h"
 
 @interface FGGistTableViewCell ()
 
@@ -64,7 +65,7 @@
     
     OCTGistFile *gistFile = self.gist.files.allValues.firstObject;
     self.nameLabel.text = gistFile.filename;
-    self.dateLabel.text = [self stringWithDate:self.gist.creationDate];
+    self.dateLabel.text = [self.gist.creationDate stringFormat];
     
     NSString *owner = (self.gist.ownerName.length > 0)?self.gist.ownerName:NSLocalizedString(@"Unknown",);
     self.ownerLabel.text = owner;
@@ -74,69 +75,6 @@
     [self.ownerImageView setImageWithURL:self.gist.ownerAvatar placeholderImage:nil];
 }
 
-- (NSString*)stringWithDate:(NSDate *)date
-{
-#define ONE_MINUTE  (60)
-#define ONE_HOUR  (60*ONE_MINUTE)
-    //#define ONE_DAY    (24*ONE_HOUR)
-#define ONE_DAY     ((((int)[curDate timeIntervalSince1970])%(24*ONE_HOUR))+((24*ONE_HOUR)))   //当天的小时+昨天一天时间
-#define ONE_MONTH    (30*ONE_DAY)
-    
-    NSDate * curDate = [NSDate date];
-    NSTimeInterval interval = [curDate timeIntervalSinceDate:date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    NSString* szRet= nil;
-    
-    [dateFormatter setDateFormat:@"yyyy"];
-    NSString* szyySelf = [dateFormatter stringFromDate:date];
-    NSString* szyyCurYear = [dateFormatter stringFromDate:curDate];
-    
-    if (interval<= ONE_MINUTE) {
-        return @"刚刚";
-    }
-    
-    if (interval<= ONE_HOUR) {
-        szRet = [NSString stringWithFormat:@"%d分钟前",(int)(interval/ONE_MINUTE)];
-        return szRet;
-    }
-    if (interval<= ONE_DAY) {
-        // 当天1小时前的显示今天具体时间（示例：今天 17：56）
-        
-        [dateFormatter setDateFormat:@"H:mm"];
-        NSString* szHHMM = [dateFormatter stringFromDate:date];
-        
-        [dateFormatter setDateFormat:@"d"];
-        NSString* szddSelf = [dateFormatter stringFromDate:date];
-        NSString* szddCurDate = [dateFormatter stringFromDate:curDate];
-        
-        if ( [szddSelf isEqualToString:szddCurDate]) {
-            szRet = [NSString stringWithFormat:@"今天%@",szHHMM];
-        }
-        else
-        {
-            szRet = [NSString stringWithFormat:@"昨天%@",szHHMM];
-        }
-        return szRet;
-    }
-    
-    if([szyySelf isEqualToString:szyyCurYear]){
-        //今年的
-        [dateFormatter setDateFormat:@"M"];
-        NSString* szMM = [dateFormatter stringFromDate:date];
-        [dateFormatter setDateFormat:@"d"];
-        NSString* szdd = [dateFormatter stringFromDate:date];
-        szRet = [NSString stringWithFormat:@"%@月%@日",szMM,szdd];
-        return szRet;
-    }
-    [dateFormatter setDateFormat:@"y"];
-    NSString* szyy = [dateFormatter stringFromDate:date];
-    [dateFormatter setDateFormat:@"M"];
-    NSString* szMM = [dateFormatter stringFromDate:date];
-    [dateFormatter setDateFormat:@"d"];
-    NSString* szdd = [dateFormatter stringFromDate:date];
-    szRet = [NSString stringWithFormat:@"%@年%@月%@日",szyy,szMM,szdd];
-    return szRet;
-}
 
 
 @end

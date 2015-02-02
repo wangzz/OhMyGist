@@ -73,6 +73,7 @@ FOUNDATION_EXPORT const unsigned char OctoKitVersionString[];
 #import "OCTClient.h"
 #import "OCTClient+Events.h"
 #import "OCTClient+Gists.h"
+#import "OCTClient+GistComments.h"
 #import "OCTClient+Git.h"
 #import "OCTClient+Keys.h"
 #import "OCTClient+Notifications.h"

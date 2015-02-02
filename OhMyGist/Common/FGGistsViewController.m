@@ -12,7 +12,7 @@
 #import "FGLoginViewController.h"
 #import "FGAccountManager.h"
 #import "OCTClient.h"
-
+#import "FGGistDetailViewController.h"
 
 @interface FGGistsViewController ()
 
@@ -100,7 +100,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSLog(@"%s",__func__);
+    
+    OCTGist *gist = self.gistsArray[indexPath.row];
+    FGGistDetailViewController *detailController = [[FGGistDetailViewController alloc] initWithGist:gist];
+    [self.navigationController pushViewController:detailController animated:YES];
 }
 
 #pragma mark -

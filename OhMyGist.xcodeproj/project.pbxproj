@@ -195,8 +195,6 @@
 		823833BC1A70FBE4002A16EF /* RACSignal+OCTClientAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8238337C1A70FBE4002A16EF /* RACSignal+OCTClientAdditions.m */; };
 		8239249D1A66B29C00AEC910 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8239249C1A66B29C00AEC910 /* main.m */; };
 		823924A01A66B29C00AEC910 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8239249F1A66B29C00AEC910 /* AppDelegate.m */; };
-		823924A31A66B29C00AEC910 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 823924A21A66B29C00AEC910 /* FirstViewController.m */; };
-		823924A61A66B29C00AEC910 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 823924A51A66B29C00AEC910 /* SecondViewController.m */; };
 		823924AB1A66B29C00AEC910 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 823924AA1A66B29C00AEC910 /* Images.xcassets */; };
 		823924BA1A66B29C00AEC910 /* OhMyGistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 823924B91A66B29C00AEC910 /* OhMyGistTests.m */; };
 		8269E3581A7E44ED007A6F80 /* FGGistDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8269E3561A7E44ED007A6F80 /* FGGistDetailViewController.m */; };
@@ -211,6 +209,15 @@
 		82ADFFCA1A7B23ED003D77E9 /* FGGistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82ADFFC81A7B23ED003D77E9 /* FGGistTableViewCell.xib */; };
 		82ADFFD11A7B8050003D77E9 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFCE1A7B8050003D77E9 /* UIScrollView+SVInfiniteScrolling.m */; };
 		82ADFFD21A7B8050003D77E9 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFD01A7B8050003D77E9 /* UIScrollView+SVPullToRefresh.m */; };
+		82ADFFDA1A7F2F80003D77E9 /* FGGistInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFD91A7F2F80003D77E9 /* FGGistInfoView.m */; };
+		82ADFFDC1A7F2F95003D77E9 /* FGGistInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82ADFFDB1A7F2F95003D77E9 /* FGGistInfoView.xib */; };
+		82ADFFE21A7F63F1003D77E9 /* NSDate+FormatString.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFE11A7F63F1003D77E9 /* NSDate+FormatString.m */; };
+		82ADFFE51A7F6A90003D77E9 /* OCTClient+GistComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFE41A7F6A90003D77E9 /* OCTClient+GistComments.m */; };
+		82ADFFE81A7F6E37003D77E9 /* OCTGistComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFE71A7F6E37003D77E9 /* OCTGistComment.m */; };
+		82ADFFEC1A7F7609003D77E9 /* FGGistCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFEA1A7F7609003D77E9 /* FGGistCommentCell.m */; };
+		82ADFFED1A7F7609003D77E9 /* FGGistCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82ADFFEB1A7F7609003D77E9 /* FGGistCommentCell.xib */; };
+		82ADFFF11A7F7CFE003D77E9 /* FGTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFEF1A7F7CFE003D77E9 /* FGTitleTableViewCell.m */; };
+		82ADFFF21A7F7CFE003D77E9 /* FGTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82ADFFF01A7F7CFE003D77E9 /* FGTitleTableViewCell.xib */; };
 		82DC405A1A7CFAF400A75EAB /* FGPersonalGistsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DC40591A7CFAF400A75EAB /* FGPersonalGistsManager.m */; };
 		82DC405D1A7D070600A75EAB /* FGMenuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DC405C1A7D070600A75EAB /* FGMenuManager.m */; };
 		82DC40601A7D073900A75EAB /* FGMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DC405F1A7D073900A75EAB /* FGMenu.m */; };
@@ -636,10 +643,6 @@
 		8239249C1A66B29C00AEC910 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8239249E1A66B29C00AEC910 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8239249F1A66B29C00AEC910 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		823924A11A66B29C00AEC910 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		823924A21A66B29C00AEC910 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		823924A41A66B29C00AEC910 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		823924A51A66B29C00AEC910 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		823924AA1A66B29C00AEC910 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../OhMyGist/Images.xcassets; sourceTree = "<group>"; };
 		823924B31A66B29C00AEC910 /* OhMyGistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OhMyGistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		823924B81A66B29C00AEC910 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -666,6 +669,21 @@
 		82ADFFCE1A7B8050003D77E9 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
 		82ADFFCF1A7B8050003D77E9 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		82ADFFD01A7B8050003D77E9 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
+		82ADFFD81A7F2F80003D77E9 /* FGGistInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGGistInfoView.h; sourceTree = "<group>"; };
+		82ADFFD91A7F2F80003D77E9 /* FGGistInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGGistInfoView.m; sourceTree = "<group>"; };
+		82ADFFDB1A7F2F95003D77E9 /* FGGistInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FGGistInfoView.xib; sourceTree = "<group>"; };
+		82ADFFE01A7F63F1003D77E9 /* NSDate+FormatString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+FormatString.h"; sourceTree = "<group>"; };
+		82ADFFE11A7F63F1003D77E9 /* NSDate+FormatString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+FormatString.m"; sourceTree = "<group>"; };
+		82ADFFE31A7F6A90003D77E9 /* OCTClient+GistComments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCTClient+GistComments.h"; sourceTree = "<group>"; };
+		82ADFFE41A7F6A90003D77E9 /* OCTClient+GistComments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCTClient+GistComments.m"; sourceTree = "<group>"; };
+		82ADFFE61A7F6E37003D77E9 /* OCTGistComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTGistComment.h; sourceTree = "<group>"; };
+		82ADFFE71A7F6E37003D77E9 /* OCTGistComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTGistComment.m; sourceTree = "<group>"; };
+		82ADFFE91A7F7609003D77E9 /* FGGistCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGGistCommentCell.h; sourceTree = "<group>"; };
+		82ADFFEA1A7F7609003D77E9 /* FGGistCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGGistCommentCell.m; sourceTree = "<group>"; };
+		82ADFFEB1A7F7609003D77E9 /* FGGistCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FGGistCommentCell.xib; sourceTree = "<group>"; };
+		82ADFFEE1A7F7CFE003D77E9 /* FGTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGTitleTableViewCell.h; sourceTree = "<group>"; };
+		82ADFFEF1A7F7CFE003D77E9 /* FGTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGTitleTableViewCell.m; sourceTree = "<group>"; };
+		82ADFFF01A7F7CFE003D77E9 /* FGTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FGTitleTableViewCell.xib; sourceTree = "<group>"; };
 		82DC40581A7CFAF400A75EAB /* FGPersonalGistsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGPersonalGistsManager.h; sourceTree = "<group>"; };
 		82DC40591A7CFAF400A75EAB /* FGPersonalGistsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGPersonalGistsManager.m; sourceTree = "<group>"; };
 		82DC405B1A7D070600A75EAB /* FGMenuManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGMenuManager.h; sourceTree = "<group>"; };
@@ -1137,6 +1155,8 @@
 				823832E11A709A79002A16EF /* FGDataManager.m */,
 				823832E31A709C6D002A16EF /* FGError.h */,
 				823832E41A709C6D002A16EF /* FGError.m */,
+				82ADFFE01A7F63F1003D77E9 /* NSDate+FormatString.h */,
+				82ADFFE11A7F63F1003D77E9 /* NSDate+FormatString.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1296,10 +1316,14 @@
 			children = (
 				8238332B1A70FBE4002A16EF /* OCTClient+Gists.h */,
 				8238332C1A70FBE4002A16EF /* OCTClient+Gists.m */,
+				82ADFFE31A7F6A90003D77E9 /* OCTClient+GistComments.h */,
+				82ADFFE41A7F6A90003D77E9 /* OCTClient+GistComments.m */,
 				8238332D1A70FBE4002A16EF /* OCTGist.h */,
 				8238332E1A70FBE4002A16EF /* OCTGist.m */,
 				8238332F1A70FBE4002A16EF /* OCTGistFile.h */,
 				823833301A70FBE4002A16EF /* OCTGistFile.m */,
+				82ADFFE61A7F6E37003D77E9 /* OCTGistComment.h */,
+				82ADFFE71A7F6E37003D77E9 /* OCTGistComment.m */,
 			);
 			path = Gists;
 			sourceTree = "<group>";
@@ -1473,10 +1497,6 @@
 				82257CFA1A78F6770003949B /* Forked */,
 				82257CFC1A78F6770003949B /* Setting */,
 				823832DF1A709A00002A16EF /* Models */,
-				823924A11A66B29C00AEC910 /* FirstViewController.h */,
-				823924A21A66B29C00AEC910 /* FirstViewController.m */,
-				823924A41A66B29C00AEC910 /* SecondViewController.h */,
-				823924A51A66B29C00AEC910 /* SecondViewController.m */,
 				823924C51A66BCE700AEC910 /* Vendor */,
 			);
 			path = OhMyGist;
@@ -1536,6 +1556,15 @@
 				8269E3571A7E44ED007A6F80 /* FGGistDetailViewController.xib */,
 				8269E35A1A7E4780007A6F80 /* FGGistDetailManager.h */,
 				8269E35B1A7E4780007A6F80 /* FGGistDetailManager.m */,
+				82ADFFD81A7F2F80003D77E9 /* FGGistInfoView.h */,
+				82ADFFD91A7F2F80003D77E9 /* FGGistInfoView.m */,
+				82ADFFDB1A7F2F95003D77E9 /* FGGistInfoView.xib */,
+				82ADFFE91A7F7609003D77E9 /* FGGistCommentCell.h */,
+				82ADFFEA1A7F7609003D77E9 /* FGGistCommentCell.m */,
+				82ADFFEB1A7F7609003D77E9 /* FGGistCommentCell.xib */,
+				82ADFFEE1A7F7CFE003D77E9 /* FGTitleTableViewCell.h */,
+				82ADFFEF1A7F7CFE003D77E9 /* FGTitleTableViewCell.m */,
+				82ADFFF01A7F7CFE003D77E9 /* FGTitleTableViewCell.xib */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -1694,9 +1723,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8234C4031A6E39E40098F0E1 /* ReactiveCocoa-Info.plist in Resources */,
+				82ADFFF21A7F7CFE003D77E9 /* FGTitleTableViewCell.xib in Resources */,
 				829DF0111A7E1B4800DD8DC1 /* SVProgressHUD.bundle in Resources */,
 				82E566DC1A7A24BE00E7FF00 /* FGAccountViewController.xib in Resources */,
+				82ADFFED1A7F7609003D77E9 /* FGGistCommentCell.xib in Resources */,
 				82ADFFCA1A7B23ED003D77E9 /* FGGistTableViewCell.xib in Resources */,
+				82ADFFDC1A7F2F95003D77E9 /* FGGistInfoView.xib in Resources */,
 				823924AB1A66B29C00AEC910 /* Images.xcassets in Resources */,
 				82E566F51A7A428E00E7FF00 /* FGLoginViewController.xib in Resources */,
 				8269E3591A7E44ED007A6F80 /* FGGistDetailViewController.xib in Resources */,
@@ -1727,13 +1759,13 @@
 				823831FF1A6FB613002A16EF /* MTLJSONAdapter.m in Sources */,
 				8234C3FF1A6E39E40098F0E1 /* RACTupleSequence.m in Sources */,
 				823833A11A70FBE4002A16EF /* OCTBlobTreeEntry.m in Sources */,
-				823924A61A66B29C00AEC910 /* SecondViewController.m in Sources */,
 				82DC405D1A7D070600A75EAB /* FGMenuManager.m in Sources */,
 				82E566F81A7A49D900E7FF00 /* FGAccountManager.m in Sources */,
 				8234C4131A6E39E40098F0E1 /* UITableViewHeaderFooterView+RACSignalSupport.m in Sources */,
 				823833881A70FBE4002A16EF /* OCTClient+Organizations.m in Sources */,
 				823833931A70FBE4002A16EF /* OCTMemberEvent.m in Sources */,
 				823833801A70FBE4002A16EF /* OCTAccessToken.m in Sources */,
+				82ADFFE51A7F6A90003D77E9 /* OCTClient+GistComments.m in Sources */,
 				829DF0121A7E1B4800DD8DC1 /* SVProgressHUD.m in Sources */,
 				8234C3C21A6E39E40098F0E1 /* NSNotificationCenter+RACSupport.m in Sources */,
 				823833B71A70FBE4002A16EF /* OCTServer.m in Sources */,
@@ -1768,6 +1800,7 @@
 				8238339F1A70FBE4002A16EF /* OCTRef.m in Sources */,
 				8234C3FD1A6E39E40098F0E1 /* RACTestScheduler.m in Sources */,
 				82E566C41A7A1EC200E7FF00 /* RECommonFunctions.m in Sources */,
+				82ADFFE81A7F6E37003D77E9 /* OCTGistComment.m in Sources */,
 				8234C3CB1A6E39E40098F0E1 /* NSSet+RACSequenceAdditions.m in Sources */,
 				823833981A70FBE4002A16EF /* OCTRefEvent.m in Sources */,
 				8234C2EC1A6E392A0098F0E1 /* AFURLConnectionOperation.m in Sources */,
@@ -1775,6 +1808,7 @@
 				823833971A70FBE4002A16EF /* OCTPushEvent.m in Sources */,
 				8234C3CF1A6E39E40098F0E1 /* NSText+RACSignalSupport.m in Sources */,
 				8234C3F61A6E39E40098F0E1 /* RACStream.m in Sources */,
+				82ADFFF11A7F7CFE003D77E9 /* FGTitleTableViewCell.m in Sources */,
 				8238339B1A70FBE4002A16EF /* OCTGist.m in Sources */,
 				8234C4111A6E39E40098F0E1 /* UISwitch+RACSignalSupport.m in Sources */,
 				8269E35C1A7E4780007A6F80 /* FGGistDetailManager.m in Sources */,
@@ -1822,7 +1856,6 @@
 				82E566C61A7A1EC200E7FF00 /* UIViewController+RESideMenu.m in Sources */,
 				8234C4091A6E39E40098F0E1 /* UIControl+RACSignalSupport.m in Sources */,
 				8234C3F81A6E39E40098F0E1 /* RACSubject.m in Sources */,
-				823924A31A66B29C00AEC910 /* FirstViewController.m in Sources */,
 				82E566DB1A7A24BE00E7FF00 /* FGAccountViewController.m in Sources */,
 				8234C3E61A6E39E40098F0E1 /* RACKVOChannel.m in Sources */,
 				82E566F01A7A3BC200E7FF00 /* FGAllGistsManager.m in Sources */,
@@ -1849,6 +1882,7 @@
 				8234C2E81A6E392A0098F0E1 /* AFImageRequestOperation.m in Sources */,
 				823832E51A709C6D002A16EF /* FGError.m in Sources */,
 				8234C3F01A6E39E40098F0E1 /* RACSequence.m in Sources */,
+				82ADFFEC1A7F7609003D77E9 /* FGGistCommentCell.m in Sources */,
 				823832E21A709A79002A16EF /* FGDataManager.m in Sources */,
 				8234C3E81A6E39E40098F0E1 /* RACMulticastConnection.m in Sources */,
 				8234C3E71A6E39E40098F0E1 /* RACKVOTrampoline.m in Sources */,
@@ -1857,6 +1891,7 @@
 				823831FD1A6FB613002A16EF /* EXTRuntimeExtensions-MTL.m in Sources */,
 				82DC40601A7D073900A75EAB /* FGMenu.m in Sources */,
 				8234C3E51A6E39E40098F0E1 /* RACIndexSetSequence.m in Sources */,
+				82ADFFDA1A7F2F80003D77E9 /* FGGistInfoView.m in Sources */,
 				8234C3E31A6E39E40098F0E1 /* RACGroupedSignal.m in Sources */,
 				823833A71A70FBE4002A16EF /* OCTClient+Notifications.m in Sources */,
 				8234C2EE1A6E392A0098F0E1 /* UIImageView+AFNetworking.m in Sources */,
@@ -1870,6 +1905,7 @@
 				8234C40B1A6E39E40098F0E1 /* UIDatePicker+RACSignalSupport.m in Sources */,
 				823833961A70FBE4002A16EF /* OCTPullRequestEvent.m in Sources */,
 				823833891A70FBE4002A16EF /* OCTOrganization.m in Sources */,
+				82ADFFE21A7F63F1003D77E9 /* NSDate+FormatString.m in Sources */,
 				8234C3CA1A6E39E40098F0E1 /* NSOrderedSet+RACSequenceAdditions.m in Sources */,
 				823833871A70FBE4002A16EF /* OCTPlan.m in Sources */,
 				823832091A6FB613002A16EF /* NSValueTransformer+MTLInversionAdditions.m in Sources */,

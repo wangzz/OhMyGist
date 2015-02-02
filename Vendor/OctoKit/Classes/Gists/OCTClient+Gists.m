@@ -67,14 +67,4 @@
     return [self haveMorePageWithPath:@"gists/public"];
 }
 
-- (RACSignal *)fetchCommentsWithGist:(OCTGist *)gist
-{
-    NSParameterAssert(gist != nil);
-    
-    NSURLRequest *request = [self requestWithMethod:@"GET" path:[NSString stringWithFormat:@"gists/:%@/comments",gist.objectID] parameters:nil notMatchingEtag:nil];
-    return [[self enqueueRequest:request resultClass:OCTGist.class] oct_parsedResults];
-}
-
-
-
 @end

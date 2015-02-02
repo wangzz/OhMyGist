@@ -11,6 +11,7 @@
 @interface FGGistDetailManager ()
 {
     RACDisposable   *_detailDisposable;
+    RACDisposable   *_commentDisposable;
 }
 
 @end
@@ -32,9 +33,26 @@
     }];
 }
 
+
+- (void)fetchCommentsWithGist:(OCTGist *)gist completionBlock:(completionBlock)completionBlock
+{
+    _commentDisposable = [[[[[FGAccountManager defaultManager] client] fetchCommentsWithGist:gist] collect] subscribeNext:^(id x) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _commentDisposable = nil;
+            completionBlock(x,nil);
+        });
+    } error:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _commentDisposable = nil;
+            completionBlock(nil,[FGError errorWith:error]);
+        });
+    }];
+}
+
 - (void)cancelRequest
 {
     [_detailDisposable dispose];
+    [_commentDisposable dispose];
 }
 
 @end

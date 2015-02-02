@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner">
+            <connections>
+                <outlet property="authorButton" destination="XIH-Sg-3VY" id="6j9-lU-PC5"/>
+                <outlet property="competenceLabel" destination="5E3-XP-fI7" id="LtQ-u7-h7P"/>
+                <outlet property="dateLabel" destination="W2g-La-AdT" id="dLl-av-ifR"/>
+                <outlet property="descriptionLabel" destination="InS-30-WTe" id="odV-eU-X2C"/>
+                <outlet property="nameLabel" destination="tuG-Fl-hCM" id="rwW-oO-hgR"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FGGistInfoView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIH-Sg-3VY">
+                    <rect key="frame" x="5" y="10" width="60" height="60"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="HQs-KZ-W7M"/>
+                        <constraint firstAttribute="width" constant="60" id="wuJ-rc-Wdf"/>
+                    </constraints>
+                    <inset key="titleEdgeInsets" minX="0.0" minY="30" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="20"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="hSh-gt-NU2"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D6a-0j-odm">
+                    <rect key="frame" x="15" y="10" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="vnr-gE-2HJ"/>
+                        <constraint firstAttribute="width" constant="40" id="wQy-JS-yLU"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="secretLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5E3-XP-fI7">
+                    <rect key="frame" x="221" y="10" width="89" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="nameLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tuG-Fl-hCM">
+                    <rect key="frame" x="75" y="10" width="141" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dateLabel" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2g-La-AdT">
+                    <rect key="frame" x="75" y="36" width="235" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="descriptionLabel" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="InS-30-WTe">
+                    <rect key="frame" x="5" y="80" width="305" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="5E3-XP-fI7" firstAttribute="top" secondItem="XIH-Sg-3VY" secondAttribute="top" id="1AU-cK-e2I"/>
+                <constraint firstItem="tuG-Fl-hCM" firstAttribute="leading" secondItem="W2g-La-AdT" secondAttribute="leading" id="210-TT-2Nq"/>
+                <constraint firstAttribute="trailing" secondItem="W2g-La-AdT" secondAttribute="trailing" constant="10" id="5sh-in-FCX"/>
+                <constraint firstItem="InS-30-WTe" firstAttribute="top" secondItem="XIH-Sg-3VY" secondAttribute="bottom" constant="10" id="Daf-AY-4DY"/>
+                <constraint firstItem="W2g-La-AdT" firstAttribute="top" secondItem="tuG-Fl-hCM" secondAttribute="bottom" constant="5" id="H4c-vn-JdT"/>
+                <constraint firstItem="W2g-La-AdT" firstAttribute="leading" secondItem="XIH-Sg-3VY" secondAttribute="trailing" constant="10" id="ICz-OP-LVG"/>
+                <constraint firstAttribute="trailing" secondItem="5E3-XP-fI7" secondAttribute="trailing" constant="10" id="L39-vz-qg6"/>
+                <constraint firstItem="XIH-Sg-3VY" firstAttribute="left" secondItem="iN0-l3-epB" secondAttribute="left" constant="5" id="Vp9-2X-lMO"/>
+                <constraint firstItem="XIH-Sg-3VY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Ww0-o7-l2L"/>
+                <constraint firstItem="tuG-Fl-hCM" firstAttribute="bottom" secondItem="5E3-XP-fI7" secondAttribute="bottom" id="Y9e-m6-OHb"/>
+                <constraint firstAttribute="trailing" secondItem="InS-30-WTe" secondAttribute="trailing" constant="10" id="Yqe-6K-F8t"/>
+                <constraint firstItem="D6a-0j-odm" firstAttribute="centerX" secondItem="XIH-Sg-3VY" secondAttribute="centerX" id="kn2-rX-7SA"/>
+                <constraint firstItem="5E3-XP-fI7" firstAttribute="leading" secondItem="tuG-Fl-hCM" secondAttribute="trailing" constant="5" id="pfj-ZS-iUn"/>
+                <constraint firstItem="D6a-0j-odm" firstAttribute="top" secondItem="XIH-Sg-3VY" secondAttribute="top" id="rCQ-pb-q7t"/>
+                <constraint firstItem="InS-30-WTe" firstAttribute="left" secondItem="XIH-Sg-3VY" secondAttribute="left" id="ssi-Oo-3sq"/>
+                <constraint firstItem="tuG-Fl-hCM" firstAttribute="top" secondItem="XIH-Sg-3VY" secondAttribute="top" id="tuU-SO-Duf"/>
+            </constraints>
+            <connections>
+                <outlet property="authorButton" destination="XIH-Sg-3VY" id="6B6-Qy-lDy"/>
+                <outlet property="avatarImageView" destination="D6a-0j-odm" id="GW7-R6-cIE"/>
+                <outlet property="competenceLabel" destination="5E3-XP-fI7" id="C4b-DG-ePS"/>
+                <outlet property="dateLabel" destination="W2g-La-AdT" id="Ze3-zG-NKO"/>
+                <outlet property="descriptionLabel" destination="InS-30-WTe" id="Kb6-m2-h6A"/>
+                <outlet property="nameLabel" destination="tuG-Fl-hCM" id="hPf-ud-6U0"/>
+            </connections>
+            <point key="canvasLocation" x="316" y="317"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

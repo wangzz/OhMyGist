@@ -7,7 +7,6 @@
 //
 
 #import "FGPersonalGistsViewController.h"
-#import "FGGistDetailViewController.h"
 #import "FGPersonalGistsManager.h"
 
 
@@ -102,16 +101,5 @@
     return 112;
 }
 
-#pragma mark -
-#pragma mark UITableView Delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    OCTGist *gist = self.gistsArray[indexPath.row];
-    FGGistDetailViewController *detailController = [[FGGistDetailViewController alloc] initWithGist:gist];
-    [self.navigationController pushViewController:detailController animated:YES];
-}
 
 @end

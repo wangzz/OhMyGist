@@ -14,6 +14,10 @@
 
 - (void)fetchDetailWithGist:(OCTGist *)gist completionBlock:(completionBlock)completionBlock;
 
+
+- (void)fetchCommentsWithGist:(OCTGist *)gist completionBlock:(completionBlock)completionBlock;
+
+
 - (void)cancelRequest;
 
 @end

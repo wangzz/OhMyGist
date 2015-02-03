@@ -10,4 +10,8 @@
 
 @interface FGViewController : UIViewController
 
+- (void)createLeftBarWithTitle:(NSString *)title;
+
+- (void)createRightBarWithTitle:(NSString *)title;
+
 @end

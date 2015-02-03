@@ -6,8 +6,14 @@
 //  Copyright (c) 2015年 wangzz. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FGViewController.h"
 
-@interface FGAddCommentViewController : UIViewController
+@class OCTGist;
+@class OCTGistComment;
+@interface FGAddCommentViewController : FGViewController
+
+- (instancetype)initWithGist:(OCTGist *)gist;
+
+- (instancetype)initWithGist:(OCTGist *)gist comment:(OCTGistComment *)comment;
 
 @end

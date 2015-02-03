@@ -33,7 +33,6 @@
     }];
 }
 
-
 - (void)fetchCommentsWithGist:(OCTGist *)gist completionBlock:(completionBlock)completionBlock
 {
     _commentDisposable = [[[[[FGAccountManager defaultManager] client] fetchCommentsWithGist:gist] collect] subscribeNext:^(id x) {

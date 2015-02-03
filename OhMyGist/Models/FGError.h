@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-
+//https://github.com/octokit/octokit.objc/wiki/OCTClient-Errors
 typedef NS_ENUM(NSUInteger, FGErrorCode) {
     FGErrorCodeUnknown,
     FGErrorCodeRateLimit = 674,             // API RateLimit

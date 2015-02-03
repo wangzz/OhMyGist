@@ -220,6 +220,7 @@
 		82ADFFF21A7F7CFE003D77E9 /* FGTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82ADFFF01A7F7CFE003D77E9 /* FGTitleTableViewCell.xib */; };
 		82ADFFF91A7FB2D7003D77E9 /* FGAddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFF71A7FB2D7003D77E9 /* FGAddCommentViewController.m */; };
 		82ADFFFA1A7FB2D7003D77E9 /* FGAddCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82ADFFF81A7FB2D7003D77E9 /* FGAddCommentViewController.xib */; };
+		82ADFFFD1A807399003D77E9 /* FGAddCommentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFFC1A807399003D77E9 /* FGAddCommentManager.m */; };
 		82DC405A1A7CFAF400A75EAB /* FGPersonalGistsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DC40591A7CFAF400A75EAB /* FGPersonalGistsManager.m */; };
 		82DC405D1A7D070600A75EAB /* FGMenuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DC405C1A7D070600A75EAB /* FGMenuManager.m */; };
 		82DC40601A7D073900A75EAB /* FGMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DC405F1A7D073900A75EAB /* FGMenu.m */; };
@@ -689,6 +690,8 @@
 		82ADFFF61A7FB2D7003D77E9 /* FGAddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGAddCommentViewController.h; sourceTree = "<group>"; };
 		82ADFFF71A7FB2D7003D77E9 /* FGAddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGAddCommentViewController.m; sourceTree = "<group>"; };
 		82ADFFF81A7FB2D7003D77E9 /* FGAddCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FGAddCommentViewController.xib; sourceTree = "<group>"; };
+		82ADFFFB1A807399003D77E9 /* FGAddCommentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGAddCommentManager.h; sourceTree = "<group>"; };
+		82ADFFFC1A807399003D77E9 /* FGAddCommentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGAddCommentManager.m; sourceTree = "<group>"; };
 		82DC40581A7CFAF400A75EAB /* FGPersonalGistsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGPersonalGistsManager.h; sourceTree = "<group>"; };
 		82DC40591A7CFAF400A75EAB /* FGPersonalGistsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGPersonalGistsManager.m; sourceTree = "<group>"; };
 		82DC405B1A7D070600A75EAB /* FGMenuManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGMenuManager.h; sourceTree = "<group>"; };
@@ -1623,6 +1626,8 @@
 			children = (
 				8269E35A1A7E4780007A6F80 /* FGGistDetailManager.h */,
 				8269E35B1A7E4780007A6F80 /* FGGistDetailManager.m */,
+				82ADFFFB1A807399003D77E9 /* FGAddCommentManager.h */,
+				82ADFFFC1A807399003D77E9 /* FGAddCommentManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1918,6 +1923,7 @@
 				8234C3F01A6E39E40098F0E1 /* RACSequence.m in Sources */,
 				82ADFFEC1A7F7609003D77E9 /* FGGistCommentCell.m in Sources */,
 				823832E21A709A79002A16EF /* FGDataManager.m in Sources */,
+				82ADFFFD1A807399003D77E9 /* FGAddCommentManager.m in Sources */,
 				8234C3E81A6E39E40098F0E1 /* RACMulticastConnection.m in Sources */,
 				8234C3E71A6E39E40098F0E1 /* RACKVOTrampoline.m in Sources */,
 				829DF0181A7E22C200DD8DC1 /* FGForkedGistsManager.m in Sources */,

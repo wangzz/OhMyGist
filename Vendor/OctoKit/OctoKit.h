@@ -35,6 +35,7 @@ FOUNDATION_EXPORT const unsigned char OctoKitVersionString[];
 #import "OCTForkEvent.h"
 #import "OCTGist.h"
 #import "OCTGistFile.h"
+#import "OCTGistComment.h"
 #import "OCTGitCommit.h"
 #import "OCTGitCommitFile.h"
 #import "OCTIssue.h"

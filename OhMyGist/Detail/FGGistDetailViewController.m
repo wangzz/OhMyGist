@@ -112,8 +112,20 @@
 - (void)onAddCommentButtonAction:(id)sender
 {
     NSLog(@"%s",__func__);
-    FGAddCommentViewController *commentViewController = [[FGAddCommentViewController alloc] init];
+    FGAddCommentViewController *commentViewController = [[FGAddCommentViewController alloc] initWithGist:_gist];
     [self.navigationController pushViewController:commentViewController animated:YES];
+}
+
+#pragma mark - UITableView Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[[FGAccountManager defaultManager] client].user.rawLogin isEqualToString:_gist.ownerName]) {
+        if (indexPath.section == 3 && self.commentsArray.count > 0) {
+            FGAddCommentViewController *commentViewController = [[FGAddCommentViewController alloc] initWithGist:_gist comment:self.commentsArray[indexPath.row]];
+            [self.navigationController pushViewController:commentViewController animated:YES];
+        }
+    }
 }
 
 #pragma mark - UITableView Datasource

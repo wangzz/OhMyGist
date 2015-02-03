@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FGAddCommentViewController">
             <connections>
+                <outlet property="bottomConstraint" destination="xWk-B8-FLC" id="3vr-de-yAf"/>
+                <outlet property="textView" destination="BcJ-gg-qwZ" id="v0e-a4-9rZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,7 +16,21 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BcJ-gg-qwZ">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="BcJ-gg-qwZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="5wr-vJ-jtP"/>
+                <constraint firstItem="BcJ-gg-qwZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HjG-8y-874"/>
+                <constraint firstAttribute="trailing" secondItem="BcJ-gg-qwZ" secondAttribute="trailing" id="omO-Cv-r1o"/>
+                <constraint firstAttribute="bottom" secondItem="BcJ-gg-qwZ" secondAttribute="bottom" id="xWk-B8-FLC"/>
+            </constraints>
             <point key="canvasLocation" x="316" y="286"/>
         </view>
     </objects>

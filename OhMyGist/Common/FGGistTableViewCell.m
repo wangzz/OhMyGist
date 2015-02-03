@@ -67,7 +67,7 @@
     self.nameLabel.text = gistFile.filename;
     self.dateLabel.text = [self.gist.creationDate stringFormat];
     
-    NSString *owner = (self.gist.ownerName.length > 0)?self.gist.ownerName:NSLocalizedString(@"Unknown",);
+    NSString *owner = (self.gist.ownerName.length > 0)?self.gist.ownerName:NSLocalizedString(@"Anonymous",);
     self.ownerLabel.text = owner;
     
     NSString *description = (self.gist.gistDescription.length > 0)?self.gist.gistDescription:NSLocalizedString(@"No Description", );

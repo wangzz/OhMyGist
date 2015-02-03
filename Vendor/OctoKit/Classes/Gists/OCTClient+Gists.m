@@ -58,6 +58,8 @@
 }
 
 - (RACSignal *)fetchDetailWithGist:(OCTGist *)gist {
+    NSParameterAssert(gist != nil);
+    
     NSURLRequest *request = [self requestWithMethod:@"GET" path:[NSString stringWithFormat:@"gists/%@",gist.objectID] parameters:nil notMatchingEtag:nil];
     return [[self enqueueRequest:request resultClass:OCTGist.class fetchAllPages:NO] oct_parsedResults];
 }

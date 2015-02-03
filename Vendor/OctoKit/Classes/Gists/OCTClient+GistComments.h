@@ -9,8 +9,16 @@
 #import "OCTClient.h"
 
 @class OCTGist;
+@class OCTGistComment;
 @interface OCTClient (GistComments)
 
 - (RACSignal *)fetchCommentsWithGist:(OCTGist *)gist;
+
+- (RACSignal *)addCommentWithGist:(OCTGist *)gist
+                             body:(NSString *)body;
+
+- (RACSignal *)editCommentWithGist:(OCTGist *)gist
+                          comment:(OCTGistComment *)comment
+                             body:(NSString *)body;
 
 @end

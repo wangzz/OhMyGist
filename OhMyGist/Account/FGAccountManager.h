@@ -32,4 +32,6 @@ typedef void (^completionBlock)(id object, FGError *error);
 - (void)logoutWithCompletionBlock:(completionBlock)completionBlock;
 
 
+- (void)fetchUserInfoWithCompletionBlock:(completionBlock)completionBlock;
+
 @end

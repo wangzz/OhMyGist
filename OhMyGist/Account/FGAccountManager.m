@@ -59,6 +59,23 @@
     [self clearUserInfo];
 }
 
+- (void)fetchUserInfoWithCompletionBlock:(completionBlock)completionBlock
+{
+    [[self.client fetchUserInfo] subscribeNext:^(id x) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"%@",x);
+            completionBlock(x,nil);
+        });
+    } error:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"%@",error);
+            completionBlock(nil,[FGError errorWith:error]);
+        });
+    }];
+}
+
+
+
 - (void)clearUserInfo
 {
     // clear user name & token

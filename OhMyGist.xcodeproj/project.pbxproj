@@ -762,14 +762,8 @@
 		82257CF81A78F6770003949B /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				82E566D81A7A24BE00E7FF00 /* FGAccountViewController.h */,
-				82E566D91A7A24BE00E7FF00 /* FGAccountViewController.m */,
-				82E566DA1A7A24BE00E7FF00 /* FGAccountViewController.xib */,
-				82E566F11A7A428E00E7FF00 /* FGLoginViewController.h */,
-				82E566F21A7A428E00E7FF00 /* FGLoginViewController.m */,
-				82E566F31A7A428E00E7FF00 /* FGLoginViewController.xib */,
-				82E566F61A7A49D900E7FF00 /* FGAccountManager.h */,
-				82E566F71A7A49D900E7FF00 /* FGAccountManager.m */,
+				82AE68FA1A80C55400E1E483 /* Controller */,
+				82AE68F91A80C54500E1E483 /* Model */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -1495,9 +1489,9 @@
 			children = (
 				8239249E1A66B29C00AEC910 /* AppDelegate.h */,
 				8239249F1A66B29C00AEC910 /* AppDelegate.m */,
+				82257CFE1A78F6D70003949B /* Common */,
 				82E566E81A7A261F00E7FF00 /* Menu */,
 				8269E3541A7E44BF007A6F80 /* Detail */,
-				82257CFE1A78F6D70003949B /* Common */,
 				82257CF81A78F6770003949B /* Account */,
 				82257CF91A78F6770003949B /* All */,
 				82257CFB1A78F6770003949B /* Personal */,
@@ -1630,6 +1624,28 @@
 				82ADFFFC1A807399003D77E9 /* FGAddCommentManager.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		82AE68F91A80C54500E1E483 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82E566F61A7A49D900E7FF00 /* FGAccountManager.h */,
+				82E566F71A7A49D900E7FF00 /* FGAccountManager.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		82AE68FA1A80C55400E1E483 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				82E566D81A7A24BE00E7FF00 /* FGAccountViewController.h */,
+				82E566D91A7A24BE00E7FF00 /* FGAccountViewController.m */,
+				82E566DA1A7A24BE00E7FF00 /* FGAccountViewController.xib */,
+				82E566F11A7A428E00E7FF00 /* FGLoginViewController.h */,
+				82E566F21A7A428E00E7FF00 /* FGLoginViewController.m */,
+				82E566F31A7A428E00E7FF00 /* FGLoginViewController.xib */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		82E566BD1A7A1EC200E7FF00 /* RESideMenu */ = {

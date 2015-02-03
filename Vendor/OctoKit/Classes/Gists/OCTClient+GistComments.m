@@ -26,7 +26,7 @@
     NSParameterAssert(body != nil);
     
     NSURLRequest *request = [self requestWithMethod:@"POST" path:[NSString stringWithFormat:@"gists/%@/comments",gist.objectID] parameters:@{@"body":body} notMatchingEtag:nil];
-    return [[self enqueueRequest:request resultClass:OCTGist.class fetchAllPages:NO] oct_parsedResults];
+    return [[self enqueueRequest:request resultClass:OCTGist.class] oct_parsedResults];
 }
 
 - (RACSignal *)editCommentWithGist:(OCTGist *)gist
@@ -37,7 +37,7 @@
     NSParameterAssert(body != nil);
     
     NSURLRequest *request = [self requestWithMethod:@"PATCH" path:[NSString stringWithFormat:@"gists/%@/comments/%@",gist.objectID,comment.objectID] parameters:@{@"body":body} notMatchingEtag:nil];
-    return [[self enqueueRequest:request resultClass:OCTGist.class fetchAllPages:NO] oct_parsedResults];
+    return [[self enqueueRequest:request resultClass:OCTGist.class] oct_parsedResults];
 }
 
 @end

@@ -11,8 +11,9 @@
 //https://github.com/octokit/octokit.objc/wiki/OCTClient-Errors
 typedef NS_ENUM(NSUInteger, FGErrorCode) {
     FGErrorCodeUnknown,
+    FGErrorRequiredSignIn = 666,            //code:666 desc:Sign In Required
+    FGErrorCodeLostConnection = 668,        // code:668 desc:The network connection was lost.  code:668 desc:Not Found
     FGErrorCodeRateLimit = 674,             // API RateLimit
-    FGErrorCodeLostConnection = 668,        // code:668 desc:The network connection was lost.
 };
 
 @interface FGError : NSObject

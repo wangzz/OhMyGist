@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6724" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FGAddCommentViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FGGistCommentViewController">
             <connections>
-                <outlet property="bottomConstraint" destination="xWk-B8-FLC" id="3vr-de-yAf"/>
-                <outlet property="textView" destination="BcJ-gg-qwZ" id="v0e-a4-9rZ"/>
+                <outlet property="bottomConstraint" destination="Rkl-Kz-dcg" id="TvA-Xe-fSB"/>
+                <outlet property="textView" destination="0cP-hF-EHt" id="VZr-Oc-l2g"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,8 +17,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BcJ-gg-qwZ">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0cP-hF-EHt">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -26,12 +27,12 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="BcJ-gg-qwZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="5wr-vJ-jtP"/>
-                <constraint firstItem="BcJ-gg-qwZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HjG-8y-874"/>
-                <constraint firstAttribute="trailing" secondItem="BcJ-gg-qwZ" secondAttribute="trailing" id="omO-Cv-r1o"/>
-                <constraint firstAttribute="bottom" secondItem="BcJ-gg-qwZ" secondAttribute="bottom" id="xWk-B8-FLC"/>
+                <constraint firstItem="0cP-hF-EHt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="0Ml-Ed-vOM"/>
+                <constraint firstItem="0cP-hF-EHt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ilr-9w-oec"/>
+                <constraint firstAttribute="bottom" secondItem="0cP-hF-EHt" secondAttribute="bottom" id="Rkl-Kz-dcg"/>
+                <constraint firstAttribute="trailing" secondItem="0cP-hF-EHt" secondAttribute="trailing" id="v9r-3D-v0z"/>
             </constraints>
-            <point key="canvasLocation" x="316" y="286"/>
+            <point key="canvasLocation" x="140" y="154"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

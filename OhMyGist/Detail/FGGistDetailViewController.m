@@ -12,8 +12,9 @@
 #import "FGGistInfoView.h"
 #import "FGGistCommentCell.h"
 #import "FGTitleTableViewCell.h"
-#import "FGAddCommentViewController.h"
-
+#import "FGGistCommentViewController.h"
+#import "FGGistEditViewController.h"
+#import "FGFileEditViewController.h"
 
 #define HEIGHT_TABLEVIEW_SECTION    30
 
@@ -29,6 +30,8 @@
 
 @property (nonatomic, strong) NSArray *commentsArray;
 
+@property (nonatomic, strong) NSArray *filesArray;
+
 @end
 
 @implementation FGGistDetailViewController
@@ -37,7 +40,7 @@
 {
     if (self = [super init]) {
         _manager = [[FGGistDetailManager alloc] init];
-        _gist = gist;
+        [self setGist:gist];
     }
     
     return self;
@@ -53,6 +56,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"Detail";
+    
+    if ([self isOwnerGist]) {
+        [self createRightBarWithTitle:NSLocalizedString(@"Edit",)];
+    }
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -96,6 +103,29 @@
     }];
 }
 
+- (BOOL)isOwnerGist
+{
+    if ([[[FGAccountManager defaultManager] client].user.rawLogin isEqualToString:_gist.ownerName]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL)isOwnerGistComment:(OCTGistComment *)comment
+{
+    if ([[[FGAccountManager defaultManager] client].user.rawLogin isEqualToString:comment.userName]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (void)setGist:(OCTGist *)gist
+{
+    _gist = gist;
+    self.filesArray = _gist.files.allValues;
+}
 
 #pragma mark - UIButton Action
 
@@ -112,17 +142,30 @@
 - (void)onAddCommentButtonAction:(id)sender
 {
     NSLog(@"%s",__func__);
-    FGAddCommentViewController *commentViewController = [[FGAddCommentViewController alloc] initWithGist:_gist];
+    FGGistCommentViewController *commentViewController = [[FGGistCommentViewController alloc] initWithGist:_gist];
     [self.navigationController pushViewController:commentViewController animated:YES];
+}
+
+- (void)onRightBarAction:(id)sender
+{
+    FGGistEditViewController *gistEditController = [[FGGistEditViewController alloc] init];
+    [self.navigationController pushViewController:gistEditController animated:YES];
 }
 
 #pragma mark - UITableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[[FGAccountManager defaultManager] client].user.rawLogin isEqualToString:_gist.ownerName]) {
-        if (indexPath.section == 3 && self.commentsArray.count > 0) {
-            FGAddCommentViewController *commentViewController = [[FGAddCommentViewController alloc] initWithGist:_gist comment:self.commentsArray[indexPath.row]];
+    if (indexPath.section == 1 && self.filesArray.count > 0) {
+        if ([self isOwnerGist]) { // Owner gist
+            OCTGistFile *gistFile = self.filesArray[indexPath.row];
+            FGFileEditViewController *gistEditController = [[FGFileEditViewController alloc] initWithGistFile:gistFile];
+            [self.navigationController pushViewController:gistEditController animated:YES];
+        }
+    } else if (indexPath.section == 3 && self.commentsArray.count > 0) { // Owner gist comment
+        OCTGistComment *comment = self.commentsArray[indexPath.row];
+        if ([self isOwnerGistComment:comment]) {
+            FGGistCommentViewController *commentViewController = [[FGGistCommentViewController alloc] initWithGist:_gist comment:self.commentsArray[indexPath.row]];
             [self.navigationController pushViewController:commentViewController animated:YES];
         }
     }
@@ -172,7 +215,7 @@
 {
     NSInteger rowCount = 0;
     if (sectionIndex == 1) {
-        rowCount = (_gist.files.allValues.count==0)?1:_gist.files.allValues.count;
+        rowCount = (self.filesArray.count==0)?1:self.filesArray.count;
     } else if (sectionIndex == 3) {
         rowCount = (self.commentsArray.count==0)?1:self.commentsArray.count;
     }
@@ -201,11 +244,13 @@
         
         cell.showAccess = NO;
         if (indexPath.section == 1) {
-            if (_gist.files.allValues.count == 0) {
+            if (self.filesArray.count == 0) {
                 cell.title = NSLocalizedString(@"No Files",);
             } else {
                 cell.showAccess = YES;
-                cell.title = _gist.files.allKeys[indexPath.row];
+                
+                OCTGistFile *gistFile = self.filesArray[indexPath.row];
+                cell.title = gistFile.filename;
             }
         } else if (indexPath.section == 3 && self.commentsArray.count == 0) {
             cell.title = NSLocalizedString(@"No Comments",);

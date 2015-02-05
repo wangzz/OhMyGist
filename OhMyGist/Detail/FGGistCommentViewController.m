@@ -1,16 +1,16 @@
 //
-//  FGAddCommentViewController.m
+//  FGGistCommentViewController.m
 //  OhMyGist
 //
-//  Created by wangzz on 15-2-2.
+//  Created by wangzz on 15-2-5.
 //  Copyright (c) 2015年 wangzz. All rights reserved.
 //
 
-#import "FGAddCommentViewController.h"
-#import "FGCommonDefine.h"
+#import "FGGistCommentViewController.h"
 #import "FGAddCommentManager.h"
+#import "FGCommonDefine.h"
 
-@interface FGAddCommentViewController ()
+@interface FGGistCommentViewController ()
 
 @property (nonatomic, strong) IBOutlet UITextView *textView;
 
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation FGAddCommentViewController
+@implementation FGGistCommentViewController
 
 - (instancetype)initWithGist:(OCTGist *)gist
 {
@@ -34,11 +34,11 @@
 - (instancetype)initWithGist:(OCTGist *)gist comment:(OCTGistComment *)comment
 {
     if (self = [super init]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:nil];
+        
         _manager = [[FGAddCommentManager alloc] init];
         _gist = gist;
         _comment = comment;
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:nil];
     }
     
     return self;
@@ -46,8 +46,8 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_manager cancelRequest];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad {
@@ -70,7 +70,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     [self.textView becomeFirstResponder];
 }
 
@@ -112,6 +111,5 @@
     self.bottomConstraint.constant = kbSize.height;
     [self.view layoutIfNeeded];
 }
-
 
 @end

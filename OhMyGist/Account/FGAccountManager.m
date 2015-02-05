@@ -35,7 +35,7 @@
 - (void)loginWithUserName:(NSString *)userName password:(NSString *)password completionBlock:(completionBlock)completionBlock
 {
     OCTUser *user = [OCTUser userWithRawLogin:userName server:OCTServer.dotComServer];
-    [[OCTClient signInAsUser:user password:password oneTimePassword:nil scopes:OCTClientAuthorizationScopesUser note:nil noteURL:nil fingerprint:nil] subscribeNext:^(OCTClient *authenticatedClient) {
+    [[OCTClient signInAsUser:user password:password oneTimePassword:nil scopes:(OCTClientAuthorizationScopesUser|OCTClientAuthorizationScopesGist) note:nil noteURL:nil fingerprint:nil] subscribeNext:^(OCTClient *authenticatedClient) {
         //Authentication was successful. Do something with the created client.
         
         dispatch_async(dispatch_get_main_queue(), ^{

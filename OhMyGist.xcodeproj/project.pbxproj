@@ -218,9 +218,16 @@
 		82ADFFED1A7F7609003D77E9 /* FGGistCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82ADFFEB1A7F7609003D77E9 /* FGGistCommentCell.xib */; };
 		82ADFFF11A7F7CFE003D77E9 /* FGTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFEF1A7F7CFE003D77E9 /* FGTitleTableViewCell.m */; };
 		82ADFFF21A7F7CFE003D77E9 /* FGTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82ADFFF01A7F7CFE003D77E9 /* FGTitleTableViewCell.xib */; };
-		82ADFFF91A7FB2D7003D77E9 /* FGAddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFF71A7FB2D7003D77E9 /* FGAddCommentViewController.m */; };
-		82ADFFFA1A7FB2D7003D77E9 /* FGAddCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82ADFFF81A7FB2D7003D77E9 /* FGAddCommentViewController.xib */; };
 		82ADFFFD1A807399003D77E9 /* FGAddCommentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ADFFFC1A807399003D77E9 /* FGAddCommentManager.m */; };
+		82AE68FE1A834ECC00E1E483 /* FGGistEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AE68FC1A834ECC00E1E483 /* FGGistEditViewController.m */; };
+		82AE68FF1A834ECC00E1E483 /* FGGistEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82AE68FD1A834ECC00E1E483 /* FGGistEditViewController.xib */; };
+		82AE69031A8359D300E1E483 /* FGFileEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AE69011A8359D300E1E483 /* FGFileEditViewController.m */; };
+		82AE69041A8359D300E1E483 /* FGFileEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82AE69021A8359D300E1E483 /* FGFileEditViewController.xib */; };
+		82AE690B1A83624A00E1E483 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82AE690A1A83624A00E1E483 /* Default-568h@2x.png */; };
+		82AE690F1A8362C500E1E483 /* FGGistCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AE690D1A8362C500E1E483 /* FGGistCommentViewController.m */; };
+		82AE69101A8362C500E1E483 /* FGGistCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82AE690E1A8362C500E1E483 /* FGGistCommentViewController.xib */; };
+		82AE69171A8367EB00E1E483 /* FGGistDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AE69151A8367EB00E1E483 /* FGGistDescriptionViewController.m */; };
+		82AE69181A8367EB00E1E483 /* FGGistDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82AE69161A8367EB00E1E483 /* FGGistDescriptionViewController.xib */; };
 		82DC405A1A7CFAF400A75EAB /* FGPersonalGistsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DC40591A7CFAF400A75EAB /* FGPersonalGistsManager.m */; };
 		82DC405D1A7D070600A75EAB /* FGMenuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DC405C1A7D070600A75EAB /* FGMenuManager.m */; };
 		82DC40601A7D073900A75EAB /* FGMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DC405F1A7D073900A75EAB /* FGMenu.m */; };
@@ -687,11 +694,21 @@
 		82ADFFEE1A7F7CFE003D77E9 /* FGTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGTitleTableViewCell.h; sourceTree = "<group>"; };
 		82ADFFEF1A7F7CFE003D77E9 /* FGTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGTitleTableViewCell.m; sourceTree = "<group>"; };
 		82ADFFF01A7F7CFE003D77E9 /* FGTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FGTitleTableViewCell.xib; sourceTree = "<group>"; };
-		82ADFFF61A7FB2D7003D77E9 /* FGAddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGAddCommentViewController.h; sourceTree = "<group>"; };
-		82ADFFF71A7FB2D7003D77E9 /* FGAddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGAddCommentViewController.m; sourceTree = "<group>"; };
-		82ADFFF81A7FB2D7003D77E9 /* FGAddCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FGAddCommentViewController.xib; sourceTree = "<group>"; };
 		82ADFFFB1A807399003D77E9 /* FGAddCommentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGAddCommentManager.h; sourceTree = "<group>"; };
 		82ADFFFC1A807399003D77E9 /* FGAddCommentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGAddCommentManager.m; sourceTree = "<group>"; };
+		82AE68FB1A834ECC00E1E483 /* FGGistEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGGistEditViewController.h; sourceTree = "<group>"; };
+		82AE68FC1A834ECC00E1E483 /* FGGistEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGGistEditViewController.m; sourceTree = "<group>"; };
+		82AE68FD1A834ECC00E1E483 /* FGGistEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FGGistEditViewController.xib; sourceTree = "<group>"; };
+		82AE69001A8359D300E1E483 /* FGFileEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGFileEditViewController.h; sourceTree = "<group>"; };
+		82AE69011A8359D300E1E483 /* FGFileEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGFileEditViewController.m; sourceTree = "<group>"; };
+		82AE69021A8359D300E1E483 /* FGFileEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FGFileEditViewController.xib; sourceTree = "<group>"; };
+		82AE690A1A83624A00E1E483 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		82AE690C1A8362C500E1E483 /* FGGistCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGGistCommentViewController.h; sourceTree = "<group>"; };
+		82AE690D1A8362C500E1E483 /* FGGistCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGGistCommentViewController.m; sourceTree = "<group>"; };
+		82AE690E1A8362C500E1E483 /* FGGistCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FGGistCommentViewController.xib; sourceTree = "<group>"; };
+		82AE69141A8367EB00E1E483 /* FGGistDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGGistDescriptionViewController.h; sourceTree = "<group>"; };
+		82AE69151A8367EB00E1E483 /* FGGistDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGGistDescriptionViewController.m; sourceTree = "<group>"; };
+		82AE69161A8367EB00E1E483 /* FGGistDescriptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FGGistDescriptionViewController.xib; sourceTree = "<group>"; };
 		82DC40581A7CFAF400A75EAB /* FGPersonalGistsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGPersonalGistsManager.h; sourceTree = "<group>"; };
 		82DC40591A7CFAF400A75EAB /* FGPersonalGistsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGPersonalGistsManager.m; sourceTree = "<group>"; };
 		82DC405B1A7D070600A75EAB /* FGMenuManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGMenuManager.h; sourceTree = "<group>"; };
@@ -1468,6 +1485,7 @@
 		8239248E1A66B29C00AEC910 = {
 			isa = PBXGroup;
 			children = (
+				82AE690A1A83624A00E1E483 /* Default-568h@2x.png */,
 				823924991A66B29C00AEC910 /* OhMyGist */,
 				8239249A1A66B29C00AEC910 /* Supporting Files */,
 				823924B61A66B29C00AEC910 /* OhMyGistTests */,
@@ -1592,9 +1610,18 @@
 				8269E3551A7E44ED007A6F80 /* FGGistDetailViewController.h */,
 				8269E3561A7E44ED007A6F80 /* FGGistDetailViewController.m */,
 				8269E3571A7E44ED007A6F80 /* FGGistDetailViewController.xib */,
-				82ADFFF61A7FB2D7003D77E9 /* FGAddCommentViewController.h */,
-				82ADFFF71A7FB2D7003D77E9 /* FGAddCommentViewController.m */,
-				82ADFFF81A7FB2D7003D77E9 /* FGAddCommentViewController.xib */,
+				82AE68FB1A834ECC00E1E483 /* FGGistEditViewController.h */,
+				82AE68FC1A834ECC00E1E483 /* FGGistEditViewController.m */,
+				82AE68FD1A834ECC00E1E483 /* FGGistEditViewController.xib */,
+				82AE69001A8359D300E1E483 /* FGFileEditViewController.h */,
+				82AE69011A8359D300E1E483 /* FGFileEditViewController.m */,
+				82AE69021A8359D300E1E483 /* FGFileEditViewController.xib */,
+				82AE690C1A8362C500E1E483 /* FGGistCommentViewController.h */,
+				82AE690D1A8362C500E1E483 /* FGGistCommentViewController.m */,
+				82AE690E1A8362C500E1E483 /* FGGistCommentViewController.xib */,
+				82AE69141A8367EB00E1E483 /* FGGistDescriptionViewController.h */,
+				82AE69151A8367EB00E1E483 /* FGGistDescriptionViewController.m */,
+				82AE69161A8367EB00E1E483 /* FGGistDescriptionViewController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1777,10 +1804,14 @@
 			files = (
 				8234C4031A6E39E40098F0E1 /* ReactiveCocoa-Info.plist in Resources */,
 				82ADFFF21A7F7CFE003D77E9 /* FGTitleTableViewCell.xib in Resources */,
+				82AE69041A8359D300E1E483 /* FGFileEditViewController.xib in Resources */,
 				829DF0111A7E1B4800DD8DC1 /* SVProgressHUD.bundle in Resources */,
 				82E566DC1A7A24BE00E7FF00 /* FGAccountViewController.xib in Resources */,
+				82AE690B1A83624A00E1E483 /* Default-568h@2x.png in Resources */,
 				82ADFFED1A7F7609003D77E9 /* FGGistCommentCell.xib in Resources */,
-				82ADFFFA1A7FB2D7003D77E9 /* FGAddCommentViewController.xib in Resources */,
+				82AE69181A8367EB00E1E483 /* FGGistDescriptionViewController.xib in Resources */,
+				82AE68FF1A834ECC00E1E483 /* FGGistEditViewController.xib in Resources */,
+				82AE69101A8362C500E1E483 /* FGGistCommentViewController.xib in Resources */,
 				82ADFFCA1A7B23ED003D77E9 /* FGGistTableViewCell.xib in Resources */,
 				82ADFFDC1A7F2F95003D77E9 /* FGGistInfoView.xib in Resources */,
 				823924AB1A66B29C00AEC910 /* Images.xcassets in Resources */,
@@ -1807,6 +1838,7 @@
 				8234C2E91A6E392A0098F0E1 /* AFJSONRequestOperation.m in Sources */,
 				8234C3E41A6E39E40098F0E1 /* RACImmediateScheduler.m in Sources */,
 				823833861A70FBE4002A16EF /* OCTEntity.m in Sources */,
+				82AE68FE1A834ECC00E1E483 /* FGGistEditViewController.m in Sources */,
 				8234C3F31A6E39E40098F0E1 /* RACSignal.m in Sources */,
 				8238337F1A70FBE4002A16EF /* OCTClient+Activity.m in Sources */,
 				82E566FF1A7A645400E7FF00 /* CocoaSecurity.m in Sources */,
@@ -1869,6 +1901,7 @@
 				8234C3FE1A6E39E40098F0E1 /* RACTuple.m in Sources */,
 				82E566EB1A7A263700E7FF00 /* FGLeftMenuViewController.m in Sources */,
 				829DF0151A7E22AD00DD8DC1 /* FGStarredGistsManager.m in Sources */,
+				82AE69031A8359D300E1E483 /* FGFileEditViewController.m in Sources */,
 				8234C3EE1A6E39E40098F0E1 /* RACScheduler.m in Sources */,
 				823833A01A70FBE4002A16EF /* OCTTree.m in Sources */,
 				823832061A6FB613002A16EF /* NSDictionary+MTLManipulationAdditions.m in Sources */,
@@ -1894,7 +1927,7 @@
 				823833BC1A70FBE4002A16EF /* RACSignal+OCTClientAdditions.m in Sources */,
 				823833991A70FBE4002A16EF /* OCTWatchEvent.m in Sources */,
 				8234C3F11A6E39E40098F0E1 /* RACSerialDisposable.m in Sources */,
-				82ADFFF91A7FB2D7003D77E9 /* FGAddCommentViewController.m in Sources */,
+				82AE69171A8367EB00E1E483 /* FGGistDescriptionViewController.m in Sources */,
 				8234C3E11A6E39E40098F0E1 /* RACErrorSignal.m in Sources */,
 				8238339C1A70FBE4002A16EF /* OCTGistFile.m in Sources */,
 				8234C3EF1A6E39E40098F0E1 /* RACScopedDisposable.m in Sources */,
@@ -1959,6 +1992,7 @@
 				8234C3EC1A6E39E40098F0E1 /* RACReplaySubject.m in Sources */,
 				82ADFFC91A7B23ED003D77E9 /* FGGistTableViewCell.m in Sources */,
 				8234C40B1A6E39E40098F0E1 /* UIDatePicker+RACSignalSupport.m in Sources */,
+				82AE690F1A8362C500E1E483 /* FGGistCommentViewController.m in Sources */,
 				823833961A70FBE4002A16EF /* OCTPullRequestEvent.m in Sources */,
 				823833891A70FBE4002A16EF /* OCTOrganization.m in Sources */,
 				82ADFFE21A7F63F1003D77E9 /* NSDate+FormatString.m in Sources */,

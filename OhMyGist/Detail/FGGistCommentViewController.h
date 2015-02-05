@@ -1,8 +1,8 @@
 //
-//  FGAddCommentViewController.h
+//  FGGistCommentViewController.h
 //  OhMyGist
 //
-//  Created by wangzz on 15-2-2.
+//  Created by wangzz on 15-2-5.
 //  Copyright (c) 2015年 wangzz. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 @class OCTGist;
 @class OCTGistComment;
-@interface FGAddCommentViewController : FGViewController
+@interface FGGistCommentViewController : FGViewController
 
 - (instancetype)initWithGist:(OCTGist *)gist;
 

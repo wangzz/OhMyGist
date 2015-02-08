@@ -10,7 +10,6 @@
 #import "UIViewController+RESideMenu.h"
 #import "UIImageView+AFNetworking.h"
 #import "SVProgressHUD.h"
-#import "FGCommonDefine.h"
 #import "FGAccountManager.h"
 
 @interface FGAccountViewController ()

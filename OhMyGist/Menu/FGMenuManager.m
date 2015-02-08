@@ -17,7 +17,8 @@
              [[FGMenu alloc] initWithTitle:NSLocalizedString(@"All",) image:@"" subClass:@"FGAllGistsViewController"],
              [[FGMenu alloc] initWithTitle:NSLocalizedString(@"Personal",) image:@"" subClass:@"FGPersonalGistsViewController"],
              [[FGMenu alloc] initWithTitle:NSLocalizedString(@"Starred",) image:@"" subClass:@"FGStarredGistsViewController"],
-             [[FGMenu alloc] initWithTitle:NSLocalizedString(@"Setting",) image:@"" subClass:@"FGSettingViewController"]];
+             [[FGMenu alloc] initWithTitle:NSLocalizedString(@"Setting",) image:@"" subClass:@"FGSettingViewController"],
+             [[FGMenu alloc] initWithTitle:NSLocalizedString(@"Logout",) image:@"" subClass:@"FGLoginViewController"]];
 }
 
 @end

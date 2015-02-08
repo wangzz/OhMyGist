@@ -9,6 +9,8 @@
 #import "FGLeftMenuViewController.h"
 #import "FGAccountViewController.h"
 #import "FGAllGistsViewController.h"
+#import "FGLoginViewController.h"
+#import "FGAccountManager.h"
 #import "RESideMenu.h"
 #import "FGMenuManager.h"
 #import "FGMenu.h"
@@ -74,6 +76,25 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     FGMenu *menu = self.itemArray[indexPath.row];
+    // Logout
+    if ([menu.subClass isEqualToString:@"FGLoginViewController"]) {
+        OCTClient *client = [[FGAccountManager defaultManager] client];
+        if (client.isAuthenticated) {
+            @weakify(self);
+            [[FGAccountManager defaultManager] logoutWithCompletionBlock:^(id object, FGError *error) {
+                @strongify(self);
+                FGLoginViewController *loginController = [[FGLoginViewController alloc] init];
+                [self presentViewController:loginController animated:YES completion:^{
+                    
+                }];
+            }];
+            
+            menu = self.itemArray[1]; // All gists
+        } else {
+            return;
+        }
+    }
+    
     Class menuClass = NSClassFromString(menu.subClass);
     if (menuClass) {
         id object = [[menuClass alloc] init];

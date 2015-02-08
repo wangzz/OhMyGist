@@ -8,7 +8,6 @@
 
 #import "FGGistCommentViewController.h"
 #import "FGAddCommentManager.h"
-#import "FGCommonDefine.h"
 
 @interface FGGistCommentViewController ()
 

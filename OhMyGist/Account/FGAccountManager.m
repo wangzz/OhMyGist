@@ -72,6 +72,8 @@
     // clear user name & token
     [[NSUserDefaults standardUserDefaults] setSecretObject:@"" forKey:KEY_USERNAME];
     [[NSUserDefaults standardUserDefaults] setSecretObject:@"" forKey:KEY_TOKEN];
+    
+    self.currentClient = nil;
 }
 
 - (OCTClient *)client

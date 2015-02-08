@@ -30,7 +30,6 @@
     [leftButton addTarget:self action:@selector(presentLeftMenu:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     
-    
     // Init tableView
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
     
@@ -45,11 +44,35 @@
     [self.refreshControl addTarget:self
                             action:@selector(controlEventValueChanged:)
                   forControlEvents:UIControlEventValueChanged];
+    [self beginRefreshingTableView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
+- (void)beginRefreshingTableView
+{
+    [self.refreshControl beginRefreshing];
+    [self.refreshControl sendActionsForControlEvents:UIControlEventValueChanged];
+    if (self.tableView.contentOffset.y == 0) {
+        [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^(void){
+            self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height);
+        } completion:^(BOOL finished){
+            NSLog(@"%d",finished);
+        }];
+    }
 }
 
 #pragma mark - UIButton Action

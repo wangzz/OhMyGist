@@ -23,36 +23,28 @@
 - (void)fetchAllGistsFirstPageWithCompletionBlock:(completionBlock)completionBlock
 {
     _page = 1;
-    _firstPageDisposable = [[[[[FGAccountManager defaultManager] client] fetchAllGistsWithPage:_page] collect] subscribeNext:^(id x) {
+    _firstPageDisposable = [[[[[[FGAccountManager defaultManager] client] fetchAllGistsWithPage:_page] collect] deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(id x) {
 //        
 //        BOOL haveMorePage = [[[FGAccountManager defaultManager] client] haveMorePageAllGists];
 //        NSLog(@"%d",haveMorePage);
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _firstPageDisposable = nil;
-            completionBlock(x,nil);
-        });
+        _firstPageDisposable = nil;
+        completionBlock(x,nil);
     } error:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _firstPageDisposable = nil;
-            completionBlock(nil,[FGError errorWith:error]);
-        });
+        _firstPageDisposable = nil;
+        completionBlock(nil,[FGError errorWith:error]);
     }];
 }
 
 - (void)fetchAllGistsNextPageWithCompletionBlock:(completionBlock)completionBlock
 {
     _page++;
-    _nextPageDisposable = [[[[[FGAccountManager defaultManager] client] fetchAllGistsWithPage:_page] collect] subscribeNext:^(id x) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _nextPageDisposable = nil;
-            completionBlock(x,nil);
-        });
+    _nextPageDisposable = [[[[[[FGAccountManager defaultManager] client] fetchAllGistsWithPage:_page] collect] deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(id x) {
+        _nextPageDisposable = nil;
+        completionBlock(x,nil);
     } error:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _nextPageDisposable = nil;
-            completionBlock(nil,[FGError errorWith:error]);
-        });
+        _nextPageDisposable = nil;
+        completionBlock(nil,[FGError errorWith:error]);
     }];
 }
 

@@ -35,22 +35,17 @@
 - (void)loginWithUserName:(NSString *)userName password:(NSString *)password completionBlock:(completionBlock)completionBlock
 {
     OCTUser *user = [OCTUser userWithRawLogin:userName server:OCTServer.dotComServer];
-    [[OCTClient signInAsUser:user password:password oneTimePassword:nil scopes:(OCTClientAuthorizationScopesUser|OCTClientAuthorizationScopesGist) note:nil noteURL:nil fingerprint:nil] subscribeNext:^(OCTClient *authenticatedClient) {
+    [[[OCTClient signInAsUser:user password:password oneTimePassword:nil scopes:(OCTClientAuthorizationScopesUser|OCTClientAuthorizationScopesGist) note:nil noteURL:nil fingerprint:nil] deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(OCTClient *authenticatedClient) {
         //Authentication was successful. Do something with the created client.
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.currentClient = authenticatedClient;
-            [[NSUserDefaults standardUserDefaults] setSecretObject:self.currentClient.user.rawLogin forKey:KEY_USERNAME];
-            [[NSUserDefaults standardUserDefaults] setSecretObject:self.currentClient.token forKey:KEY_TOKEN];
-            completionBlock(authenticatedClient,nil);
-        });
+        self.currentClient = authenticatedClient;
+        [[NSUserDefaults standardUserDefaults] setSecretObject:self.currentClient.user.rawLogin forKey:KEY_USERNAME];
+        [[NSUserDefaults standardUserDefaults] setSecretObject:self.currentClient.token forKey:KEY_TOKEN];
+        completionBlock(authenticatedClient,nil);
         
     } error:^(NSError *error) {
         // Authentication failed.
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self clearUserInfo];
-            completionBlock(nil,[FGError errorWith:error]);
-        });
+        [self clearUserInfo];
+        completionBlock(nil,[FGError errorWith:error]);
     }];
 }
 
@@ -61,16 +56,12 @@
 
 - (void)fetchUserInfoWithCompletionBlock:(completionBlock)completionBlock
 {
-    [[self.client fetchUserInfo] subscribeNext:^(id x) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"%@",x);
-            completionBlock(x,nil);
-        });
+    [[[self.client fetchUserInfo] deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+        completionBlock(x,nil);
     } error:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"%@",error);
-            completionBlock(nil,[FGError errorWith:error]);
-        });
+        NSLog(@"%@",error);
+        completionBlock(nil,[FGError errorWith:error]);
     }];
 }
 
@@ -102,6 +93,8 @@
     } else {
         client = [[OCTClient alloc] initWithServer:OCTServer.dotComServer];
     }
+    
+    self.currentClient = client;
     
     return client;
 }

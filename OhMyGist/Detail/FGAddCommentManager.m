@@ -20,31 +20,23 @@
 
 - (void)addCommentWithGist:(OCTGist *)gist body:(NSString *)body completionBlock:(completionBlock)completionBlock
 {
-    _addCommentDisposable = [[[[FGAccountManager defaultManager] client] addCommentWithGist:gist body:body] subscribeNext:^(id x) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _addCommentDisposable = nil;
-            completionBlock(x,nil);
-        });
+    _addCommentDisposable = [[[[[FGAccountManager defaultManager] client] addCommentWithGist:gist body:body] deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(id x) {
+        _addCommentDisposable = nil;
+        completionBlock(x,nil);
     } error:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _addCommentDisposable = nil;
-            completionBlock(nil,[FGError errorWith:error]);
-        });
+        _addCommentDisposable = nil;
+        completionBlock(nil,[FGError errorWith:error]);
     }];
 }
 
 - (void)editCommentWithGist:(OCTGist *)gist comment:(OCTGistComment *)comment body:(NSString *)body completionBlock:(completionBlock)completionBlock
 {
-    _editCommentDisposable = [[[[FGAccountManager defaultManager] client] editCommentWithGist:gist comment:comment body:body] subscribeNext:^(id x) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _editCommentDisposable = nil;
-            completionBlock(x,nil);
-        });
+    _editCommentDisposable = [[[[[FGAccountManager defaultManager] client] editCommentWithGist:gist comment:comment body:body] deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(id x) {
+        _editCommentDisposable = nil;
+        completionBlock(x,nil);
     } error:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _editCommentDisposable = nil;
-            completionBlock(nil,[FGError errorWith:error]);
-        });
+        _editCommentDisposable = nil;
+        completionBlock(nil,[FGError errorWith:error]);
     }];
 }
 

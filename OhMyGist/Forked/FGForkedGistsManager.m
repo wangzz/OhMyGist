@@ -11,6 +11,8 @@
 @interface FGForkedGistsManager ()
 {
     NSUInteger  _page;
+    RACDisposable   *_firstPageDisposable;
+    RACDisposable   *_nextPageDisposable;
 }
 
 @end
@@ -20,28 +22,24 @@
 - (void)fetchForkedGistsFirstPageWithCompletionBlock:(completionBlock)completionBlock
 {
     _page = 1;
-    [[[[[FGAccountManager defaultManager] client] fetchForkedGistsWithPage:_page] collect] subscribeNext:^(id x) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            completionBlock(x,nil);
-        });
+    _firstPageDisposable = [[[[[[FGAccountManager defaultManager] client] fetchForkedGistsWithPage:_page] collect] deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(id x) {
+        _firstPageDisposable = nil;
+        completionBlock(x,nil);
     } error:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            completionBlock(nil,[FGError errorWith:error]);
-        });
+        _firstPageDisposable = nil;
+        completionBlock(nil,[FGError errorWith:error]);
     }];
 }
 
 - (void)fetchForkedGistsNextPageWithCompletionBlock:(completionBlock)completionBlock
 {
     _page++;
-    [[[[[FGAccountManager defaultManager] client] fetchForkedGistsWithPage:_page] collect] subscribeNext:^(id x) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            completionBlock(x,nil);
-        });
+    _nextPageDisposable = [[[[[[FGAccountManager defaultManager] client] fetchForkedGistsWithPage:_page] collect] deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(id x) {
+        _nextPageDisposable = nil;
+        completionBlock(x,nil);
     } error:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            completionBlock(nil,[FGError errorWith:error]);
-        });
+        _nextPageDisposable = nil;
+        completionBlock(nil,[FGError errorWith:error]);
     }];
 }
 @end

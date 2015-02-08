@@ -22,32 +22,24 @@
 - (void)fetchStarredGistsFirstPageWithCompletionBlock:(completionBlock)completionBlock
 {
     _page = 1;
-    _firstPageDisposable = [[[[[FGAccountManager defaultManager] client] fetchStarredGistsWithPage:_page] collect] subscribeNext:^(id x) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _firstPageDisposable = nil;
-            completionBlock(x,nil);
-        });
+    _firstPageDisposable = [[[[[[FGAccountManager defaultManager] client] fetchStarredGistsWithPage:_page] collect] deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(id x) {
+        _firstPageDisposable = nil;
+        completionBlock(x,nil);
     } error:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _firstPageDisposable = nil;
-            completionBlock(nil,[FGError errorWith:error]);
-        });
+        _firstPageDisposable = nil;
+        completionBlock(nil,[FGError errorWith:error]);
     }];
 }
 
 - (void)fetchStarredGistsNextPageWithCompletionBlock:(completionBlock)completionBlock
 {
     _page++;
-    _nextPageDisposable = [[[[[FGAccountManager defaultManager] client] fetchStarredGistsWithPage:_page] collect] subscribeNext:^(id x) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _nextPageDisposable = nil;
-            completionBlock(x,nil);
-        });
+    _nextPageDisposable = [[[[[[FGAccountManager defaultManager] client] fetchStarredGistsWithPage:_page] collect] deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(id x) {
+        _nextPageDisposable = nil;
+        completionBlock(x,nil);
     } error:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _nextPageDisposable = nil;
-            completionBlock(nil,[FGError errorWith:error]);
-        });
+        _nextPageDisposable = nil;
+        completionBlock(nil,[FGError errorWith:error]);
     }];
 }
 

@@ -58,7 +58,9 @@
 - (IBAction)onLoginButtonAction:(id)sender
 {
     if ([self inputCheck]) {
+        @weakify(self);
         [[FGAccountManager defaultManager] loginWithUserName:self.nameTextField.text password:self.passwordTextField.text completionBlock:^(id object, FGError *error) {
+            @strongify(self);
             if (error == nil && [[FGAccountManager defaultManager] client].isAuthenticated) {
                 [self dismiss];
             } else {

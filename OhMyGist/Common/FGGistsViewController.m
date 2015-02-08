@@ -34,9 +34,10 @@
     // Init tableView
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
     
-    typeof(self) __weak weakSelf = self;
+    @weakify(self);
     [self.tableView addInfiniteScrollingWithActionHandler:^{
-        [weakSelf infiniteScrollingLoadMore];
+        @strongify(self);
+        [self infiniteScrollingLoadMore];
     }];
     
     // Init refreshControl

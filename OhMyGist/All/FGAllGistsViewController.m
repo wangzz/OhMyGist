@@ -49,7 +49,9 @@
 
 - (void)pullToRefresh
 {
+    @weakify(self);
     [_manager fetchAllGistsFirstPageWithCompletionBlock:^(id object, FGError *error) {
+        @strongify(self);
         if (error == nil && [object isKindOfClass:[NSArray class]]) {
             NSArray *objectArray = object;
             if (objectArray.count > 0) {
@@ -72,7 +74,9 @@
 
 - (void)infiniteScrollingLoadMore
 {
+    @weakify(self);
     [_manager fetchAllGistsNextPageWithCompletionBlock:^(id object, FGError *error) {
+        @strongify(self);
         if (error == nil && [object isKindOfClass:[NSArray class]]) {
             NSArray *objectArray = object;
             if (objectArray.count > 0) {

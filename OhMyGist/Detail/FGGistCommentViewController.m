@@ -90,13 +90,16 @@
         return;
     }
     
+    @weakify(self);
     if (self.comment) {
         [_manager editCommentWithGist:self.gist comment:self.comment body:self.textView.text completionBlock:^(id object, FGError *error) {
-            NSLog(@"%@",object);
+            @strongify(self);
+            NSLog(@"%@ %@",object,self);
         }];
     } else {
         [_manager addCommentWithGist:self.gist body:self.textView.text completionBlock:^(id object, FGError *error) {
-            NSLog(@"%@",object);
+            @strongify(self);
+            NSLog(@"%@ %@",object,self);
         }];
     }
 }

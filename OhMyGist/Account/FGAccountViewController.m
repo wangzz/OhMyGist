@@ -63,8 +63,10 @@
 - (void)loadInfoData
 {
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Loading...",) maskType:SVProgressHUDMaskTypeGradient];
+    @weakify(self);
     [_manager fetchUserInfoWithCompletionBlock:^(id object, FGError *error) {
         [SVProgressHUD dismiss];
+        @strongify(self);
         if (error == nil && [object isKindOfClass:[OCTUser class]]) {
             self.user = object;
             [self loadInfoView];

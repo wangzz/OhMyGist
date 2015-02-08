@@ -757,6 +757,7 @@
 		82E566FD1A7A645400E7FF00 /* NSUserDefaults+SecureAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+SecureAdditions.h"; sourceTree = "<group>"; };
 		82E566FE1A7A645400E7FF00 /* NSUserDefaults+SecureAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+SecureAdditions.m"; sourceTree = "<group>"; };
 		82E567011A7A64EE00E7FF00 /* FGCommonDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FGCommonDefine.h; sourceTree = "<group>"; };
+		82F5BA441A874C7C00DB49C0 /* OhMyGist-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OhMyGist-PrefixHeader.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -846,6 +847,7 @@
 		82257CFE1A78F6D70003949B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				82F5BA441A874C7C00DB49C0 /* OhMyGist-PrefixHeader.pch */,
 				82E567011A7A64EE00E7FF00 /* FGCommonDefine.h */,
 				82E566C71A7A239C00E7FF00 /* FGViewController.h */,
 				82E566C81A7A239C00E7FF00 /* FGViewController.m */,
@@ -2169,6 +2171,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/OhMyGist/Common/OhMyGist-PrefixHeader.pch";
 				INFOPLIST_FILE = OhMyGist/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2185,6 +2189,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/OhMyGist/Common/OhMyGist-PrefixHeader.pch";
 				INFOPLIST_FILE = OhMyGist/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

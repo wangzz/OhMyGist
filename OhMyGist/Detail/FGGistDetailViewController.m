@@ -93,7 +93,9 @@
 
 - (void)loadGistComments
 {
+    @weakify(self);
     [_manager fetchCommentsWithGist:_gist completionBlock:^(id object, FGError *error) {
+        @strongify(self);
         if (error == nil && [object isKindOfClass:[NSArray class]]) {
             self.commentsArray = object;
             [self.tableView reloadData];

@@ -59,7 +59,9 @@
 {
     if ([self inputCheck]) {
         @weakify(self);
+        [SVProgressHUD showWithStatus:NSLocalizedString(@"Login...",)];
         [[FGAccountManager defaultManager] loginWithUserName:self.nameTextField.text password:self.passwordTextField.text completionBlock:^(id object, FGError *error) {
+            [SVProgressHUD dismiss];
             @strongify(self);
             if (error == nil && [[FGAccountManager defaultManager] client].isAuthenticated) {
                 [self dismiss];

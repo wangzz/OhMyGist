@@ -89,7 +89,7 @@
                 }];
             }];
             
-            menu = self.itemArray[1]; // All gists
+            menu = self.itemArray[1]; // Show All gists
         } else {
             return;
         }

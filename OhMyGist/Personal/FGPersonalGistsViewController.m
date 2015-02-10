@@ -76,7 +76,9 @@
 
 - (void)infiniteScrollingLoadMore
 {
+    @weakify(self);
     [_manager fetchPersonalGistsNextPageWithCompletionBlock:^(id object, FGError *error) {
+        @strongify(self);
         if (error == nil && [object isKindOfClass:[NSArray class]]) {
             NSArray *objectArray = object;
             if (objectArray.count > 0) {

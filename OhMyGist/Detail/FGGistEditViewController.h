@@ -8,6 +8,9 @@
 
 #import "FGViewController.h"
 
+@class OCTGist;
 @interface FGGistEditViewController : FGViewController
+
+- (instancetype)initWithGist:(OCTGist *)gist;
 
 @end

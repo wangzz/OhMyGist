@@ -8,6 +8,7 @@
 
 #import "FGGistCommentViewController.h"
 #import "FGAddCommentManager.h"
+#import "SVProgressHUD.h"
 
 @interface FGGistCommentViewController ()
 
@@ -63,7 +64,8 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     
-    [self createRightBarWithTitle:NSLocalizedString(@"Done",)];
+    [self createLeftBarWithTitle:NSLocalizedString(@"Cancel",)];
+    [self createRightBarWithTitle:NSLocalizedString(@"Save",)];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -75,6 +77,18 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)disposeCommentWith:(id)object error:(FGError *)error
+{
+    if ([object isKindOfClass:[OCTGistComment class]] && error == nil) {
+        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Commit success!",)];
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    } else {
+        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Something error, please try again later.",)];
+    }
 }
 
 #pragma mark - UIButton Action
@@ -93,14 +107,21 @@
     if (self.comment) {
         [_manager editCommentWithGist:self.gist comment:self.comment body:self.textView.text completionBlock:^(id object, FGError *error) {
             @strongify(self);
-            NSLog(@"%@ %@",object,self);
+            [self disposeCommentWith:object error:error];
         }];
     } else {
         [_manager addCommentWithGist:self.gist body:self.textView.text completionBlock:^(id object, FGError *error) {
             @strongify(self);
-            NSLog(@"%@ %@",object,self);
+            [self disposeCommentWith:object error:error];
         }];
     }
+}
+
+- (void)onLeftBarAction:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 #pragma mark - Notification

@@ -1,32 +1,22 @@
 //
-//  FGGistFileViewController.m
+//  FGNavigationController.m
 //  OhMyGist
 //
-//  Created by wangzz on 15-2-5.
+//  Created by wangzz on 15/2/19.
 //  Copyright (c) 2015年 wangzz. All rights reserved.
 //
 
-#import "FGGistFileViewController.h"
+#import "FGNavigationController.h"
 
-@interface FGGistFileViewController ()
+@interface FGNavigationController ()
 
 @end
 
-@implementation FGGistFileViewController
-
-- (instancetype)initWithGistFile:(OCTGistFile *)gistFile
-{
-    if (self = [super init]) {
-        
-    }
-    
-    return self;
-}
+@implementation FGNavigationController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

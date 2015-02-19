@@ -15,6 +15,9 @@
 #import "FGGistCommentViewController.h"
 #import "FGGistEditViewController.h"
 #import "FGFileEditViewController.h"
+#import "FGNavigationController.h"
+#import "FGGistFilePreviewViewController.h"
+
 
 #define HEIGHT_TABLEVIEW_SECTION    30
 
@@ -145,13 +148,19 @@
 {
     NSLog(@"%s",__func__);
     FGGistCommentViewController *commentViewController = [[FGGistCommentViewController alloc] initWithGist:_gist];
-    [self.navigationController pushViewController:commentViewController animated:YES];
+    FGNavigationController *navigationController = [[FGNavigationController alloc] initWithRootViewController:commentViewController];
+    [self presentViewController:navigationController animated:YES completion:^{
+        
+    }];
 }
 
 - (void)onRightBarAction:(id)sender
 {
     FGGistEditViewController *gistEditController = [[FGGistEditViewController alloc] init];
-    [self.navigationController pushViewController:gistEditController animated:YES];
+    FGNavigationController *navigationController = [[FGNavigationController alloc] initWithRootViewController:gistEditController];
+    [self presentViewController:navigationController animated:YES completion:^{
+        
+    }];
 }
 
 #pragma mark - UITableView Delegate
@@ -159,16 +168,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1 && self.filesArray.count > 0) {
-        if ([self isOwnerGist]) { // Owner gist
-            OCTGistFile *gistFile = self.filesArray[indexPath.row];
-            FGFileEditViewController *gistEditController = [[FGFileEditViewController alloc] initWithGistFile:gistFile];
-            [self.navigationController pushViewController:gistEditController animated:YES];
-        }
+        OCTGistFile *gistFile = self.filesArray[indexPath.row];
+        FGGistFilePreviewViewController *gistFileController = [[FGGistFilePreviewViewController alloc] initWithGistFile:gistFile];
+        [self.navigationController pushViewController:gistFileController animated:YES];
     } else if (indexPath.section == 3 && self.commentsArray.count > 0) { // Owner gist comment
         OCTGistComment *comment = self.commentsArray[indexPath.row];
         if ([self isOwnerGistComment:comment]) {
             FGGistCommentViewController *commentViewController = [[FGGistCommentViewController alloc] initWithGist:_gist comment:self.commentsArray[indexPath.row]];
-            [self.navigationController pushViewController:commentViewController animated:YES];
+            FGNavigationController *navigationController = [[FGNavigationController alloc] initWithRootViewController:commentViewController];
+            [self presentViewController:navigationController animated:YES completion:^{
+                
+            }];
         }
     }
 }

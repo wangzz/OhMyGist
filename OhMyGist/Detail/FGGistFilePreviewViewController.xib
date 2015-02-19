@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FGGistEditViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FGGistFilePreviewViewController">
             <connections>
-                <outlet property="tableView" destination="Isx-wO-bNN" id="pCh-8C-Z2L"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webView" destination="4Cy-NP-Pbx" id="uwG-fv-e1Y"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -16,23 +16,22 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Isx-wO-bNN">
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Cy-NP-Pbx">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="erH-Mx-vyB"/>
-                        <outlet property="delegate" destination="-1" id="MOY-Xq-ulW"/>
+                        <outlet property="delegate" destination="-1" id="rrZ-Zg-jXs"/>
                     </connections>
-                </tableView>
+                </webView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Isx-wO-bNN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="WZw-QW-J04"/>
-                <constraint firstAttribute="trailing" secondItem="Isx-wO-bNN" secondAttribute="trailing" id="Xnd-JG-p7e"/>
-                <constraint firstAttribute="bottom" secondItem="Isx-wO-bNN" secondAttribute="bottom" id="YHF-Mt-SzU"/>
-                <constraint firstItem="Isx-wO-bNN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="dF2-zV-lCc"/>
+                <constraint firstItem="4Cy-NP-Pbx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="W7V-GX-4QF"/>
+                <constraint firstItem="4Cy-NP-Pbx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Wnf-1V-ced"/>
+                <constraint firstAttribute="bottom" secondItem="4Cy-NP-Pbx" secondAttribute="bottom" id="a8j-2h-zD9"/>
+                <constraint firstAttribute="trailing" secondItem="4Cy-NP-Pbx" secondAttribute="trailing" id="qaB-Bk-tQ3"/>
             </constraints>
-            <point key="canvasLocation" x="140" y="154"/>
+            <point key="canvasLocation" x="220" y="210"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

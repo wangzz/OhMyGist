@@ -156,7 +156,7 @@
 
 - (void)onRightBarAction:(id)sender
 {
-    FGGistEditViewController *gistEditController = [[FGGistEditViewController alloc] init];
+    FGGistEditViewController *gistEditController = [[FGGistEditViewController alloc] initWithGist:_gist];
     FGNavigationController *navigationController = [[FGNavigationController alloc] initWithRootViewController:gistEditController];
     [self presentViewController:navigationController animated:YES completion:^{
         

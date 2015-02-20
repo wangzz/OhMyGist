@@ -8,6 +8,7 @@
 
 #import "FGGistEditViewController.h"
 #import "FGGistDescriptionViewController.h"
+#import "FGFileEditViewController.h"
 #import "FGNavigationController.h"
 #import "OCTGist.h"
 #import "OCTGistFile.h"
@@ -183,10 +184,17 @@
         [self presentViewController:navigationController animated:YES completion:^{
             
         }];
-        
-        
     } else if (indexPath.section == 1) {
+        OCTGistFile *file = nil;
+        if (self.filesArray.count != indexPath.row) {
+            file = self.filesArray[indexPath.row];
+        }
         
+        FGFileEditViewController *fileEditController = [[FGFileEditViewController alloc] initWithGistFile:file];
+        FGNavigationController *navigationController = [[FGNavigationController alloc] initWithRootViewController:fileEditController];
+        [self presentViewController:navigationController animated:YES completion:^{
+            
+        }];
     }
 }
 

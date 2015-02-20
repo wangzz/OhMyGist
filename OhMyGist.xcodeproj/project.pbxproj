@@ -200,6 +200,8 @@
 		8269E3581A7E44ED007A6F80 /* FGGistDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8269E3561A7E44ED007A6F80 /* FGGistDetailViewController.m */; };
 		8269E3591A7E44ED007A6F80 /* FGGistDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8269E3571A7E44ED007A6F80 /* FGGistDetailViewController.xib */; };
 		8269E35C1A7E4780007A6F80 /* FGGistDetailManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8269E35B1A7E4780007A6F80 /* FGGistDetailManager.m */; };
+		826DF1B11A9732EA00894E3A /* NSString+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 826DF1B01A9732EA00894E3A /* NSString+Format.m */; };
+		826DF1B41A974D9300894E3A /* FGGistEditManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 826DF1B31A974D9300894E3A /* FGGistEditManager.m */; };
 		829DF0101A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 829DF00B1A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.m */; };
 		829DF0111A7E1B4800DD8DC1 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 829DF00D1A7E1B4800DD8DC1 /* SVProgressHUD.bundle */; };
 		829DF0121A7E1B4800DD8DC1 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 829DF00F1A7E1B4800DD8DC1 /* SVProgressHUD.m */; };
@@ -665,6 +667,10 @@
 		8269E3571A7E44ED007A6F80 /* FGGistDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FGGistDetailViewController.xib; sourceTree = "<group>"; };
 		8269E35A1A7E4780007A6F80 /* FGGistDetailManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGGistDetailManager.h; sourceTree = "<group>"; };
 		8269E35B1A7E4780007A6F80 /* FGGistDetailManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGGistDetailManager.m; sourceTree = "<group>"; };
+		826DF1AF1A9732EA00894E3A /* NSString+Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Format.h"; sourceTree = "<group>"; };
+		826DF1B01A9732EA00894E3A /* NSString+Format.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Format.m"; sourceTree = "<group>"; };
+		826DF1B21A974D9300894E3A /* FGGistEditManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGGistEditManager.h; sourceTree = "<group>"; };
+		826DF1B31A974D9300894E3A /* FGGistEditManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGGistEditManager.m; sourceTree = "<group>"; };
 		829DF00A1A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
 		829DF00B1A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
 		829DF00D1A7E1B4800DD8DC1 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
@@ -1188,6 +1194,8 @@
 				823832E41A709C6D002A16EF /* FGError.m */,
 				82ADFFE01A7F63F1003D77E9 /* NSDate+FormatString.h */,
 				82ADFFE11A7F63F1003D77E9 /* NSDate+FormatString.m */,
+				826DF1AF1A9732EA00894E3A /* NSString+Format.h */,
+				826DF1B01A9732EA00894E3A /* NSString+Format.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1664,6 +1672,8 @@
 				8269E35B1A7E4780007A6F80 /* FGGistDetailManager.m */,
 				82ADFFFB1A807399003D77E9 /* FGAddCommentManager.h */,
 				82ADFFFC1A807399003D77E9 /* FGAddCommentManager.m */,
+				826DF1B21A974D9300894E3A /* FGGistEditManager.h */,
+				826DF1B31A974D9300894E3A /* FGGistEditManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1870,6 +1880,7 @@
 				82ADFFE51A7F6A90003D77E9 /* OCTClient+GistComments.m in Sources */,
 				829DF0121A7E1B4800DD8DC1 /* SVProgressHUD.m in Sources */,
 				8234C3C21A6E39E40098F0E1 /* NSNotificationCenter+RACSupport.m in Sources */,
+				826DF1B11A9732EA00894E3A /* NSString+Format.m in Sources */,
 				823833B71A70FBE4002A16EF /* OCTServer.m in Sources */,
 				8234C3F21A6E39E40098F0E1 /* RACSignal+Operations.m in Sources */,
 				8234C3CE1A6E39E40098F0E1 /* NSString+RACSupport.m in Sources */,
@@ -1954,6 +1965,7 @@
 				8238339A1A70FBE4002A16EF /* OCTClient+Gists.m in Sources */,
 				82E566DF1A7A24F000E7FF00 /* FGStarredGistsViewController.m in Sources */,
 				8234C3B91A6E39E40098F0E1 /* NSArray+RACSequenceAdditions.m in Sources */,
+				826DF1B41A974D9300894E3A /* FGGistEditManager.m in Sources */,
 				8234C3C91A6E39E40098F0E1 /* NSObject+RACSelectorSignal.m in Sources */,
 				829DF0101A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.m in Sources */,
 				8238339D1A70FBE4002A16EF /* OCTClient+Git.m in Sources */,

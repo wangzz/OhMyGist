@@ -11,10 +11,15 @@
 #import "FGNavigationController.h"
 #import "OCTGist.h"
 #import "OCTGistFile.h"
+#import "NSString+Format.h"
+#import "FGGistEditManager.h"
+#import "SVProgressHUD.h"
 
 @interface FGGistEditViewController ()
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) FGGistEditManager *manager;
 
 @property (nonatomic, strong) OCTGist *gist;
 
@@ -28,6 +33,8 @@
 
 @property (nonatomic, copy) NSString *fileDescription;
 
+@property (nonatomic) BOOL isPublic;
+
 @end
 
 @implementation FGGistEditViewController
@@ -36,10 +43,13 @@
 {
     if (self = [super init]) {
         _gist = gist;
-        _fileDescription = _gist.gistDescription;
         _filesArray = [_gist.files.allValues mutableCopy];
         _filesToAdd = [[NSMutableArray alloc] init];
         _filesToModify = [[NSMutableArray alloc] init];
+        _isPublic = _gist.isPublic;
+        _fileDescription = _gist.gistDescription;
+        
+        _manager = [[FGGistEditManager alloc] init];
     }
     
     return self;
@@ -58,24 +68,100 @@
     [self createRightBarWithTitle:NSLocalizedString(@"Save",)];
 }
 
+- (void)dealloc
+{
+    [_manager cancelRequest];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (OCTGistEdit *)gistEdit
+{
+    OCTGistEdit *edit = [[OCTGistEdit alloc] init];
+    edit.filesToAdd = self.filesToAdd;
+    
+    if (self.filesToModify.count > 0) {
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+        for (OCTGistFileEdit *fileEdit in self.filesToModify) {
+            dictionary[fileEdit.filename] = fileEdit;
+        }
+        edit.filesToModify = dictionary;
+    }
+    
+    edit.publicGist = self.isPublic;
+    
+    return edit;
+}
+
+- (BOOL)isNeedSaveChange
+{
+    if (self.fileDescription.length > 0 && ![self.gist.gistDescription isEqualToString:self.fileDescription]) {
+        return YES;
+    }
+    
+    if (self.gist.isPublic != self.isPublic) {
+        return YES;
+    }
+    
+    if (self.filesToAdd.count > 0 || self.filesToModify.count > 0) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (void)dismiss
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
 
 #pragma mark - UIButton Action
 
 - (void)onRightBarAction:(id)sender
 {
-    
+    if ([self isNeedSaveChange]) {
+        @weakify(self);
+        if (self.gist) {
+            [SVProgressHUD showWithStatus:NSLocalizedString(@"Saving...",)];
+            [self.manager editGistWithEdit:[self gistEdit] gist:self.gist completionBlock:^(id object, FGError *error) {
+                @strongify(self);
+                if (object && error == nil) {
+                    [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Save successed",)];
+                    [self dismiss];
+                } else {
+                    [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Save failed, please try again later",)];
+                }
+            }];
+        } else {
+            [SVProgressHUD showWithStatus:NSLocalizedString(@"Creating...",)];
+            [self.manager createGistWithEdit:[self gistEdit] completionBlock:^(id object, FGError *error) {
+                @strongify(self);
+                if (object && error == nil) {
+                    [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Create successed",)];
+                    [self dismiss];
+                } else {
+                    [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Create failed, please try again later",)];
+                }
+            }];
+        }
+    } else {
+        [self dismiss];
+    }
 }
 
 - (void)onLeftBarAction:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self dismiss];
+}
+
+- (void)onSwitchChangedAction:(id)sender
+{
+    self.isPublic = ((UISwitch *)sender).isOn;
 }
 
 #pragma mark - UITableView Delegate
@@ -139,9 +225,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *commonCell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (commonCell == nil) {
-        commonCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    UITableViewCell *commonCell = nil;
+    if (indexPath.section == 2) {
+        commonCell = [tableView dequeueReusableCellWithIdentifier:@"cellWithSwitchView"];
+        if (commonCell == nil) {
+            commonCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cellWithSwitchView"];
+            commonCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
+            commonCell.accessoryView = switchView;
+            [switchView addTarget:self action:@selector(onSwitchChangedAction:) forControlEvents:UIControlEventValueChanged];
+        }
+    } else {
+        commonCell = [tableView dequeueReusableCellWithIdentifier:@"cellWithIndicator"];
+        if (commonCell == nil) {
+            commonCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cellWithIndicator"];
+            commonCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            commonCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
     }
     
     if (indexPath.section == 0) {
@@ -156,10 +257,13 @@
         } else if (self.filesArray.count > 0) {
             OCTGistFile *gistFile = self.filesArray[indexPath.row];
             commonCell.textLabel.text = gistFile.filename;
-            commonCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)gistFile.size];
+            commonCell.detailTextLabel.text = [NSString stringFromBytes:gistFile.size];
         }
     } else if (indexPath.section == 2) {
-        commonCell.textLabel.text = @"YES";
+        UISwitch *switchView = (UISwitch *)commonCell.accessoryView;
+        [switchView setOn:self.isPublic];
+
+        commonCell.textLabel.text = NSLocalizedString(@"Is Public",);
     }
     
     return commonCell;

@@ -13,3 +13,4 @@
 * 检查能否区分自己创建的gist和fork别人的gist
 * 增加markdown及各语言对应格式显示支持
 * 加入评分引导机制
+* 验证gist的public属性是不是只有创建gist时才能指定，修改gist时指定该值是否有效

@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 wangzz. All rights reserved.
 //
 
-#import "FGViewController.h"
+#import "FGEditViewController.h"
 
-@interface FGGistDescriptionViewController : FGViewController
+@interface FGGistDescriptionViewController : FGEditViewController
 
 - (instancetype)initWithDescription:(NSString *)description;
 

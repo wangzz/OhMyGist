@@ -12,10 +12,6 @@
 
 @interface FGGistCommentViewController ()
 
-@property (nonatomic, strong) IBOutlet UITextView *textView;
-
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *bottomConstraint;
-
 @property (nonatomic, strong) FGAddCommentManager *manager;
 
 @property (nonatomic, strong) OCTGist *gist;
@@ -33,9 +29,8 @@
 
 - (instancetype)initWithGist:(OCTGist *)gist comment:(OCTGistComment *)comment
 {
-    if (self = [super init]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:nil];
-        
+    // load super class nib
+    if (self = [super initWithNibName:@"FGEditViewController" bundle:[NSBundle mainBundle]]) {
         _manager = [[FGAddCommentManager alloc] init];
         _gist = gist;
         _comment = comment;
@@ -47,7 +42,6 @@
 - (void)dealloc
 {
     [_manager cancelRequest];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad {
@@ -59,19 +53,6 @@
     } else {
         self.title = NSLocalizedString(@"New Comment",);
     }
-    
-    if (IOS7_OR_LATER) {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-    }
-    
-    [self createLeftBarWithTitle:NSLocalizedString(@"Cancel",)];
-    [self createRightBarWithTitle:NSLocalizedString(@"Save",)];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.textView becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,15 +75,14 @@
 #pragma mark - UIButton Action
 
 - (void)onRightBarAction:(id)sender
-{
-    NSLog(@"%s",__func__);
-    
+{    
     if (self.textView.text.length == 0) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Warning",) message:NSLocalizedString(@"Input can not be empty!",) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",) otherButtonTitles:nil];
         [alertView show];
         return;
     }
     
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Just waiting...",)];
     @weakify(self);
     if (self.comment) {
         [_manager editCommentWithGist:self.gist comment:self.comment body:self.textView.text completionBlock:^(id object, FGError *error) {
@@ -117,22 +97,5 @@
     }
 }
 
-- (void)onLeftBarAction:(id)sender
-{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
-
-#pragma mark - Notification
-
-- (void)keyboardWillShowNotification:(NSNotification *)notification
-{
-    NSDictionary*info=[notification userInfo];
-    CGSize kbSize=[[info objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue].size;
-    
-    self.bottomConstraint.constant = kbSize.height;
-    [self.view layoutIfNeeded];
-}
 
 @end

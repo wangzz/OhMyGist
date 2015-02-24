@@ -26,7 +26,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%p code:%d desc:%@",self,_code,_desc];
+    return [NSString stringWithFormat:@"%p code:%lu desc:%@",self,_code,_desc];
 }
 
 @end

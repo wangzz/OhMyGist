@@ -18,7 +18,7 @@
 
 - (instancetype)initWithDescription:(NSString *)description
 {
-    if (self = [super init]) {
+    if (self = [super initWithNibName:@"FGEditViewController" bundle:[NSBundle mainBundle]]) {
         _gistDescription = description;
     }
     
@@ -30,8 +30,7 @@
     // Do any additional setup after loading the view from its nib.
     self.title = NSLocalizedString(@"Description",);
     
-    [self createLeftBarWithTitle:NSLocalizedString(@"Cancel",)];
-    [self createRightBarWithTitle:NSLocalizedString(@"Save",)];
+    self.textView.text = _gistDescription;    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,13 +45,6 @@
     if (self.completionHandler) {
         self.completionHandler(self.gistDescription);
     }
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
-
-- (void)onLeftBarAction:(id)sender
-{
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];

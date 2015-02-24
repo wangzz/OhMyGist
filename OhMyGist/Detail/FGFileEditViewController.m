@@ -33,9 +33,9 @@
     [self createRightBarWithTitle:NSLocalizedString(@"Save",)];
 
     if (self.gistFile) {
-        self.title = NSLocalizedString(@"Edit file",);
+        self.title = NSLocalizedString(@"Edit File",);
     } else {
-        self.title = NSLocalizedString(@"Create file",);
+        self.title = NSLocalizedString(@"New File",);
     }
 }
 

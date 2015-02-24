@@ -41,9 +41,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = NSLocalizedString(@"Profile",);
-    if (IOS7_OR_LATER) {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-    }
     
     UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
     [leftButton setTitle:NSLocalizedString(@"Mine",) forState:UIControlStateNormal];

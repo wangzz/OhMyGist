@@ -17,4 +17,6 @@
 
 - (void)cancelRequest;
 
+- (void)fetchFileContentWith:(OCTGist *)gist completionBlock:(completionBlock)completionBlock;
+
 @end

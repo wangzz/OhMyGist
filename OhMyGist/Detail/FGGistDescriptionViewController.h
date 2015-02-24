@@ -10,8 +10,8 @@
 
 @interface FGGistDescriptionViewController : FGEditViewController
 
-- (instancetype)initWithDescription:(NSString *)description;
-
 @property (nonatomic, copy)  void (^completionHandler)(id object);;
+
+- (instancetype)initWithDescription:(NSString *)description;
 
 @end

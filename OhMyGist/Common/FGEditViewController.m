@@ -32,10 +32,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    if (IOS7_OR_LATER) {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-    }
-    
     [self createLeftBarWithTitle:NSLocalizedString(@"Cancel",)];
     [self createRightBarWithTitle:NSLocalizedString(@"Save",)];
 }

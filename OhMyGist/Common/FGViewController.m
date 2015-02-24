@@ -24,6 +24,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+#ifdef __IPHONE_7_0
+- (UIRectEdge)edgesForExtendedLayout {
+    return UIRectEdgeNone;
+}
+#endif
 
 #pragma mark - Navigation Bar
 

@@ -44,13 +44,12 @@
 {
     if (self = [super init]) {
         _gist = gist;
-        _filesArray = [_gist.files.allValues mutableCopy];
-        _filesToAdd = [[NSMutableArray alloc] init];
-        _filesToModify = [[NSMutableArray alloc] init];
         _isPublic = _gist.isPublic;
         _fileDescription = _gist.gistDescription;
         
         _manager = [[FGGistEditManager alloc] init];
+        _filesToAdd = [[NSMutableArray alloc] init];
+        _filesToModify = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -67,6 +66,15 @@
     
     [self createLeftBarWithTitle:NSLocalizedString(@"Cancel",)];
     [self createRightBarWithTitle:NSLocalizedString(@"Save",)];
+    
+    @weakify(self);
+    [self.manager fetchFileContentWith:self.gist completionBlock:^(id object, FGError *error) {
+        @strongify(self);
+        if ([object isKindOfClass:[NSArray class]]) {
+            self.filesArray = object;
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 - (void)dealloc
@@ -83,7 +91,7 @@
 {
     OCTGistEdit *edit = [[OCTGistEdit alloc] init];
     edit.filesToAdd = self.filesToAdd;
-    
+    edit.gistDescription = self.fileDescription;
     if (self.filesToModify.count > 0) {
         NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
         for (OCTGistFileEdit *fileEdit in self.filesToModify) {
@@ -169,8 +177,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    @weakify(self);
     if (indexPath.section == 0) {
-        @weakify(self);
         FGGistDescriptionViewController *descriptionController = [[FGGistDescriptionViewController alloc] initWithDescription:self.gist.gistDescription];
         descriptionController.completionHandler = ^(id object) {
             @strongify(self);
@@ -185,12 +193,25 @@
             
         }];
     } else if (indexPath.section == 1) {
-        OCTGistFile *file = nil;
+        OCTGistFileEdit *fileEdit = nil;
         if (self.filesArray.count != indexPath.row) {
-            file = self.filesArray[indexPath.row];
+            fileEdit = self.filesArray[indexPath.row];
         }
         
-        FGFileEditViewController *fileEditController = [[FGFileEditViewController alloc] initWithGistFile:file];
+        FGFileEditViewController *fileEditController = [[FGFileEditViewController alloc] initWithGistFile:fileEdit];
+        fileEditController.completionHandler = ^(id object) {
+            @strongify(self);
+            if ([object isKindOfClass:[OCTGistFileEdit class]]) {
+                if (self.filesArray.count != indexPath.row) { // Modify
+                    self.filesArray[indexPath.row] = object;
+                    [self.filesToModify addObject:object];
+                } else { // Add new
+                    [self.filesArray addObject:object];
+                    [self.filesToAdd addObject:object];
+                }
+                [self.tableView reloadData];
+            }
+        };
         FGNavigationController *navigationController = [[FGNavigationController alloc] initWithRootViewController:fileEditController];
         [self presentViewController:navigationController animated:YES completion:^{
             
@@ -263,9 +284,9 @@
         if (self.filesArray.count == indexPath.row) {
             commonCell.textLabel.text = NSLocalizedString(@"Add New File",);
         } else if (self.filesArray.count > 0) {
-            OCTGistFile *gistFile = self.filesArray[indexPath.row];
-            commonCell.textLabel.text = gistFile.filename;
-            commonCell.detailTextLabel.text = [NSString stringFromBytes:gistFile.size];
+            OCTGistFileEdit *fileEdit = self.filesArray[indexPath.row];
+            commonCell.textLabel.text = fileEdit.filename;
+            commonCell.detailTextLabel.text = [NSString stringFromBytes:[fileEdit.content lengthOfBytesUsingEncoding:NSUTF8StringEncoding]];
         }
     } else if (indexPath.section == 2) {
         UISwitch *switchView = (UISwitch *)commonCell.accessoryView;

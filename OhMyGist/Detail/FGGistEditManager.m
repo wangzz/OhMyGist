@@ -48,4 +48,32 @@
     [_editGistDisposable dispose];
 }
 
+- (void)fetchFileContentWith:(OCTGist *)gist completionBlock:(completionBlock)completionBlock
+{
+    NSArray *filesArray = [gist.files allValues];
+    if (gist == nil || filesArray.count == 0) {
+        completionBlock(nil,nil);
+        return;
+    }
+    
+    NSMutableArray *editArray = [NSMutableArray array];
+    dispatch_group_t group = dispatch_group_create();
+    for (OCTGistFile *file in filesArray) {
+        dispatch_group_async(group, dispatch_get_global_queue(0,0), ^{
+            // 并行执行的线程一
+            OCTGistFileEdit *fileEdit = [[OCTGistFileEdit alloc] init];
+            fileEdit.filename = file.filename;
+            NSError *error = nil;
+            fileEdit.content = [NSString stringWithContentsOfURL:file.rawURL encoding:NSUTF8StringEncoding error:&error];
+            if (!error) {
+                [editArray addObject:fileEdit];
+            }
+        });
+    }
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        completionBlock(editArray,nil);
+    });
+}
+
 @end

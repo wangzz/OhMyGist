@@ -6,11 +6,13 @@
 //  Copyright (c) 2015年 wangzz. All rights reserved.
 //
 
-#import "FGViewController.h"
+#import "FGEditViewController.h"
 
-@class OCTGistFile;
-@interface FGFileEditViewController : FGViewController
+@class OCTGistFileEdit;
+@interface FGFileEditViewController : FGEditViewController
 
-- (instancetype)initWithGistFile:(OCTGistFile *)gistFile;
+@property (nonatomic, copy)  void (^completionHandler)(id object);;
+
+- (instancetype)initWithGistFile:(OCTGistFileEdit *)fileEdit;
 
 @end

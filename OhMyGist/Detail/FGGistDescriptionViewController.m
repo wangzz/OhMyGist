@@ -9,7 +9,7 @@
 #import "FGGistDescriptionViewController.h"
 
 @interface FGGistDescriptionViewController ()
-
+@property (nonatomic, copy) NSString *gistDescription;
 @end
 
 @implementation FGGistDescriptionViewController
@@ -18,7 +18,7 @@
 {
     // load super class nib
     if (self = [super initWithNibName:@"FGEditViewController" bundle:[NSBundle mainBundle]]) {
-        self.textView.text = description;
+        _gistDescription = description;
     }
     
     return self;
@@ -28,6 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = NSLocalizedString(@"Description",);
+    self.textView.text = self.gistDescription;
 }
 
 - (void)didReceiveMemoryWarning {

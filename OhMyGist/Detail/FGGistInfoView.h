@@ -24,6 +24,6 @@
 
 @property (nonatomic, strong) OCTGist *gist;
 
-- (void)updateFrame;
+- (CGRect)calculateFrame;
 
 @end

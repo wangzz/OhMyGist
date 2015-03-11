@@ -42,6 +42,8 @@
 {
     [super viewDidDisappear:animated];
     
+    [SVProgressHUD dismiss];
+    
     [self.webView stopLoading];
     self.webView.delegate = nil;
 }

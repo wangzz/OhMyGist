@@ -204,7 +204,11 @@
             if ([object isKindOfClass:[OCTGistFileEdit class]]) {
                 if (self.filesArray.count != indexPath.row) { // Modify
                     self.filesArray[indexPath.row] = object;
-                    [self.filesToModify addObject:object];
+                    
+                    if (![self.filesToAdd containsObject:object] &&
+                        ![self.filesToModify containsObject:object]) {
+                        [self.filesToModify addObject:object];
+                    }
                 } else { // Add new
                     [self.filesArray addObject:object];
                     [self.filesToAdd addObject:object];

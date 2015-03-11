@@ -19,7 +19,9 @@
 #import "FGGistFilePreviewViewController.h"
 
 
-#define HEIGHT_TABLEVIEW_SECTION    30
+#define HEIGHT_TABLEVIEW_SECTION_HEADER    25
+#define HEIGHT_TABLEVIEW_CELL_FILE         54
+#define HEIGHT_TABLEVIEW_CELL_COMMENT      100
 
 @interface FGGistDetailViewController () <UITableViewDelegate,UITableViewDataSource,FGGistInfoViewDelegate>
 {
@@ -70,7 +72,7 @@
         FGGistInfoView *infoView = [[FGGistInfoView alloc] init];
         infoView.gist = _gist;
         infoView.delegate = self;
-        [infoView updateFrame];
+        infoView.frame = [infoView calculateFrame];
         infoView;
     });
     self.tableView.tableHeaderView = self.headerView;
@@ -146,7 +148,6 @@
 
 - (void)onAddCommentButtonAction:(id)sender
 {
-    NSLog(@"%s",__func__);
     FGGistCommentViewController *commentViewController = [[FGGistCommentViewController alloc] initWithGist:_gist];
     FGNavigationController *navigationController = [[FGNavigationController alloc] initWithRootViewController:commentViewController];
     [self presentViewController:navigationController animated:YES completion:^{
@@ -167,11 +168,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1 && self.filesArray.count > 0) {
+    if (indexPath.section == 0 && self.filesArray.count > 0) {
         OCTGistFile *gistFile = self.filesArray[indexPath.row];
         FGGistFilePreviewViewController *gistFileController = [[FGGistFilePreviewViewController alloc] initWithGistFile:gistFile];
         [self.navigationController pushViewController:gistFileController animated:YES];
-    } else if (indexPath.section == 3 && self.commentsArray.count > 0) { // Owner gist comment
+    } else if (indexPath.section == 1 && self.commentsArray.count > 0) { // Owner gist comment
         OCTGistComment *comment = self.commentsArray[indexPath.row];
         if ([self isOwnerGistComment:comment]) {
             FGGistCommentViewController *commentViewController = [[FGGistCommentViewController alloc] initWithGist:_gist comment:self.commentsArray[indexPath.row]];
@@ -185,50 +186,47 @@
 
 #pragma mark - UITableView Datasource
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section == 0 || section == 2) {
-        return HEIGHT_TABLEVIEW_SECTION;
+    if (section == 0) {
+        return NSLocalizedString(@"FILES",);
+    } else if (section == 1) {
+        return NSLocalizedString(@"COMMENTS",);
+    }
+    
+    return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0 || (indexPath.section == 1 && self.commentsArray.count == 0)) {
+        return HEIGHT_TABLEVIEW_CELL_FILE;
+    } else if (indexPath.section == 1 && self.commentsArray.count > 0) {
+        return HEIGHT_TABLEVIEW_CELL_COMMENT;
     }
     
     return 0;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, HEIGHT_TABLEVIEW_SECTION)];
-    UILabel *sectionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, HEIGHT_TABLEVIEW_SECTION-15, self.view.frame.size.width-20, 15)];
-    
     if (section == 0) {
-        sectionLabel.text = @"FILES";
-    } else if (section == 2) {
-        sectionLabel.text = @"COMMENTS";
+        return HEIGHT_TABLEVIEW_SECTION_HEADER+10;
     }
-    [sectionView addSubview:sectionLabel];
-    return sectionView;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 1 || (indexPath.section == 3 && self.commentsArray.count == 0)) {
-        return 54;
-    } else if (indexPath.section == 3 && self.commentsArray.count > 0) {
-        return 100;
-    } else {
-        return 0;
-    }
+    return HEIGHT_TABLEVIEW_SECTION_HEADER;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
     NSInteger rowCount = 0;
-    if (sectionIndex == 1) {
+    if (sectionIndex == 0) {
         rowCount = (self.filesArray.count==0)?1:self.filesArray.count;
-    } else if (sectionIndex == 3) {
+    } else if (sectionIndex == 1) {
         rowCount = (self.commentsArray.count==0)?1:self.commentsArray.count;
     }
     
@@ -238,7 +236,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *commonCell = nil;
-    if (indexPath.section == 3 && self.commentsArray.count > 0) {
+    if (indexPath.section == 1 && self.commentsArray.count > 0) {
         static NSString *cellIdentifier = @"FGGistCommentCell";
         FGGistCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
@@ -255,7 +253,7 @@
         }
         
         cell.showAccess = NO;
-        if (indexPath.section == 1) {
+        if (indexPath.section == 0) {
             if (self.filesArray.count == 0) {
                 cell.title = NSLocalizedString(@"No Files",);
             } else {
@@ -264,7 +262,7 @@
                 OCTGistFile *gistFile = self.filesArray[indexPath.row];
                 cell.title = gistFile.filename;
             }
-        } else if (indexPath.section == 3 && self.commentsArray.count == 0) {
+        } else if (indexPath.section == 1 && self.commentsArray.count == 0) {
             cell.title = NSLocalizedString(@"No Comments",);
         }
         

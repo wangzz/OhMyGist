@@ -68,10 +68,10 @@
     [self setNeedsLayout];
 }
 
-- (void)updateFrame
+- (CGRect)calculateFrame
 {
     CGSize size = [[self descriptionString] sizeWithFont:self.descriptionLabel.font constrainedToSize:CGSizeMake(self.descriptionLabel.frame.size.width, 1000)];
-    self.frame = CGRectMake(0, 0, self.frame.size.width, CGRectGetMinY(self.descriptionLabel.frame)+size.height+10);
+    return CGRectMake(0, 0, self.frame.size.width, CGRectGetMinY(self.descriptionLabel.frame)+size.height+10);
 }
 
 - (NSString *)dateString

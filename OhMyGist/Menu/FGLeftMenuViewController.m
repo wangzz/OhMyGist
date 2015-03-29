@@ -83,6 +83,15 @@
             @weakify(self);
             [[FGAccountManager defaultManager] logoutWithCompletionBlock:^(id object, FGError *error) {
                 @strongify(self);
+                if (![object isKindOfClass:[NSNumber class]]) {
+                    return;
+                }
+                
+                NSNumber *result = object;
+                if (!result.boolValue) {
+                    return;
+                }
+                
                 FGLoginViewController *loginController = [[FGLoginViewController alloc] init];
                 [self presentViewController:loginController animated:YES completion:^{
                     

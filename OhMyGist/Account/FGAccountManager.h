@@ -18,6 +18,16 @@ typedef void (^completionBlock)(id object, FGError *error);
 
 - (OCTClient *)client;
 
+/**
+ *  是否已登录
+ */
+- (BOOL)isAuthenticated;
+
+/**
+ *  注销
+ */
+- (void)logout;
+
 
 /**
  *  登录接口

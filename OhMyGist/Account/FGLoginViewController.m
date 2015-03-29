@@ -23,13 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, 80, 30)];
-    [leftButton setTitle:NSLocalizedString(@"Dismiss",) forState:UIControlStateNormal];
-    [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [leftButton addTarget:self action:@selector(onLeftButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:leftButton];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,11 +66,6 @@
     } else {
         NSLog(@"input invalid");
     }
-}
-
-- (void)onLeftButtonAction:(id)sender
-{
-    [self dismiss];
 }
 
 @end

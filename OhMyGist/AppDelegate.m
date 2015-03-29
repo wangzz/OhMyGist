@@ -12,6 +12,10 @@
 #import "FGLeftMenuViewController.h"
 #import "FGAllGistsViewController.h"
 #import "NSUserDefaults+SecureAdditions.h"
+#import "FGAccountManager.h"
+#import "FGLoginViewController.h"
+#import "FGNavigationController.h"
+
 
 @interface AppDelegate () <RESideMenuDelegate>
 
@@ -27,8 +31,7 @@
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[FGAllGistsViewController alloc] init]];
+    FGNavigationController *navigationController = [[FGNavigationController alloc] initWithRootViewController:[[FGAllGistsViewController alloc] init]];
     FGLeftMenuViewController *leftMenuViewController = [[FGLeftMenuViewController alloc] init];
 
     RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController
@@ -43,6 +46,13 @@
     self.window.rootViewController = sideMenuViewController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    if (![FGAccountManager defaultManager].isAuthenticated) {
+        FGLoginViewController *loginController = [[FGLoginViewController alloc] init];
+        [navigationController presentViewController:loginController animated:NO completion:^{
+            
+        }];
+    }
     
     return YES;
 }

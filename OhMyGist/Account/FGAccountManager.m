@@ -44,14 +44,16 @@
         
     } error:^(NSError *error) {
         // Authentication failed.
-        [self clearUserInfo];
+        [self logout];
         completionBlock(nil,[FGError errorWith:error]);
     }];
 }
 
 - (void)logoutWithCompletionBlock:(completionBlock)completionBlock
 {
-    [self clearUserInfo];
+    [self logout];
+    
+    completionBlock(@(YES),nil);
 }
 
 - (void)fetchUserInfoWithCompletionBlock:(completionBlock)completionBlock
@@ -67,7 +69,19 @@
 
 
 
-- (void)clearUserInfo
+#pragma mark - Public Method
+
+- (BOOL)isAuthenticated
+{
+    OCTClient *client = [self client];
+    if (client == nil) {
+        return NO;
+    }
+    
+    return client.isAuthenticated;
+}
+
+- (void)logout
 {
     // clear user name & token
     [[NSUserDefaults standardUserDefaults] setSecretObject:@"" forKey:KEY_USERNAME];

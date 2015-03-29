@@ -72,10 +72,8 @@
         FGGistInfoView *infoView = [[FGGistInfoView alloc] init];
         infoView.gist = _gist;
         infoView.delegate = self;
-        infoView.frame = [infoView calculateFrame];
         infoView;
     });
-    self.tableView.tableHeaderView = self.headerView;
     
     UIView *footerView = ({
         UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 70)];
@@ -94,6 +92,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    self.headerView.frame = [self.headerView calculateFrame];
+    self.tableView.tableHeaderView = self.headerView;
 }
 
 - (void)loadGistComments

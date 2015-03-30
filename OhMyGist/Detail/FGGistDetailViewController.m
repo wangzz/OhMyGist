@@ -21,7 +21,7 @@
 
 #define HEIGHT_TABLEVIEW_SECTION_HEADER    25
 #define HEIGHT_TABLEVIEW_CELL_FILE         54
-#define HEIGHT_TABLEVIEW_CELL_COMMENT      100
+#define HEIGHT_TABLEVIEW_CELL_COMMENT      200
 
 @interface FGGistDetailViewController () <UITableViewDelegate,UITableViewDataSource,FGGistInfoViewDelegate>
 {

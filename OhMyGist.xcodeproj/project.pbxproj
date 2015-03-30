@@ -202,6 +202,14 @@
 		8269E35C1A7E4780007A6F80 /* FGGistDetailManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8269E35B1A7E4780007A6F80 /* FGGistDetailManager.m */; };
 		826DF1B11A9732EA00894E3A /* NSString+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 826DF1B01A9732EA00894E3A /* NSString+Format.m */; };
 		826DF1B41A974D9300894E3A /* FGGistEditManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 826DF1B31A974D9300894E3A /* FGGistEditManager.m */; };
+		827210281AC995DF004A8B25 /* MMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 827210181AC995DF004A8B25 /* MMDocument.m */; };
+		827210291AC995DF004A8B25 /* MMElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8272101B1AC995DF004A8B25 /* MMElement.m */; };
+		8272102A1AC995DF004A8B25 /* MMGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8272101D1AC995DF004A8B25 /* MMGenerator.m */; };
+		8272102B1AC995DF004A8B25 /* MMHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8272101F1AC995DF004A8B25 /* MMHTMLParser.m */; };
+		8272102C1AC995DF004A8B25 /* MMMarkdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 827210211AC995DF004A8B25 /* MMMarkdown.m */; };
+		8272102D1AC995DF004A8B25 /* MMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 827210231AC995DF004A8B25 /* MMParser.m */; };
+		8272102E1AC995DF004A8B25 /* MMScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 827210251AC995DF004A8B25 /* MMScanner.m */; };
+		8272102F1AC995DF004A8B25 /* MMSpanParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 827210271AC995DF004A8B25 /* MMSpanParser.m */; };
 		829DF0101A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 829DF00B1A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.m */; };
 		829DF0111A7E1B4800DD8DC1 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 829DF00D1A7E1B4800DD8DC1 /* SVProgressHUD.bundle */; };
 		829DF0121A7E1B4800DD8DC1 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 829DF00F1A7E1B4800DD8DC1 /* SVProgressHUD.m */; };
@@ -682,6 +690,23 @@
 		826DF1B01A9732EA00894E3A /* NSString+Format.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Format.m"; sourceTree = "<group>"; };
 		826DF1B21A974D9300894E3A /* FGGistEditManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGGistEditManager.h; sourceTree = "<group>"; };
 		826DF1B31A974D9300894E3A /* FGGistEditManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGGistEditManager.m; sourceTree = "<group>"; };
+		827210171AC995DF004A8B25 /* MMDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDocument.h; sourceTree = "<group>"; };
+		827210181AC995DF004A8B25 /* MMDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDocument.m; sourceTree = "<group>"; };
+		827210191AC995DF004A8B25 /* MMDocument_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDocument_Private.h; sourceTree = "<group>"; };
+		8272101A1AC995DF004A8B25 /* MMElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMElement.h; sourceTree = "<group>"; };
+		8272101B1AC995DF004A8B25 /* MMElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMElement.m; sourceTree = "<group>"; };
+		8272101C1AC995DF004A8B25 /* MMGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGenerator.h; sourceTree = "<group>"; };
+		8272101D1AC995DF004A8B25 /* MMGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMGenerator.m; sourceTree = "<group>"; };
+		8272101E1AC995DF004A8B25 /* MMHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMHTMLParser.h; sourceTree = "<group>"; };
+		8272101F1AC995DF004A8B25 /* MMHTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMHTMLParser.m; sourceTree = "<group>"; };
+		827210201AC995DF004A8B25 /* MMMarkdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMarkdown.h; sourceTree = "<group>"; };
+		827210211AC995DF004A8B25 /* MMMarkdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMarkdown.m; sourceTree = "<group>"; };
+		827210221AC995DF004A8B25 /* MMParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMParser.h; sourceTree = "<group>"; };
+		827210231AC995DF004A8B25 /* MMParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMParser.m; sourceTree = "<group>"; };
+		827210241AC995DF004A8B25 /* MMScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMScanner.h; sourceTree = "<group>"; };
+		827210251AC995DF004A8B25 /* MMScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMScanner.m; sourceTree = "<group>"; };
+		827210261AC995DF004A8B25 /* MMSpanParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSpanParser.h; sourceTree = "<group>"; };
+		827210271AC995DF004A8B25 /* MMSpanParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSpanParser.m; sourceTree = "<group>"; };
 		829DF00A1A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
 		829DF00B1A7E1B4800DD8DC1 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
 		829DF00D1A7E1B4800DD8DC1 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
@@ -1614,6 +1639,7 @@
 		823924C51A66BCE700AEC910 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				827210161AC995DF004A8B25 /* MMMarkdown */,
 				82DD9C8E1A9C1679008B2F3E /* Masonry */,
 				829DF0091A7E1B4800DD8DC1 /* SVProgressHUD */,
 				82ADFFCB1A7B8050003D77E9 /* SVPullToRefresh */,
@@ -1638,6 +1664,31 @@
 			);
 			path = Detail;
 			sourceTree = "<group>";
+		};
+		827210161AC995DF004A8B25 /* MMMarkdown */ = {
+			isa = PBXGroup;
+			children = (
+				827210171AC995DF004A8B25 /* MMDocument.h */,
+				827210181AC995DF004A8B25 /* MMDocument.m */,
+				827210191AC995DF004A8B25 /* MMDocument_Private.h */,
+				8272101A1AC995DF004A8B25 /* MMElement.h */,
+				8272101B1AC995DF004A8B25 /* MMElement.m */,
+				8272101C1AC995DF004A8B25 /* MMGenerator.h */,
+				8272101D1AC995DF004A8B25 /* MMGenerator.m */,
+				8272101E1AC995DF004A8B25 /* MMHTMLParser.h */,
+				8272101F1AC995DF004A8B25 /* MMHTMLParser.m */,
+				827210201AC995DF004A8B25 /* MMMarkdown.h */,
+				827210211AC995DF004A8B25 /* MMMarkdown.m */,
+				827210221AC995DF004A8B25 /* MMParser.h */,
+				827210231AC995DF004A8B25 /* MMParser.m */,
+				827210241AC995DF004A8B25 /* MMScanner.h */,
+				827210251AC995DF004A8B25 /* MMScanner.m */,
+				827210261AC995DF004A8B25 /* MMSpanParser.h */,
+				827210271AC995DF004A8B25 /* MMSpanParser.m */,
+			);
+			name = MMMarkdown;
+			path = Vendor/MMMarkdown;
+			sourceTree = SOURCE_ROOT;
 		};
 		829DF0091A7E1B4800DD8DC1 /* SVProgressHUD */ = {
 			isa = PBXGroup;
@@ -1959,6 +2010,7 @@
 				823833B71A70FBE4002A16EF /* OCTServer.m in Sources */,
 				8234C3F21A6E39E40098F0E1 /* RACSignal+Operations.m in Sources */,
 				8234C3CE1A6E39E40098F0E1 /* NSString+RACSupport.m in Sources */,
+				8272102F1AC995DF004A8B25 /* MMSpanParser.m in Sources */,
 				8234C3F71A6E39E40098F0E1 /* RACStringSequence.m in Sources */,
 				8234C3D51A6E39E40098F0E1 /* RACBlockTrampoline.m in Sources */,
 				8234C4011A6E39E40098F0E1 /* RACUnit.m in Sources */,
@@ -1970,10 +2022,12 @@
 				8234C3ED1A6E39E40098F0E1 /* RACReturnSignal.m in Sources */,
 				823833B31A70FBE4002A16EF /* OCTBranch.m in Sources */,
 				82E566D71A7A247200E7FF00 /* FGPersonalGistsViewController.m in Sources */,
+				8272102B1AC995DF004A8B25 /* MMHTMLParser.m in Sources */,
 				8234C3D21A6E39E40098F0E1 /* RACArraySequence.m in Sources */,
 				82E567001A7A645400E7FF00 /* NSUserDefaults+SecureAdditions.m in Sources */,
 				823831FE1A6FB613002A16EF /* EXTScope.m in Sources */,
 				82E566D11A7A241E00E7FF00 /* FGGistsViewController.m in Sources */,
+				8272102A1AC995DF004A8B25 /* MMGenerator.m in Sources */,
 				8234C3C71A6E39E40098F0E1 /* NSObject+RACLifting.m in Sources */,
 				8238339E1A70FBE4002A16EF /* OCTCommit.m in Sources */,
 				82E566C51A7A1EC200E7FF00 /* RESideMenu.m in Sources */,
@@ -1989,6 +2043,7 @@
 				8238339F1A70FBE4002A16EF /* OCTRef.m in Sources */,
 				8234C3FD1A6E39E40098F0E1 /* RACTestScheduler.m in Sources */,
 				82E566C41A7A1EC200E7FF00 /* RECommonFunctions.m in Sources */,
+				8272102E1AC995DF004A8B25 /* MMScanner.m in Sources */,
 				82ADFFE81A7F6E37003D77E9 /* OCTGistComment.m in Sources */,
 				8234C3CB1A6E39E40098F0E1 /* NSSet+RACSequenceAdditions.m in Sources */,
 				823833981A70FBE4002A16EF /* OCTRefEvent.m in Sources */,
@@ -2025,6 +2080,7 @@
 				8234C3BE1A6E39E40098F0E1 /* NSEnumerator+RACSequenceAdditions.m in Sources */,
 				823833B51A70FBE4002A16EF /* OCTGitCommitFile.m in Sources */,
 				8238320A1A6FB613002A16EF /* NSValueTransformer+MTLPredefinedTransformerAdditions.m in Sources */,
+				827210281AC995DF004A8B25 /* MMDocument.m in Sources */,
 				823833AF1A70FBE4002A16EF /* OCTDirectoryContent.m in Sources */,
 				823833941A70FBE4002A16EF /* OCTPublicEvent.m in Sources */,
 				82DD9CAC1A9C1679008B2F3E /* NSArray+MASAdditions.m in Sources */,
@@ -2116,6 +2172,7 @@
 				82ADFFD11A7B8050003D77E9 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				8234C3E91A6E39E40098F0E1 /* RACObjCRuntime.m in Sources */,
 				8234C3D61A6E39E40098F0E1 /* RACChannel.m in Sources */,
+				8272102C1AC995DF004A8B25 /* MMMarkdown.m in Sources */,
 				8234C4041A6E39E40098F0E1 /* UIActionSheet+RACSignalSupport.m in Sources */,
 				8234C4001A6E39E40098F0E1 /* RACUnarySequence.m in Sources */,
 				82DC405A1A7CFAF400A75EAB /* FGPersonalGistsManager.m in Sources */,
@@ -2130,6 +2187,7 @@
 				82ADFFD21A7B8050003D77E9 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				8234C3D31A6E39E40098F0E1 /* RACBacktrace.m in Sources */,
 				8234C3C31A6E39E40098F0E1 /* NSObject+RACAppKitBindings.m in Sources */,
+				827210291AC995DF004A8B25 /* MMElement.m in Sources */,
 				8234C40C1A6E39E40098F0E1 /* UIGestureRecognizer+RACSignalSupport.m in Sources */,
 				823833851A70FBE4002A16EF /* OCTGitCommit.m in Sources */,
 				8234C3DC1A6E39E40098F0E1 /* RACDynamicSequence.m in Sources */,
@@ -2161,6 +2219,7 @@
 				823833811A70FBE4002A16EF /* OCTAuthorization.m in Sources */,
 				823832071A6FB613002A16EF /* NSError+MTLModelException.m in Sources */,
 				8234C40D1A6E39E40098F0E1 /* UIRefreshControl+RACCommandSupport.m in Sources */,
+				8272102D1AC995DF004A8B25 /* MMParser.m in Sources */,
 				82E566E21A7A251E00E7FF00 /* FGForkedGistsViewController.m in Sources */,
 				82BDAAB51A958FF6006249B1 /* FGNavigationController.m in Sources */,
 				823833951A70FBE4002A16EF /* OCTPullRequestCommentEvent.m in Sources */,

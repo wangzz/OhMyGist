@@ -10,6 +10,7 @@
 #import "OCTGistComment.h"
 #import "UIImageView+AFNetworking.h"
 #import "NSDate+FormatString.h"
+#import "MMMarkdown.h"
 
 @interface FGGistCommentCell ()
 
@@ -20,6 +21,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *dateLabel;
 
 @property (nonatomic, strong) IBOutlet UILabel *bodyLabel;
+
+@property (nonatomic, strong) IBOutlet UIWebView *webView;
 
 @end
 
@@ -38,12 +41,6 @@
 - (void)setComment:(OCTGistComment *)comment
 {
     _comment = comment;
-    [self setNeedsLayout];
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
     
     [self.avatarImageView setImageWithURL:self.comment.userAvatar placeholderImage:nil];
     
@@ -51,7 +48,20 @@
     
     self.dateLabel.text = [self.comment.updatedDate stringFormat];
     
-    self.bodyLabel.text = _comment.body;
+    NSError *err = nil;
+    NSString *htmlString = [MMMarkdown HTMLStringWithMarkdown:_comment.body extensions:MMMarkdownExtensionsGitHubFlavored error:&err];
+    if (err == nil) {
+        [self.webView loadHTMLString:htmlString baseURL:nil];
+    }
+    
+    [self setNeedsLayout];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    
 }
 
 - (IBAction)onNameButtonAction:(id)sender

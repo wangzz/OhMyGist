@@ -12,7 +12,7 @@
 #import "NSDate+FormatString.h"
 #import "MMMarkdown.h"
 
-@interface FGGistCommentCell ()
+@interface FGGistCommentCell () <UIWebViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UIImageView *avatarImageView;
 
@@ -30,6 +30,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.webView.delegate = self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -61,7 +62,6 @@
 {
     [super layoutSubviews];
     
-    
 }
 
 - (IBAction)onNameButtonAction:(id)sender
@@ -69,6 +69,16 @@
     if ([self.delegate respondsToSelector:@selector(didSelectComment:)]) {
         [self.delegate didSelectComment:self.comment];
     }
+}
+
+#pragma mark - UIWebViewDelegate
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    float offsetHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight;"] floatValue];
+    
+    float scrollHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight;"] floatValue];
+
+    NSLog(@"%s %f %f",__func__,offsetHeight,scrollHeight);
 }
 
 @end

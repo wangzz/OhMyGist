@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nno-ya-9Ee">
-                        <rect key="frame" x="20" y="8" width="148" height="41"/>
+                        <rect key="frame" x="20" y="9" width="148" height="41"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="titleEdgeInsets" minX="35" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <state key="normal" title="Button">
@@ -25,12 +25,6 @@
                             <action selector="onNameButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ise-9n-uZP"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rp2-vZ-aOJ">
-                        <rect key="frame" x="24" y="46" width="273" height="46"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h1c-P9-gIG"/>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fk5-rT-CRH">
                         <rect key="frame" x="176" y="17" width="130" height="21"/>
@@ -38,20 +32,25 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D85-dy-bOq">
-                        <rect key="frame" x="1" y="86" width="319" height="114"/>
+                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D85-dy-bOq">
+                        <rect key="frame" x="0.0" y="58" width="320" height="141"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </webView>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="D85-dy-bOq" secondAttribute="trailing" id="43D-af-Uqo"/>
+                    <constraint firstItem="D85-dy-bOq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Gd6-xw-33g"/>
+                    <constraint firstItem="D85-dy-bOq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="58" id="QD6-pV-Jwh"/>
+                    <constraint firstAttribute="bottom" secondItem="D85-dy-bOq" secondAttribute="bottom" id="ujx-4T-rBP"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="avatarImageView" destination="h1c-P9-gIG" id="eL7-iq-oFu"/>
-                <outlet property="bodyLabel" destination="Rp2-vZ-aOJ" id="HqK-jO-cZS"/>
                 <outlet property="dateLabel" destination="fk5-rT-CRH" id="SLh-qf-i20"/>
                 <outlet property="nameButton" destination="nno-ya-9Ee" id="0Ob-vX-siU"/>
                 <outlet property="webView" destination="D85-dy-bOq" id="K96-2L-snR"/>
             </connections>
-            <point key="canvasLocation" x="74" y="150"/>
+            <point key="canvasLocation" x="74" y="148"/>
         </tableViewCell>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

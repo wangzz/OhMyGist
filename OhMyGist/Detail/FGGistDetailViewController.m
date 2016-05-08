@@ -17,11 +17,12 @@
 #import "FGFileEditViewController.h"
 #import "FGNavigationController.h"
 #import "FGGistFilePreviewViewController.h"
+#import "RTLabel.h"
 
 
 #define HEIGHT_TABLEVIEW_SECTION_HEADER    25
 #define HEIGHT_TABLEVIEW_CELL_FILE         54
-#define HEIGHT_TABLEVIEW_CELL_COMMENT      200
+
 
 @interface FGGistDetailViewController () <UITableViewDelegate,UITableViewDataSource,FGGistInfoViewDelegate>
 {
@@ -208,7 +209,13 @@
     if (indexPath.section == 0 || (indexPath.section == 1 && self.commentsArray.count == 0)) {
         return HEIGHT_TABLEVIEW_CELL_FILE;
     } else if (indexPath.section == 1 && self.commentsArray.count > 0) {
-        return HEIGHT_TABLEVIEW_CELL_COMMENT;
+        OCTGistComment *comment = self.commentsArray[indexPath.row];
+        RTLabel *rtLabel = [FGGistCommentCell textLabel];
+        rtLabel.lineSpacing = 20.0;
+        [rtLabel setText:[FGGistCommentCell htmlStringWith:comment.body]];
+        CGFloat optimumHeight = [rtLabel optimumSize].height;
+        
+        return CELL_BASE_HEIGHT+optimumHeight;
     }
     
     return 0;

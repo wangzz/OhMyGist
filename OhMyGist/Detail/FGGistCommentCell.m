@@ -11,6 +11,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "NSDate+FormatString.h"
 #import "MMMarkdown.h"
+#import "RTLabel.h"
 
 @interface FGGistCommentCell () <UIWebViewDelegate>
 
@@ -20,9 +21,7 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *dateLabel;
 
-@property (nonatomic, strong) IBOutlet UILabel *bodyLabel;
-
-@property (nonatomic, strong) IBOutlet UIWebView *webView;
+@property (nonatomic, strong) IBOutlet RTLabel *bodyLabel;
 
 @end
 
@@ -30,7 +29,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    self.webView.delegate = self;
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -49,11 +48,7 @@
     
     self.dateLabel.text = [self.comment.updatedDate stringFormat];
     
-    NSError *err = nil;
-    NSString *htmlString = [MMMarkdown HTMLStringWithMarkdown:_comment.body extensions:MMMarkdownExtensionsGitHubFlavored error:&err];
-    if (err == nil) {
-        [self.webView loadHTMLString:htmlString baseURL:nil];
-    }
+    [self.bodyLabel setText:[[self class] htmlStringWith:self.comment.body]];
     
     [self setNeedsLayout];
 }
@@ -71,14 +66,23 @@
     }
 }
 
-#pragma mark - UIWebViewDelegate
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
-    float offsetHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight;"] floatValue];
++ (NSString *)htmlStringWith:(NSString *)string
+{
+    NSError *err = nil;
+    NSString *htmlString = [MMMarkdown HTMLStringWithMarkdown:string extensions:MMMarkdownExtensionsGitHubFlavored error:&err];
+    if (err == nil) {
+        return htmlString;
+    }
     
-    float scrollHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight;"] floatValue];
+    return nil;
+}
 
-    NSLog(@"%s %f %f",__func__,offsetHeight,scrollHeight);
++ (RTLabel*)textLabel
+{
+    RTLabel *label = [[RTLabel alloc] initWithFrame:CGRectMake(10,10,300,100)];
+    //[label setFont:[UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20]];
+    [label setParagraphReplacement:@""];
+    return label;
 }
 
 @end

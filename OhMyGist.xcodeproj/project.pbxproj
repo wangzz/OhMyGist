@@ -115,6 +115,7 @@
 		8234C4131A6E39E40098F0E1 /* UITableViewHeaderFooterView+RACSignalSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8234C3B31A6E39E40098F0E1 /* UITableViewHeaderFooterView+RACSignalSupport.m */; };
 		8234C4141A6E39E40098F0E1 /* UITextField+RACSignalSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8234C3B51A6E39E40098F0E1 /* UITextField+RACSignalSupport.m */; };
 		8234C4151A6E39E40098F0E1 /* UITextView+RACSignalSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8234C3B71A6E39E40098F0E1 /* UITextView+RACSignalSupport.m */; };
+		823776791ACAD2E5007EEFAF /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 823776781ACAD2E5007EEFAF /* RTLabel.m */; };
 		823831FD1A6FB613002A16EF /* EXTRuntimeExtensions-MTL.m in Sources */ = {isa = PBXBuildFile; fileRef = 823831E01A6FB613002A16EF /* EXTRuntimeExtensions-MTL.m */; };
 		823831FE1A6FB613002A16EF /* EXTScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 823831E21A6FB613002A16EF /* EXTScope.m */; };
 		823831FF1A6FB613002A16EF /* MTLJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 823831E61A6FB613002A16EF /* MTLJSONAdapter.m */; };
@@ -507,6 +508,8 @@
 		8234C3B51A6E39E40098F0E1 /* UITextField+RACSignalSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+RACSignalSupport.m"; sourceTree = "<group>"; };
 		8234C3B61A6E39E40098F0E1 /* UITextView+RACSignalSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+RACSignalSupport.h"; sourceTree = "<group>"; };
 		8234C3B71A6E39E40098F0E1 /* UITextView+RACSignalSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+RACSignalSupport.m"; sourceTree = "<group>"; };
+		823776771ACAD2E5007EEFAF /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
+		823776781ACAD2E5007EEFAF /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
 		823831DE1A6FB613002A16EF /* EXTKeyPathCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTKeyPathCoding.h; sourceTree = "<group>"; };
 		823831DF1A6FB613002A16EF /* EXTRuntimeExtensions-MTL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXTRuntimeExtensions-MTL.h"; sourceTree = "<group>"; };
 		823831E01A6FB613002A16EF /* EXTRuntimeExtensions-MTL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXTRuntimeExtensions-MTL.m"; sourceTree = "<group>"; };
@@ -1203,6 +1206,16 @@
 			path = extobjc;
 			sourceTree = "<group>";
 		};
+		823776761ACAD2E5007EEFAF /* RTLabel */ = {
+			isa = PBXGroup;
+			children = (
+				823776771ACAD2E5007EEFAF /* RTLabel.h */,
+				823776781ACAD2E5007EEFAF /* RTLabel.m */,
+			);
+			name = RTLabel;
+			path = Vendor/RTLabel;
+			sourceTree = SOURCE_ROOT;
+		};
 		823831DC1A6FB613002A16EF /* Mantle */ = {
 			isa = PBXGroup;
 			children = (
@@ -1639,6 +1652,7 @@
 		823924C51A66BCE700AEC910 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				823776761ACAD2E5007EEFAF /* RTLabel */,
 				827210161AC995DF004A8B25 /* MMMarkdown */,
 				82DD9C8E1A9C1679008B2F3E /* Masonry */,
 				829DF0091A7E1B4800DD8DC1 /* SVProgressHUD */,
@@ -2022,6 +2036,7 @@
 				8234C3ED1A6E39E40098F0E1 /* RACReturnSignal.m in Sources */,
 				823833B31A70FBE4002A16EF /* OCTBranch.m in Sources */,
 				82E566D71A7A247200E7FF00 /* FGPersonalGistsViewController.m in Sources */,
+				823776791ACAD2E5007EEFAF /* RTLabel.m in Sources */,
 				8272102B1AC995DF004A8B25 /* MMHTMLParser.m in Sources */,
 				8234C3D21A6E39E40098F0E1 /* RACArraySequence.m in Sources */,
 				82E567001A7A645400E7FF00 /* NSUserDefaults+SecureAdditions.m in Sources */,
